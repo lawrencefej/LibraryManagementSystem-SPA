@@ -1,0 +1,7 @@
+<div class="container mt-3">
+  <div class="row">
+    <div *ngFor="let asset of assets" class="col-lg-2 col-md-3 col-sm-6">
+      <app-asset-card [asset]="asset"></app-asset-card>
+    </div>
+  </div>
+</div>

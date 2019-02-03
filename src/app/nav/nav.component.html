@@ -1,29 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="#">LMS</a>
   
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Catalog</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a *ngIf="loggedIn()" class="nav-link" [routerLink]="['']">Catalog</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">History</a>
+      <li  *ngIf="loggedIn()" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/history']">History</a>
       </li>
-      <li *ngIf="!loggedIn()" class="nav-item">
+      <li *ngIf="loggedIn()" class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/currentitems']">Current Items</a>
+      </li>
+      <li *ngIf="!loggedIn()" class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/login">Login</a>
       </li>
     </ul>
 
-    <div *ngIf="loggedIn()" class="dropdown mr-5" dropdown>
+    <div *ngIf="loggedIn()" class="dropdown " dropdown>
         <span class="mr-1">
           <img src="{{photoUrl || '../../assets/user.png'}}" alt="">
         </span>
-          <a class="dropdown-toggle text-light mr-3" dropdownToggle>
+          <a class="dropdown-toggle text-light mr-1" dropdownToggle>
             Welcome {{authService.decodedToken?.email | titlecase}}
           </a>
         
-          <div class="dropdown-menu mt-3 mr-5" *dropdownMenu>
+          <div class="dropdown-menu mt-3 mr-1" *dropdownMenu>
             <a class="dropdown-item" [routerLink]="['/member/edit']" ><i class="fa fa-user">
               </i> Edit Profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" [routerLink]="['/member/edit']" ><i class="fa fa-cog">
+              </i>Settings</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" (click)="logout()">
               <i class="fa fa-sign-out"></i> Logout</a>

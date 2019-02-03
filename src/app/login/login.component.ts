@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     }, error => {
       this.alertify.error(error);
     }, () => {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/']);
     });
   }
 
@@ -31,13 +31,13 @@ export class LoginComponent implements OnInit {
     return this.authService.loggedIn();
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    this.authService.decodedToken = null;
-    this.authService.currentUser = null;
-    this.alertify.message('logged out');
-    this.router.navigate(['/home']);
-  }
+  // logout() {
+  //   localStorage.removeItem('token');
+  //   localStorage.removeItem('user');
+  //   this.authService.decodedToken = null;
+  //   this.authService.currentUser = null;
+  //   this.alertify.message('logged out');
+  //   this.router.navigate(['/home']);
+  // }
 
 }
