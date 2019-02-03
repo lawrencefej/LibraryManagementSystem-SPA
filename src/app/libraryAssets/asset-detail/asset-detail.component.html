@@ -1,3 +1,69 @@
-<p>
-  {{asset.description}}
-</p>
+<div class="container mt-4">
+    <div class="row">
+      <h1>{{asset.title}}</h1>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <img class="card-img-top img-thumbnail" src="{{asset.photoUrl || '../../../assets/book.jpg'}}" alt="{{asset.title}}">
+          <div class="card-body">
+              <div>
+                  <strong>Status:</strong>
+                  <p>{{asset.status}}</p>
+              </div>
+          </div>
+          <div class="card-footer">
+            <div class="btn-group d-flex">
+              <button class="btn btn-primary w-100">Reserve</button>
+              <button class="btn btn-success w-100">Hold</button>
+            </div>
+        </div>
+      </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="tab-panel">
+            <div class="test d-inline">
+          <tabset class="asset-tabset" #memberTabs>
+            <tab heading="{{asset.title}}">
+              <div class="container mt-4">
+                <div>
+                    <strong>Author/Director:</strong>
+                    <p>{{asset.authorName}}</p>
+                </div>
+                <div>
+                    <strong>Year:</strong>
+                    <p>{{asset.year}}</p>
+                </div>
+                <div>
+                    <strong>Cost:</strong>
+                    <p>{{asset.cost}}</p>
+                </div>
+                <div>
+                    <strong>Available copies:</strong>
+                    <p>{{asset.copiesAvailable}}</p>
+                </div>
+                <div>
+                    <strong>Type:</strong>
+                    <p>{{asset.assetType}}</p>
+                </div>
+                <div>
+                    <strong>ISBN:</strong>
+                    <p>{{asset.isbn}}</p>
+                </div>
+                <div>
+                    <strong>Location:</strong>
+                    <p>{{asset.deweyIndex}}</p>
+                </div>
+              </div>
+            </tab>
+            <tab heading="Description">
+              <div class="container mt-4"> 
+                <p>{{asset.description}}</p>
+              </div>
+            </tab>
+          </tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+  

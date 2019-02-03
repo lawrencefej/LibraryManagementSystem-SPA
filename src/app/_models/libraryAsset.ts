@@ -9,13 +9,13 @@ export interface LibraryAsset {
     status: string;
     cost: number;
     added: Date;
-    copies: number;
+    copiesAvailable: number;
     description: string;
     photoUrl: string;
     photo?: Photo;
     assetTypeName: string;
     assetType: AssetType;
-    author: Author;
+    authorName: string;
     isbn?: string;
     deweyIndex?: string;
 

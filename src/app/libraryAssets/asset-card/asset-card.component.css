@@ -14,7 +14,12 @@
 .card-img-wrapper {
     overflow: hidden;
     position: relative;
-    height: 10rem;
+    height: 15rem;
+    width: 10rem;
+}
+
+.card-body {
+    size: 15rem;
 }
 
 .member-icons {

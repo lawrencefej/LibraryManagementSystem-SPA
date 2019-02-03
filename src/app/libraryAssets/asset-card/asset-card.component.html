@@ -1,6 +1,6 @@
 <div class="card mb-4">
   <div class="card-img-wrapper">
-    <img class="card-img-top" src="{{asset.photoUrl || '../../../assets/user.png'}}" alt="{{asset.title}}">
+    <img class="card-img-top" src="{{asset.photoUrl || '../../../assets/book.jpg'}}" alt="{{asset.title}}">
     <ul class="list-inline member-icons animate text-center">
       <li class="list-inline-item"><button class="btn btn-info" 
           [routerLink]="[ asset.id]" ><i class="fa fa-info-circle"></i></button> </li>
@@ -11,9 +11,28 @@
     </ul>
   </div>
   <div class="card-body p-1">
+    <h4 class="card-title text-center mb-1">
+      {{asset.title}}
+    </h4>
     <h6 class="card-title text-center mb-1"><i class="fa fa-user"></i>
-      {{asset.title}}, {{asset.author}}
+      {{asset.authorName}}
     </h6>
-    <p class="card-text text-muted text-center">{{asset.status}}</p>
   </div>
 </div>
+
+<!-- <div class="row">
+  <table class="table">
+    <tr>
+      <th style="width: 10%">User ID</th>
+      <th style="width: 20%">Username</th>
+      <th style="width: 30%">Active roles</th>
+      <th style="width: 20%">User ID</th>
+    </tr>
+    <tr *ngFor="let user of assets">
+      <td>{{asset.id}}</td>
+      <td>{{asset.title}}</td>
+      <td>{{asset.authorName}}</td>
+      <td><button class="btn btn-info" >Edit Roles</button></td>
+    </tr>
+  </table>
+</div> -->

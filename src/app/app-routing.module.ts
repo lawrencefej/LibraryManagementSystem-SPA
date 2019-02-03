@@ -11,6 +11,8 @@ import { AssetDetailComponent } from './libraryAssets/asset-detail/asset-detail.
 
 const routes: Routes = [
   {path: '', component: AssetListComponent},
+  {path: 'catalog', component: AssetListComponent},
+  {path: 'catalog/:id', component: AssetDetailComponent},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: ':id', component: AssetDetailComponent},
