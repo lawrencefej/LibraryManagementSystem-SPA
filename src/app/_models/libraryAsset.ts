@@ -18,5 +18,7 @@ export interface LibraryAsset {
     authorName: string;
     isbn?: string;
     deweyIndex?: string;
-
+    category?: string;
+    categoryId?: number;
+    authorId?: number;
 }

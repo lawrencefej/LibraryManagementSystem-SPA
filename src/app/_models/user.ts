@@ -13,6 +13,8 @@ export interface User {
     city: string;
     state: string;
     zipcode: string;
+    fees: number;
+    libraryAssetId?: number;
     profilepicture?: Photo[];
     roles?: string[];
 }

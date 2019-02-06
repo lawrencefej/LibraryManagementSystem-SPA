@@ -19,9 +19,13 @@ import { AssetService } from './_services/asset.service';
 import { AssetListComponent } from './libraryAssets/asset-list/asset-list.component';
 import { AssetCardComponent } from './libraryAssets/asset-card/asset-card.component';
 import { AuthGuard } from './_guards/auth.guard';
-import { HistoryComponent } from './History/History.component';
 import { CurrentItemsComponent } from './currentItems/currentItems.component';
 import { AssetDetailComponent } from './libraryAssets/asset-detail/asset-detail.component';
+import { MemberHistoryComponent } from './members/member-history/member-history.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { TestComponent } from './test/test.component';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { MemberCheckoutsComponent } from './members/member-checkouts/member-checkouts.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -34,12 +38,16 @@ export function tokenGetter() {
       RegisterComponent,
       LoginComponent,
       HomeComponent,
+      MemberHistoryComponent,
       MustMatchDirective,
       AssetListComponent,
       AssetCardComponent,
-      HistoryComponent,
       CurrentItemsComponent,
-      AssetDetailComponent
+      AssetDetailComponent,
+      MemberEditComponent,
+      TestComponent,
+      MemberCardComponent,
+      MemberCheckoutsComponent
    ],
    imports: [
       BrowserModule,

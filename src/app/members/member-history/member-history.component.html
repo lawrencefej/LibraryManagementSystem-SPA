@@ -1,3 +1,46 @@
-<p>
-  member-history works!
-</p>
+<div class="container mt-4">
+    <div class="header clearfix detailHeading">
+        <h2 class="text-center">View Library Item</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+        <h4>Current Checkouts</h4>
+        <table class="table table-bordered table-hover table-condensed">
+          <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date Checkout</th>
+                <th>Due Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let checkout of checkouts">
+                <td>{{checkout.title}}</td>
+                <td>{{checkout.until}}</td>
+                <td>{{checkout.status}}</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="col-lg-6">
+            <h4>Reserved Items</h4>
+            <table class="table table-bordered table-hover .table-sm">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Expires</th>
+                        <th style="width: 10%;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr *ngFor="let reserve of reserves">
+                            <td>{{reserve.title}}</td>
+                            <td>{{reserve.until}}</td>
+                            <td><button class="btn btn-outline-success">Cancel</button></td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

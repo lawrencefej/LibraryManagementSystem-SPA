@@ -1,18 +1,18 @@
 <div class="container mt-4">
     <div class="row">
-      <h1>{{asset.title}}</h1>
+      <h1>{{asset?.title}}</h1>
     </div>
     <div class="row">
       <div class="col-sm-4">
         <div class="card">
-          <img class="card-img-top img-thumbnail" src="{{asset.photoUrl || '../../../assets/book.jpg'}}" alt="{{asset.title}}">
+          <img class="card-img-top img-thumbnail" src="{{asset?.photoUrl || '../../../assets/book.jpg'}}" alt="{{asset.title}}">
           <div class="card-body">
               <div>
                   <strong>Status:</strong>
                   <p>{{asset.status}}</p>
               </div>
           </div>
-          <div class="card-footer">
+          <div class="card-footer" *ngIf="loggedIn()">
             <div class="btn-group d-flex">
               <button class="btn btn-primary w-100">Reserve</button>
               <button class="btn btn-success w-100">Hold</button>
@@ -22,9 +22,8 @@
       </div>
       <div class="col-sm-8">
         <div class="tab-panel">
-            <div class="test d-inline">
           <tabset class="asset-tabset" #memberTabs>
-            <tab heading="{{asset.title}}">
+            <tab heading="Details">
               <div class="container mt-4">
                 <div>
                     <strong>Author/Director:</strong>
