@@ -1,24 +1,37 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './register/register.component';
-import { AssetListComponent } from './libraryAssets/asset-list/asset-list.component';
-import { AuthGuard } from './_guards/auth.guard';
+import { RouterModule, Routes } from '@angular/router';
+
+import { AdminPanelComponent } from './Admin/admin-panel/admin-panel.component';
 import { AssetDetailComponent } from './libraryAssets/asset-detail/asset-detail.component';
-import { MemberHistoryComponent } from './members/member-history/member-history.component';
+import { AssetDetailResolver } from './_resolver/asset-detail.resolver';
+import { AssetListComponent } from './libraryAssets/asset-list/asset-list.component';
+import { AssetListResolver } from './_resolver/asset-list.resolver';
+import { AuthGuard } from './_guards/auth.guard';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
-import { TestComponent } from './test/test.component';
+import { MemberHistoryComponent } from './members/member-history/member-history.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
+import { NgModule } from '@angular/core';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  {path: '', component: AssetListComponent},
-  {path: 'catalog', component: AssetListComponent},
-  {path: 'catalog/:id', component: AssetDetailComponent},
+  {path: '', component: HomeComponent},
+  {path: 'catalog', component: AssetListComponent,      resolve: {assets: AssetListResolver}},
+  {path: 'catalog/:id', component: AssetDetailComponent,      resolve: {asset: AssetDetailResolver}},
   {path: 'login', component: LoginComponent},
-  {path: 'home', component: HomeComponent},
-  {path: 'currentitems', component: MemberHistoryComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profileedit', component: MemberEditComponent},
+  {path: 'home', component: HomeComponent},
+  {
+    path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
+    children: [
+      {path: 'currentitems', component: MemberHistoryComponent},
+      {path: 'profileedit', component: MemberEditComponent},
+      {path: 'admin', component: AdminPanelComponent, data: {roles: ['Admin', 'Librarian']}},
+      {path: 'members', component: MemberListComponent, data: {roles: ['Admin', 'Librarian']}},
+    ]
+  },
   {path: '**', redirectTo: '', pathMatch: 'full'},
 ];
 

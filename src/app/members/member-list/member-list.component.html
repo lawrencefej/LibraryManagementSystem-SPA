@@ -1,0 +1,35 @@
+<div class="container">
+<div class="card text-center" id="memberlist">
+  <div class="card-header">
+    <form class="form-inline my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+  <div class="card-body">
+      <table class="table table-hover">
+          <tr>
+            <th style="width: 5%">Card#</th>
+            <th style="width: 20%">First Name</th>
+            <th style="width: 20%">Last Name</th>
+            <th style="width: 20%">Email</th>
+            <th style="width: 5%">Select</th>
+            <th style="width: 5%">Edit</th>
+            <th style="width: 5%">Delete</th>
+          </tr>
+          <tr *ngFor="let member of members">
+            <td>{{member.cardNumber}}</td>
+            <td>{{member.firstName}}</td>
+            <td>{{member.lastName}}</td>
+            <td>{{member.email}}</td>
+            <td><a href=""><span><i class="fa fa-check"></i></span></a></td>
+            <td><a href=""><span><i class="fa fa-edit"></i></span></a></td>
+            <td><a href=""><span><i class="fa fa-trash"></i></span></a></td>
+          </tr>
+        </table>
+  </div>
+  <div class="card-footer text-muted">
+    <button class="btn btn-info">Add Member</button>
+  </div>
+</div>
+</div>

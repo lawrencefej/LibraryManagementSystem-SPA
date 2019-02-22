@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AssetService } from 'src/app/_services/asset.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { ReserveAsset } from 'src/app/_models/reserveAsset';
   styleUrls: ['./asset-detail.component.css']
 })
 export class AssetDetailComponent implements OnInit {
-  asset: LibraryAsset;
+  @Input() asset: LibraryAsset;
   // user: User;
   reserve: ReserveAsset;
 
@@ -26,14 +26,8 @@ export class AssetDetailComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loadAsset();
-  }
-
-  loadAsset() {
-    this.assetService.getAsset(+this.route.snapshot.params['id']).subscribe((asset: LibraryAsset) => {
-      this.asset = asset;
-    }, error => {
-      this.alertify.error(error);
+    this.route.data.subscribe(data => {
+      this.asset = data['asset'];
     });
   }
 
@@ -41,14 +35,11 @@ export class AssetDetailComponent implements OnInit {
     return this.authService.loggedIn();
   }
 
-  reserveAsset() {
-    this.reserve.libraryAssetId = this.asset.id;
-    this.userService.reserveAsset(this.authService.decodedToken.nameid, this.reserve).subscribe(next => {
-      this.alertify.success('Reserve was successful');
+  reserveAsset(assetId: number) {
+    this.userService.reserveAsset(this.authService.decodedToken.nameid, assetId).subscribe(data => {
+      this.alertify.success(this.asset.title + 'was reserved successfully');
     }, error => {
       this.alertify.error(error);
-    }, () => {
-      this.router.navigate(['/currentitems']);
     });
   }
 

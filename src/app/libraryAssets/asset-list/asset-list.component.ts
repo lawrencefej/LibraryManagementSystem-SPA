@@ -17,15 +17,17 @@ export class AssetListComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loadAssets();
-  }
-
-  loadAssets() {
-    this.assetService.getAssets().subscribe((assets: LibraryAsset[]) => {
-      this.assets = assets;
-    }, error => {
-      this.alertify.error(error);
+    this.route.data.subscribe(data => {
+      this.assets = data['assets'];
     });
   }
+
+  // loadAssets() {
+  //   this.assetService.getAssets().subscribe((assets: LibraryAsset[]) => {
+  //     this.assets = assets;
+  //   }, error => {
+  //     this.alertify.error(error);
+  //   });
+  // }
 
 }

@@ -1,31 +1,36 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BsDatepickerModule, BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { BsDropdownModule, BsDatepickerModule, TabsModule } from 'ngx-bootstrap';
-import { JwtModule } from '@auth0/angular-jwt';
-import {HttpClientModule} from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { AuthService } from './_services/auth.service';
-import { ErrorinterceptorProvider } from './_services/error.interceptor';
+import { AdminPanelComponent } from './Admin/admin-panel/admin-panel.component';
 import { AlertifyService } from './_services/alertify.service';
-import { MustMatchDirective } from './_directives/must-match.directive';
-import { AssetService } from './_services/asset.service';
-import { AssetListComponent } from './libraryAssets/asset-list/asset-list.component';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { AssetCardComponent } from './libraryAssets/asset-card/asset-card.component';
-import { AuthGuard } from './_guards/auth.guard';
-import { CurrentItemsComponent } from './currentItems/currentItems.component';
 import { AssetDetailComponent } from './libraryAssets/asset-detail/asset-detail.component';
-import { MemberHistoryComponent } from './members/member-history/member-history.component';
-import { MemberEditComponent } from './members/member-edit/member-edit.component';
-import { TestComponent } from './test/test.component';
+import { AssetDetailResolver } from './_resolver/asset-detail.resolver';
+import { AssetListComponent } from './libraryAssets/asset-list/asset-list.component';
+import { AssetListResolver } from './_resolver/asset-list.resolver';
+import { AssetService } from './_services/asset.service';
+import { AuthGuard } from './_guards/auth.guard';
+import { AuthService } from './_services/auth.service';
+import { BrowserModule } from '@angular/platform-browser';
+import { CurrentItemsComponent } from './currentItems/currentItems.component';
+import { ErrorinterceptorProvider } from './_services/error.interceptor';
+import { FooterComponent } from './components/footer/footer.component';
+import { HasRoleDirective } from './_directives/hasRole.directive';
+import { HomeComponent } from './home/home.component';
+import {HttpClientModule} from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
+import { LoginComponent } from './login/login.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MemberCheckoutsComponent } from './members/member-checkouts/member-checkouts.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberHistoryComponent } from './members/member-history/member-history.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
+import { NavComponent } from './nav/nav.component';
+import { NgModule } from '@angular/core';
+import { RegisterComponent } from './register/register.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -39,15 +44,18 @@ export function tokenGetter() {
       LoginComponent,
       HomeComponent,
       MemberHistoryComponent,
-      MustMatchDirective,
       AssetListComponent,
       AssetCardComponent,
       CurrentItemsComponent,
       AssetDetailComponent,
       MemberEditComponent,
-      TestComponent,
       MemberCardComponent,
-      MemberCheckoutsComponent
+      MemberCheckoutsComponent,
+      SidebarComponent,
+      FooterComponent,
+      AdminPanelComponent,
+      HasRoleDirective,
+      MemberListComponent
    ],
    imports: [
       BrowserModule,
@@ -71,7 +79,9 @@ export function tokenGetter() {
       ErrorinterceptorProvider,
       AlertifyService,
       AssetService,
-      AuthGuard
+      AuthGuard,
+      AssetDetailResolver,
+      AssetListResolver
    ],
    bootstrap: [
       AppComponent

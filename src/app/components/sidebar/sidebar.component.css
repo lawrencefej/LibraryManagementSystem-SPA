@@ -1,0 +1,60 @@
+.btn-close{
+  position:absolute;
+  top:0;
+  right:10px;
+  font-size:36px;
+  margin-left:50px;
+}
+
+.logo {
+    position: absolute;
+    top: 0%;
+}
+
+a:hover {
+    /* background-color: #18bc9c; */
+    /* background-color: #679188;
+    color: white; */
+}
+
+li:hover {
+    background-color: #18bc9c;
+    color: black;
+}
+
+
+
+.list-group {
+    text-align: start;
+    /* background-color: #2c3e50; */
+}
+
+#sidenav {
+    margin-left: 20px;
+    padding-left: 20px;
+    font-size: 20px;
+    color: white !important;
+}
+
+#sidebar ul {
+    padding: 0;
+    margin: 0;
+}
+
+#sidebar ul li {
+    padding: 15px 10px;
+    border-bottom: 1px solid #0c0e11
+}
+
+#sidebar ul li a i {
+    color: #76828e;
+}
+
+#sidebar ul li a {
+    text-decoration: none;
+    color: lightgray;
+}
+
+/* #sidebar ul li a:hover {
+    color: #2c3e50;
+} */

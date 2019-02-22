@@ -16,6 +16,7 @@ export class MemberHistoryComponent implements OnInit {
   user: User;
   reserves: ReserveAsset[];
   checkouts: Checkout[];
+  test: any;
 
   constructor(private route: ActivatedRoute, private alertify: AlertifyService,
     private userService: UserService, private authService: AuthService) { }
@@ -23,6 +24,8 @@ export class MemberHistoryComponent implements OnInit {
   ngOnInit() {
     this.loadReserves();
     this.loadCheckouts();
+    this.test = this.authService.decodedToken.role as Array<string>;
+      console.log(this.test);
   }
 
   loadReserves() {

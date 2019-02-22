@@ -1,0 +1,17 @@
+#memberlist {
+  /* padding-left: 350; */
+  /* margin-left: 250; */
+}
+
+.fa-trash {
+  color: red;
+  font-size: 20px;
+}
+
+.fa-edit {
+  font-size: 20px;
+}
+
+.form-inline {
+  float: right;
+}

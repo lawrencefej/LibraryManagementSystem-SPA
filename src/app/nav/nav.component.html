@@ -1,9 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" routerLink="" routerLinkActive="active">LMS</a>
+  <a class="navbar-brand mr-auto" routerLink="" routerLinkActive="active">LMS</a>
   
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav">
+        <li *ngIf="isAdmin" class="nav-item" routerLinkActive="active" >
+            <a class="nav-link" [routerLink]="['/admin']"  id="side-menu">Admin</a>
+          </li>
       <li class="nav-item" routerLinkActive="active">
-        <a *ngIf="loggedIn()" class="nav-link" [routerLink]="['']">Catalog</a>
+        <a *ngIf="!loggedIn()" class="nav-link" [routerLink]="['catalog']">Catalog</a>
       </li>
       <li  *ngIf="loggedIn()" class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/history']">History</a>

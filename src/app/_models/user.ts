@@ -16,5 +16,6 @@ export interface User {
     fees: number;
     libraryAssetId?: number;
     profilepicture?: Photo[];
-    roles?: string[];
+    role: string;
+    cardNumber: number;
 }
