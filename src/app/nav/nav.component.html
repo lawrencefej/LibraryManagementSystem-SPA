@@ -6,7 +6,7 @@
             <a class="nav-link" [routerLink]="['/admin']"  id="side-menu">Admin</a>
           </li>
       <li class="nav-item" routerLinkActive="active">
-        <a *ngIf="!loggedIn()" class="nav-link" [routerLink]="['catalog']">Catalog</a>
+        <a class="nav-link" [routerLink]="['catalog']">Catalog</a>
       </li>
       <li  *ngIf="loggedIn()" class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/history']">History</a>
