@@ -2,21 +2,21 @@ import { ActivatedRouteSnapshot, Resolve, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
 import { AlertifyService } from '../_services/alertify.service';
-import { AssetService } from '../_services/asset.service';
 import { Injectable } from '@angular/core';
-import { LibraryAsset } from '../_models/libraryAsset';
+import { User } from '../_models/user';
+import { UserService } from '../_services/user.service';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
-export class AssetDetailResolver implements Resolve<LibraryAsset> {
-  constructor(private assetService: AssetService,
+export class MemberDetailResolver implements Resolve<User> {
+  constructor(private userService: UserService,
     private router: Router, private alertify: AlertifyService) { }
 
-  resolve(route: ActivatedRouteSnapshot): Observable<LibraryAsset> {
-    return this.assetService.getAsset(route.params['id']).pipe(
+  resolve(route: ActivatedRouteSnapshot): Observable<User> {
+    return this.userService.getUser(route.params['id']).pipe(
       catchError(error => {
         this.alertify.error('Problem retrieving data');
-        this.router.navigate(['/catalog']);
+        this.router.navigate(['/members']);
         return of(null);
       })
     );

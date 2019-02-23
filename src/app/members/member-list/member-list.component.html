@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
 <div class="card text-center" id="memberlist">
   <div class="card-header">
     <button class="btn btn-info addmember">Add Member</button>
@@ -19,11 +19,11 @@
             <th style="width: 5%">Delete</th>
           </tr>
           <tr *ngFor="let member of members">
-            <td>{{member.cardNumber}}</td>
+            <td>{{member.libraryCardNumber}}</td>
             <td>{{member.firstName}}</td>
             <td>{{member.lastName}}</td>
             <td>{{member.email}}</td>
-            <td><a href=""><span><i class="fa fa-check"></i></span></a></td>
+            <td><a [routerLink]="['/members/', member.id]"><span><i class="fa fa-check"></i></span></a></td>
             <td><a href=""><span><i class="fa fa-edit"></i></span></a></td>
             <td><a href=""><span><i class="fa fa-trash"></i></span></a></td>
           </tr>

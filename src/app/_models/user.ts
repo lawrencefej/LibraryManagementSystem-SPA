@@ -10,12 +10,12 @@ export interface User {
     created: Date;
     lastActive: Date;
     photoUrl: string;
+    address: string;
     city: string;
     state: string;
     zipcode: string;
     fees: number;
-    libraryAssetId?: number;
-    profilepicture?: Photo[];
+    profilePicture?: Photo[];
     role: string;
-    cardNumber: number;
+    libraryCardNumber: number;
 }

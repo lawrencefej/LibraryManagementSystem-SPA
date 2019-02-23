@@ -6,7 +6,6 @@ import { AssetService } from 'src/app/_services/asset.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { LibraryAsset } from 'src/app/_models/libraryAsset';
 import { ReserveAsset } from 'src/app/_models/reserveAsset';
-import { User } from 'src/app/_models/user';
 import { UserService } from 'src/app/_services/user.service';
 
 @Component({

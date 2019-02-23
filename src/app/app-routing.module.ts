@@ -8,6 +8,8 @@ import { AssetListResolver } from './_resolver/asset-list.resolver';
 import { AuthGuard } from './_guards/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { MemberDetailResolver } from './_resolver/member-detail.resolver';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberHistoryComponent } from './members/member-history/member-history.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
@@ -32,8 +34,8 @@ const routes: Routes = [
       { path: 'admin', component: AdminPanelComponent, data: { roles: ['Admin', 'Librarian'] } },
       { path: 'members', component: MemberListComponent, data: { roles: ['Admin', 'Librarian'] },
         resolve: { members: MemberListResolver } },
-      { path: 'members/:id', component: MemberListComponent, data: { roles: ['Admin', 'Librarian'] },
-        resolve: { members: MemberListResolver } },
+      { path: 'members/:id', component: MemberDetailComponent, data: { roles: ['Admin', 'Librarian'] },
+        resolve: { member: MemberDetailResolver } },
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },

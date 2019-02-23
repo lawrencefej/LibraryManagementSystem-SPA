@@ -20,39 +20,43 @@
   border-radius: 4px;
 }
 
-.nav-tabs > li.open, .member-tabset > .nav-tabs > li:hover {
+.nav-tabs > li.open, .asset-tabset > .nav-tabs > li:hover {
   border-bottom: 4px solid #fbcdcf;
 }
 
-.member-tabset > .nav-tabs > li.open > a, .member-tabset > .nav-tabs > li:hover > a {
+.asset-tabset > .nav-tabs > li.open > a, .asset-tabset > .nav-tabs > li:hover > a {
   border: 0;
   background: none !important;
   color: #333333;
 }
 
-.member-tabset > .nav-tabs > li.open > a > i, .member-tabset > .nav-tabs > li:hover > a > i {
+.asset-tabset > .nav-tabs > li.open > a > i, .asset-tabset > .nav-tabs > li:hover > a > i {
   color: #a6a6a6;
 }
 
-.member-tabset > .nav-tabs > li.open .dropdown-menu, .member-tabset > .nav-tabs > li:hover .dropdown-menu {
+.asset-tabset > .nav-tabs > li.open .dropdown-menu, .asset-tabset > .nav-tabs > li:hover .dropdown-menu {
   margin-top: 0px;
 }
 
-.member-tabset > .nav-tabs > li.active {
+/* .asset-tabset > .nav-tabs > li.active {
+  border-bottom: 4px solid #2c3e50;
+  position: relative;
+} */
+.asset-tabset > .tabheading:hover {
   border-bottom: 4px solid #2c3e50;
   position: relative;
 }
 
-.member-tabset > .nav-tabs > li.active > a {
+.asset-tabset > .nav-tabs > li.active > a {
   border: 0 !important;
   color: #333333;
 }
 
-.member-tabset > .nav-tabs > li.active > a > i {
+.asset-tabset > .nav-tabs > li.active > a > i {
   color: #404040;
 }
 
-.member-tabset > .tab-content {
+.asset-tabset > .tab-content {
   margin-top: -3px;
   background-color: #fff;
   border: 0;

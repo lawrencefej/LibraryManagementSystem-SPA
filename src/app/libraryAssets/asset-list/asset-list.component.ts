@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { LibraryAsset } from 'src/app/_models/libraryAsset';
-import { AssetService } from 'src/app/_services/asset.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
+
 import { ActivatedRoute } from '@angular/router';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { AssetService } from 'src/app/_services/asset.service';
+import { LibraryAsset } from 'src/app/_models/libraryAsset';
 
 @Component({
   selector: 'app-asset-list',
@@ -21,13 +22,5 @@ export class AssetListComponent implements OnInit {
       this.assets = data['assets'];
     });
   }
-
-  // loadAssets() {
-  //   this.assetService.getAssets().subscribe((assets: LibraryAsset[]) => {
-  //     this.assets = assets;
-  //   }, error => {
-  //     this.alertify.error(error);
-  //   });
-  // }
 
 }
