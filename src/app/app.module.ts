@@ -14,6 +14,10 @@ import { AssetService } from './_services/asset.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { AuthService } from './_services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
+import { CheckoutDetailComponent } from './checkout/checkout-detail/checkout-detail.component';
+import { CheckoutDetailResolver } from './_resolver/checkout-detail.resolver';
+import { CheckoutListComponent } from './checkout/checkout-list/checkout-list.component';
+import { CheckoutListResolver } from './_resolver/checkout-list.resolver';
 import { CurrentItemsComponent } from './currentItems/currentItems.component';
 import { ErrorinterceptorProvider } from './_services/error.interceptor';
 import { FooterComponent } from './components/footer/footer.component';
@@ -60,7 +64,10 @@ export function tokenGetter() {
       AdminPanelComponent,
       HasRoleDirective,
       MemberListComponent,
-      MemberDetailComponent
+      MemberDetailComponent,
+      CheckoutListComponent,
+      CheckoutDetailComponent
+
    ],
    imports: [
       BrowserModule,
@@ -89,7 +96,9 @@ export function tokenGetter() {
       AssetDetailResolver,
       AssetListResolver,
       MemberListResolver,
-      MemberDetailResolver
+      MemberDetailResolver,
+      CheckoutListResolver,
+      CheckoutDetailResolver
    ],
    bootstrap: [
       AppComponent

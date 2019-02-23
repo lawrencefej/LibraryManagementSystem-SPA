@@ -6,6 +6,10 @@ import { AssetDetailResolver } from './_resolver/asset-detail.resolver';
 import { AssetListComponent } from './libraryAssets/asset-list/asset-list.component';
 import { AssetListResolver } from './_resolver/asset-list.resolver';
 import { AuthGuard } from './_guards/auth.guard';
+import { CheckoutDetailComponent } from './checkout/checkout-detail/checkout-detail.component';
+import { CheckoutDetailResolver } from './_resolver/checkout-detail.resolver';
+import { CheckoutListComponent } from './checkout/checkout-list/checkout-list.component';
+import { CheckoutListResolver } from './_resolver/checkout-list.resolver';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
@@ -36,6 +40,10 @@ const routes: Routes = [
         resolve: { members: MemberListResolver } },
       { path: 'members/:id', component: MemberDetailComponent, data: { roles: ['Admin', 'Librarian'] },
         resolve: { member: MemberDetailResolver } },
+      { path: 'checkouts', component: CheckoutListComponent, data: { roles: ['Admin', 'Librarian'] },
+        resolve: { checkouts: CheckoutListResolver } },
+      { path: 'checkout/:id', component: CheckoutDetailComponent, data: { roles: ['Admin', 'Librarian'] },
+        resolve: { checkout: CheckoutDetailResolver } },
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },

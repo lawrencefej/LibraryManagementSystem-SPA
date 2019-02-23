@@ -13,7 +13,7 @@ import { UserService } from 'src/app/_services/user.service';
 export class MemberListComponent implements OnInit {
   members: User[];
 
-  constructor(private userService: UserService, private alertify: AlertifyService, private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
