@@ -11,28 +11,32 @@ import { LoginComponent } from './login/login.component';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberHistoryComponent } from './members/member-history/member-history.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberListResolver } from './_resolver/member-list.resolver';
 import { NgModule } from '@angular/core';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'catalog', component: AssetListComponent,      resolve: {assets: AssetListResolver}},
-  {path: 'catalog/:id', component: AssetDetailComponent,      resolve: {asset: AssetDetailResolver}},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'home', component: HomeComponent},
+  { path: '', component: HomeComponent },
+  { path: 'catalog', component: AssetListComponent, resolve: { assets: AssetListResolver } },
+  { path: 'catalog/:id', component: AssetDetailComponent, resolve: { asset: AssetDetailResolver } },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'home', component: HomeComponent },
   {
     path: '',
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      {path: 'currentitems', component: MemberHistoryComponent},
-      {path: 'profileedit', component: MemberEditComponent},
-      {path: 'admin', component: AdminPanelComponent, data: {roles: ['Admin', 'Librarian']}},
-      {path: 'members', component: MemberListComponent, data: {roles: ['Admin', 'Librarian']}},
+      { path: 'currentitems', component: MemberHistoryComponent },
+      { path: 'profileedit', component: MemberEditComponent },
+      { path: 'admin', component: AdminPanelComponent, data: { roles: ['Admin', 'Librarian'] } },
+      { path: 'members', component: MemberListComponent, data: { roles: ['Admin', 'Librarian'] },
+        resolve: { members: MemberListResolver } },
+      { path: 'members/:id', component: MemberListComponent, data: { roles: ['Admin', 'Librarian'] },
+        resolve: { members: MemberListResolver } },
     ]
   },
-  {path: '**', redirectTo: '', pathMatch: 'full'},
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({

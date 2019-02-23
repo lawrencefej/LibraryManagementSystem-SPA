@@ -27,6 +27,7 @@ import { MemberCheckoutsComponent } from './members/member-checkouts/member-chec
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberHistoryComponent } from './members/member-history/member-history.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberListResolver } from './_resolver/member-list.resolver';
 import { NavComponent } from './nav/nav.component';
 import { NgModule } from '@angular/core';
 import { RegisterComponent } from './register/register.component';
@@ -81,7 +82,8 @@ export function tokenGetter() {
       AssetService,
       AuthGuard,
       AssetDetailResolver,
-      AssetListResolver
+      AssetListResolver,
+      MemberListResolver
    ],
    bootstrap: [
       AppComponent
