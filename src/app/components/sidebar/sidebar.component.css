@@ -20,6 +20,11 @@ a:hover {
 li:hover {
     background-color: #18bc9c;
     color: black;
+    cursor: pointer;
+}
+
+li.active {
+    background-color: #18bc9c;
 }
 
 
