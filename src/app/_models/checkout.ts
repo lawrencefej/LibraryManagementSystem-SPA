@@ -8,4 +8,5 @@ export interface Checkout {
     dateReturned?: Date;
     status?: string;
     statusId?: number | undefined;
+    libraryCardNumber: number;
 }

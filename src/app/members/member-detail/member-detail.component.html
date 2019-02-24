@@ -221,7 +221,7 @@
             <img class="card-img-top img-thumbnail" src="{{member?.photoUrl || '../../../assets/user.png'}}" alt="{{member.lastName}}">
             <div class="card-body">
                 <h3 class="card-title">{{member.lastName}}, {{member.firstName}}</h3>
-                <div class="container memberdetails">
+                <div class="container member-details">
                     <div class="row">
                           <b>Email: </b>
                           <p>{{member.email}}</p>
@@ -275,12 +275,12 @@
         <div class="col-sm-8">
           <div class="tab-panel">
             <tabset class="asset-tabset" #assetTabs>
-              <tab heading="Details" class="nav-link">
+              <tab heading="Current Checkouts" class="nav-link">
                 <div class="container mt-4">
-                  Test
+                  <app-member-checkouts [member]="member"></app-member-checkouts>
                 </div>
               </tab>
-              <tab heading="Description" class="nav-link">
+              <tab heading="Reserved Items" class="nav-link">
                 <div class="container mt-4"> 
                   <p>Test</p>
                 </div>
