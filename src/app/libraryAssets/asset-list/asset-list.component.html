@@ -2,9 +2,9 @@
     <div class="card text-center">
       <div class="card-header">
         <button class="btn btn-info addasset">Add New</button>
-        <form class="form-inline my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <form class="form-inline my-lg-0" #loginForm="ngForm" (ngSubmit)="searchAssets()">
+          <input class="form-control mr-sm-2"  type="text" placeholder="Search" aria-label="Search" [(ngModel)]="search" name="search">
+          <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
         </form>
       </div>
       <div class="card-body">
@@ -28,6 +28,10 @@
                 <td><a href=""><span><i class="fa fa-trash"></i></span></a></td>
               </tr>
             </table>
+          <div *ngIf="assets?.length < 1">
+            <hr>
+            <p>No results found :(</p>
+          </div>
       </div>
       <div class="card-footer text-muted">
       </div>

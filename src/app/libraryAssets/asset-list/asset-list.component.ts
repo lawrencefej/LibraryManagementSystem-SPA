@@ -12,6 +12,8 @@ import { LibraryAsset } from 'src/app/_models/libraryAsset';
 })
 export class AssetListComponent implements OnInit {
   assets: LibraryAsset[];
+  search: string;
+  count: number;
 
   constructor(private assetService: AssetService,
     private alertify: AlertifyService,
@@ -20,6 +22,15 @@ export class AssetListComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.assets = data['assets'];
+    });
+  }
+
+  searchAssets() {
+    this.assetService.searchAsset(this.search).subscribe((assets: LibraryAsset[]) => {
+      this.assets = assets;
+      this.count = this.assets.length;
+    }, error => {
+      this.alertify.error(error);
     });
   }
 
