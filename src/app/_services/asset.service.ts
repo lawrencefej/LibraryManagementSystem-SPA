@@ -1,27 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LibraryAsset } from '../_models/libraryAsset';
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssetService {
-  baseurl = environment.apiUrl;
+  baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   getAssets(): Observable<LibraryAsset[]> {
-    return this.http.get<LibraryAsset[]>(this.baseurl + 'catalog/');
+    return this.http.get<LibraryAsset[]>(this.baseUrl + 'catalog/');
   }
 
   getAsset(id): Observable<LibraryAsset> {
-    return this.http.get<LibraryAsset>(this.baseurl + 'catalog/' + id);
+    return this.http.get<LibraryAsset>(this.baseUrl + 'catalog/' + id);
   }
 
   searchAsset(name): Observable<LibraryAsset[]> {
-    return this.http.get<LibraryAsset[]>(this.baseurl + 'catalog/search?SearchAsset=' + name);
+    return this.http.get<LibraryAsset[]>(this.baseUrl + 'catalog/search?SearchAsset=' + name);
   }
 
 }

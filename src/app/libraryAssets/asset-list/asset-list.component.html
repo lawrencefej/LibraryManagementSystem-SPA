@@ -2,10 +2,7 @@
     <div class="card text-center">
       <div class="card-header">
         <button class="btn btn-info addasset">Add New</button>
-        <form class="form-inline my-lg-0" #loginForm="ngForm" (ngSubmit)="searchAssets()">
-          <input class="form-control mr-sm-2"  type="text" placeholder="Search" aria-label="Search" [(ngModel)]="search" name="search">
-          <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
-        </form>
+        <input class="form-control search-box" placeholder="Search" #searchInput (keyup.enter)="searchAssets(searchInput.value)" (blur)="searchAssets(searchInput.value)">
       </div>
       <div class="card-body">
           <table class="table table-hover">
