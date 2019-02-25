@@ -22,6 +22,7 @@ export class AssetListComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.assets = data['assets'];
+      this.count = this.assets.length;
     });
   }
 

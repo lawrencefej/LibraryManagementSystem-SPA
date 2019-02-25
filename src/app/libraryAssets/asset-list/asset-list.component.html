@@ -1,36 +1,40 @@
 <div class="container mt-5">
-    <div class="card text-center">
-      <div class="card-header">
-        <button class="btn btn-info addasset">Add New</button>
-        <input class="form-control search-box" placeholder="Search" #searchInput (keyup.enter)="searchAssets(searchInput.value)" (blur)="searchAssets(searchInput.value)">
-      </div>
-      <div class="card-body">
-          <table class="table table-hover">
-              <tr>
-                <th style="width: 30%">Title</th>
-                <th style="width: 20%">Author</th>
-                <th style="width: 5%">Year</th>
-                <th style="width: 5%">Type</th>
-                <th style="width: 5%">Select</th>
-                <th style="width: 5%">Edit</th>
-                <th style="width: 5%">Delete</th>
-              </tr>
-              <tr *ngFor="let asset of assets">
-                <td>{{asset.title}}</td>
-                <td>{{asset.authorName}}</td>
-                <td>{{asset.year}}</td>
-                <td>{{asset.assetType}}</td>
-                <td><a  [routerLink]="['/catalog/', asset.id]"><span><i class="fa fa-check"></i></span></a></td>
-                <td><a href=""><span><i class="fa fa-edit"></i></span></a></td>
-                <td><a href=""><span><i class="fa fa-trash"></i></span></a></td>
-              </tr>
-            </table>
-          <div *ngIf="assets?.length < 1">
-            <hr>
-            <p>No results found :(</p>
-          </div>
-      </div>
-      <div class="card-footer text-muted">
+  <div class="card text-center">
+    <div class="card-header">
+      <button class="btn btn-info addasset">Add New</button>
+      <input class="form-control search-box" placeholder="Search" #searchInput
+        (keyup.enter)="searchAssets(searchInput.value)" (blur)="searchAssets(searchInput.value)">
+    </div>
+    <div class="card-body">
+      <table class="table table-hover">
+        <tr>
+          <th style="width: 30%">Title</th>
+          <th style="width: 20%">Author</th>
+          <th style="width: 5%">Year</th>
+          <th style="width: 5%">Type</th>
+          <th style="width: 5%">Select</th>
+          <th style="width: 5%">Edit</th>
+          <th style="width: 5%">Delete</th>
+        </tr>
+        <tr *ngFor="let asset of assets">
+          <td>{{asset.title}}</td>
+          <td>{{asset.authorName}}</td>
+          <td>{{asset.year}}</td>
+          <td>{{asset.assetType}}</td>
+          <td><a [routerLink]="['/catalog/', asset.id]"><span><i class="fa fa-check"></i></span></a></td>
+          <td><a href=""><span><i class="fa fa-edit"></i></span></a></td>
+          <td><a href=""><span><i class="fa fa-trash"></i></span></a></td>
+        </tr>
+      </table>
+      <div *ngIf="assets?.length < 1">
+        <hr>
+        <p>No results found :(</p>
       </div>
     </div>
+    <div class="card-footer text-muted">
+      <div class="count" style="float: left">
+        <b>Count: {{count}}</b>
+      </div>
     </div>
+  </div>
+</div>
