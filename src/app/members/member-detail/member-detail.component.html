@@ -1,226 +1,10 @@
-<!-- <div class="container mt-5">
-  <div class="card">
-    <div class="row">
-      <div class="col-md-6 mt-2">
-        <div class="card-block">
-          <h1 class="card-title">{{member.lastName}}, {{member.firstName}}</h1>
-            <div class="container card-text">
-                <div>
-                    <strong>First Name:</strong>
-                    <p>{{member.firstName}}</p>
-                </div>
-                <div>
-                    <strong>Last Name:</strong>
-                    <p>{{member.lastName}}</p>
-                </div>
-                <div>
-                    <strong>Email:</strong>
-                    <p>{{member.email}}</p>
-                </div>
-                <div>
-                    <strong>Gender:</strong>
-                    <p>{{member.gender}}</p>
-                </div>
-                <div>
-                    <strong>Age:</strong>
-                    <p>{{member.age}}</p>
-                </div>
-                <div>
-                    <strong>Member Since:</strong>
-                    <p>{{member.created}}</p>
-                </div>
-                <div>
-                    <strong>Address:</strong>
-                    <p>{{member.address}}</p>
-                </div>
-                <div>
-                    <strong>City:</strong>
-                    <p>{{member.city}}</p>
-                </div>
-                <div>
-                    <strong>State:</strong>
-                    <p>{{member.state}}</p>
-                </div>
-                <div>
-                    <strong>Zip Code:</strong>
-                    <p>{{member.zipcode}}</p>
-                </div>
-                <div>
-                    <strong>Amount Owed:</strong>
-                    <p>{{member.fees}}</p>
-                </div>
-                <div>
-                    <strong>Card Number:</strong>
-                    <p>{{member.cardNumber}}</p>
-                </div>
-              </div>
-          <a href="#" class="btn btn-primary">Read More</a>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card-img-bottom">
-            <img class="card-img-top img-thumbnail" src="{{member?.photoUrl || '../../../assets/user.png'}}" alt="{{member.lastName}}">
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- <div class="container emp-profile">
-    <form method="post">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                    <div class="file btn btn-lg btn-primary">
-                        Change Photo
-                        <input type="file" name="file"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="profile-head">
-                            <h5>
-                                Kshiti Ghelani
-                            </h5>
-                            <h6>
-                                Web Developer and Designer
-                            </h6>
-                            <p class="proile-rating">RANKINGS : <span>8/10</span></p>
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-work">
-                    <p>WORK LINK</p>
-                    <a href="">Website Link</a><br/>
-                    <a href="">Bootsnipp Profile</a><br/>
-                    <a href="">Bootply Profile</a>
-                    <p>SKILLS</p>
-                    <a href="">Web Designer</a><br/>
-                    <a href="">Web Developer</a><br/>
-                    <a href="">WordPress</a><br/>
-                    <a href="">WooCommerce</a><br/>
-                    <a href="">PHP, .Net</a><br/>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>User Id</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Kshiti123</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Name</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Kshiti Ghelani</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Email</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>kshitighelani@gmail.com</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Phone</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>123 456 7890</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Profession</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Web Developer and Designer</p>
-                                    </div>
-                                </div>
-                    </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Experience</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Expert</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Hourly Rate</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>10$/hr</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Total Projects</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>230</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>English Level</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Expert</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Availability</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>6 months</p>
-                                    </div>
-                                </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label>Your Bio</label><br/>
-                                <p>Your detail description</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>           
-</div> -->
-
   <div class="container mt-4">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div class="card">
             <img class="card-img-top img-thumbnail" src="{{member?.photoUrl || '../../../assets/user.png'}}" alt="{{member.lastName}}, {{member.firstName}}">
             <div class="card-body">
-                <h3 class="card-title">{{member.lastName}}, {{member.firstName}}</h3>
+                <h4 class="card-title">{{member.lastName}}, {{member.firstName}}</h4>
                 <div class="container member-details">
                     <div class="row">
                           <b>Email: </b>
@@ -258,16 +42,20 @@
                           <b>Card Number: </b>
                           <p>{{member.libraryCardNumber}}</p>
                     </div>
-                    <div class="row">
+                    <div class="row" *ngIf="hasFees()">
                           <b>Amount Owed: </b>
-                          <span class="badge badge-info">${{member.fees}}</span>
+                          <span class="badge badge-danger">${{member.fees}}</span>
+                          <!-- <p id="fee">{{member.fees}}</p> -->
                     </div>
                 </div>
             </div>
             <div class="card-footer" >
-              <div class="btn-group d-flex">
-                <button class="btn btn-primary w-100" >Reserve</button>
+              <div class="btn-group d-flex" *ngIf="!hasFees()">
+                <button class="btn btn-primary w-100">Reserve</button>
                 <button class="btn btn-success w-100">New Checkout</button>
+              </div>
+              <div class="btn-group d-flex" *ngIf="hasFees()">
+                <button class="btn btn-info w-100">Pay Fees</button>
               </div>
           </div>
         </div>

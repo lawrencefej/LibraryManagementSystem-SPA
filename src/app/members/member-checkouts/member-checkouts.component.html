@@ -13,6 +13,10 @@
           <td><a ><span><i class="fa fa-check-square"></i></span></a></td>
         </tr>
       </table>
+      <div *ngIf="checkouts?.length < 1">
+        <hr>
+        <p>No checkouts at this time :(</p>
+      </div>
       <div class="text-muted">
           <b>Count: {{count}}</b>
         </div>

@@ -19,4 +19,12 @@ export class MemberDetailComponent implements OnInit {
     });
   }
 
+  hasFees() {
+    if (this.member.fees > 0) {
+      return true;
+    }
+
+    return false;
+  }
+
 }
