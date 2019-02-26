@@ -11,6 +11,11 @@
   float: right;
 }
 
-.addmember {
+.add-checkout {
   float: left;
+}
+
+.search-box {
+  float: right;
+  width: 20%;
 }

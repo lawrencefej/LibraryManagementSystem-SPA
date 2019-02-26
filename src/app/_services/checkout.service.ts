@@ -23,4 +23,8 @@ export class CheckoutService {
   getCheckoutsForMember(userId: number): Observable<Checkout[]> {
     return this.http.get<Checkout[]>(this.baseUrl + 'checkouts/user/' + userId);
   }
+
+  searchCheckouts(searchString): Observable<Checkout[]> {
+    return this.http.get<Checkout[]>(this.baseUrl + 'checkouts/search?SearchString=' + searchString);
+  }
 }

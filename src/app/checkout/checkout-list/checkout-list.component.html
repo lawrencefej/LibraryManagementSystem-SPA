@@ -7,11 +7,12 @@
 <div class="container mt-5">
     <div class="card text-center" id="memberlist">
       <div class="card-header">
-        <button class="btn btn-info addmember">Checkout Item</button>
-        <form class="form-inline my-lg-0">
+        <button class="btn btn-info add-checkout">Checkout Item</button>
+        <!-- <form class="form-inline my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        </form> -->
+        <input class="form-control search-box" placeholder="Search" #searchInput (keyup.enter)="searchCheckouts(searchInput.value)" (blur)="searchCheckouts(searchInput.value)">
       </div>
       <div class="card-body">
           <table class="table table-hover">
@@ -34,6 +35,10 @@
                 <td><a [routerLink]="['/checkouts/', checkout.id]"><span><i class="fa fa-check"></i></span></a></td>
               </tr>
             </table>
+            <div *ngIf="checkouts?.length < 1">
+            <hr>
+            <p>No results found :(</p>
+          </div>
       </div>
       <div class="card-footer text-muted">
         <div class="count"  style="float: left">
