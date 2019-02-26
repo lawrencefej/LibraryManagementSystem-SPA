@@ -46,7 +46,7 @@ login(model: any) {
 }
 
 register(user: User) {
-  return this.http.post(this.baseurl + 'register', user);
+  return this.http.post(this.baseurl + 'auth/register', user);
 }
 
 public get currentUserValue(): User {
