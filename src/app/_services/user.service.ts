@@ -27,7 +27,7 @@ export class UserService {
   }
 
   getCheckout(userId: number): Observable<Checkout[]> {
-    return this.http.get<ReserveAsset[]>(this.baseUrl + userId + '/reserve/checkout');
+    return this.http.get<Checkout[]>(this.baseUrl + userId + '/reserve/checkout');
   }
 
   getUser(id): Observable<User> {
@@ -36,6 +36,10 @@ export class UserService {
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl + 'user/');
+  }
+
+  searchMembers(searchString): Observable<User[]> {
+    return this.http.get<User[]>(this.baseUrl + 'user/search?SearchString=' + searchString);
   }
 
 }

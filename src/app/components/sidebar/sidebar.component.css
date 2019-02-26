@@ -4,6 +4,7 @@
   right:10px;
   font-size:36px;
   margin-left:50px;
+  /* margin-top: 60px; */
 }
 
 .logo {
@@ -59,7 +60,3 @@ li.active {
     text-decoration: none;
     color: lightgray;
 }
-
-/* #sidebar ul li a:hover {
-    color: #2c3e50;
-} */

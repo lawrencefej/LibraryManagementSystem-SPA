@@ -10,8 +10,6 @@ import { LibraryAsset } from 'src/app/_models/libraryAsset';
 })
 export class AssetListComponent implements OnInit {
   assets: LibraryAsset[];
-  // searchText$ = new Subject<string>();
-  search = '';
   count: number;
   value = '';
 
@@ -27,7 +25,6 @@ export class AssetListComponent implements OnInit {
   }
 
   searchAssets(value: string) {
-    // this.search = value;
     this.assetService.searchAsset(value).subscribe((assets: LibraryAsset[]) => {
       this.assets = assets;
       this.count = this.assets.length;
