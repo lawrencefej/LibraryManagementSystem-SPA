@@ -39,6 +39,7 @@ import { NgModule } from '@angular/core';
 import { RegisterComponent } from './register/register.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { UserService } from './_services/user.service';
+import { AssetCheckoutsComponent } from './libraryAssets/asset-checkouts/asset-checkouts.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -66,7 +67,8 @@ export function tokenGetter() {
       MemberListComponent,
       MemberDetailComponent,
       CheckoutListComponent,
-      CheckoutDetailComponent
+      CheckoutDetailComponent,
+      AssetCheckoutsComponent
 
    ],
    imports: [
