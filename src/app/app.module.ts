@@ -40,6 +40,7 @@ import { RegisterComponent } from './register/register.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { UserService } from './_services/user.service';
 import { AssetCheckoutsComponent } from './libraryAssets/asset-checkouts/asset-checkouts.component';
+import { CheckoutAssetComponent } from './checkout/checkout-asset/checkout-asset.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -68,6 +69,7 @@ export function tokenGetter() {
       MemberDetailComponent,
       CheckoutListComponent,
       CheckoutDetailComponent,
+      CheckoutAssetComponent,
       AssetCheckoutsComponent
 
    ],
