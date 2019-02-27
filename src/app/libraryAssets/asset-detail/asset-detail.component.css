@@ -1,17 +1,26 @@
 .img-thumbnail {
-    margin: 25px;
-    width: 85%;
-    height: 85%;
+  margin: 10px;
+}
+
+img {
+  max-height: 250px;
+  max-width: 230px;
+  padding-bottom: 10;
 }
 
 .card-body {
-    padding: 0 25%;
+  padding: 0 10%;
+  padding-bottom: 10px;
 }
 
-.card-footer {
-    padding: 10px 15px;
-    background-color: #ffff;
-    border-top: none;
+.asset-details p {
+  color: #0062cc;
+  padding-left: 10px;
+}
+
+ .tab-panel.active{
+  border: none;
+  border-bottom:2px solid #0062cc;
 }
 
 .tab-panel {
@@ -20,46 +29,16 @@
   border-radius: 4px;
 }
 
-.nav-tabs > li.open, .asset-tabset > .nav-tabs > li:hover {
-  border-bottom: 4px solid #fbcdcf;
-}
-
-.asset-tabset > .nav-tabs > li.open > a, .asset-tabset > .nav-tabs > li:hover > a {
-  border: 0;
-  background: none !important;
-  color: #333333;
-}
-
-.asset-tabset > .nav-tabs > li.open > a > i, .asset-tabset > .nav-tabs > li:hover > a > i {
-  color: #a6a6a6;
-}
-
-.asset-tabset > .nav-tabs > li.open .dropdown-menu, .asset-tabset > .nav-tabs > li:hover .dropdown-menu {
-  margin-top: 0px;
-}
-
-/* .asset-tabset > .nav-tabs > li.active {
-  border-bottom: 4px solid #2c3e50;
-  position: relative;
-} */
-.asset-tabset > .tabheading:hover {
-  border-bottom: 4px solid #2c3e50;
+.asset-tabset  .nav-tabs  .tab-panel.active {
+  border-bottom: 10px solid #E95420;
   position: relative;
 }
 
-.asset-tabset > .nav-tabs > li.active > a {
-  border: 0 !important;
-  color: #333333;
+.card-body span {
+  font-size: 15px;
 }
 
-.asset-tabset > .nav-tabs > li.active > a > i {
-  color: #404040;
-}
-
-.asset-tabset > .tab-content {
-  margin-top: -3px;
-  background-color: #fff;
-  border: 0;
-  border-top: 1px solid #eee;
-  padding: 15px 0;
+#fee {
+  font-size: 20px;
+  color: red;
 }

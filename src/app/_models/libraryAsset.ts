@@ -14,7 +14,7 @@ export interface LibraryAsset {
     photoUrl: string;
     photo?: Photo;
     assetTypeName: string;
-    assetType: AssetType;
+    assetType: string;
     authorName: string;
     isbn?: string;
     deweyIndex?: string;
