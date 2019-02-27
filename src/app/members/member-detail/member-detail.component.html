@@ -67,9 +67,14 @@
                   <app-member-checkouts [member]="member"></app-member-checkouts>
                 </div>
               </tab>
-              <tab heading="Reserved Items" class="nav-link">
+              <tab heading="Current Reserves" class="nav-link">
                 <div class="container mt-4"> 
                   <p>Member Reserved Items Will go here</p>
+                </div>
+              </tab>
+              <tab heading="Checkout Item" class="nav-link">
+                <div class="container mt-4"> 
+                  <app-checkout-asset></app-checkout-asset>
                 </div>
               </tab>
             </tabset>
