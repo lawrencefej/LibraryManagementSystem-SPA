@@ -31,4 +31,8 @@ export class CheckoutService {
   getCheckoutsForAsset(assetId: number): Observable<Checkout[]> {
     return this.http.get<Checkout[]>(this.baseUrl + 'checkouts/asset/' + assetId);
   }
+
+  checkoutAsset(checkout: Checkout) {
+    return this.http.post(this.baseUrl + 'checkouts/', checkout);
+  }
 }
