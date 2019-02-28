@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/_models/user';
+import { TabsetComponent } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-member-detail',
@@ -10,6 +11,7 @@ import { User } from 'src/app/_models/user';
 })
 export class MemberDetailComponent implements OnInit {
   @Input() member: User;
+  @ViewChild('assetTabs') assetTabs: TabsetComponent;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -25,6 +27,10 @@ export class MemberDetailComponent implements OnInit {
     }
 
     return false;
+  }
+
+  selectTab(tabId: number) {
+    this.assetTabs.tabs[tabId].active = true;
   }
 
 }

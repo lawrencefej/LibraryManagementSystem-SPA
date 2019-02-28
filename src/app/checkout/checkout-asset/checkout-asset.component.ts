@@ -13,7 +13,7 @@ import { Checkout } from 'src/app/_models/checkout';
 export class CheckoutAssetComponent implements OnInit {
 
   constructor(private assetService: AssetService, private alertify: AlertifyService, private checkoutService: CheckoutService) { }
-  @Input() cardId: number;
+  @Input() userId: number;
   assets: LibraryAsset[];
   count: number;
   value = '';
@@ -34,12 +34,24 @@ export class CheckoutAssetComponent implements OnInit {
 
   CheckoutAsset(id: number) {
     this.newCheckout.libraryAssetId = id;
-    this.newCheckout.libraryCardId = this.cardId;
+    this.newCheckout.userId = this.userId;
     this.checkoutService.checkoutAsset(this.newCheckout).subscribe(next => {
       this.alertify.success('checked out successfully');
     }, error => {
       this.alertify.error(error);
     });
   }
+
+  isAvailable(count: number) {
+    if (count > 0) {
+      return true;
+    }
+    return false;
+  }
+
+  selectTab(tabId: number) {
+    // this.assetTabs.tabs[tabId].active = true;
+  }
+  // TODO fix refresh
 
 }
