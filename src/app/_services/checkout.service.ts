@@ -25,8 +25,12 @@ export class CheckoutService {
     return this.http.get<Checkout[]>(this.baseUrl + 'checkouts/user/' + userId);
   }
 
-  searchCheckouts(searchString): Observable<Checkout[]> {
+  searchCheckouts(searchString: string): Observable<Checkout[]> {
     return this.http.get<Checkout[]>(this.baseUrl + 'checkouts/search?SearchString=' + searchString);
+  }
+
+  returnAsset(id: number) {
+    return this.http.put(this.baseUrl + 'checkouts/' + id, {});
   }
 
   getCheckoutsForAsset(assetId: number): Observable<Checkout[]> {

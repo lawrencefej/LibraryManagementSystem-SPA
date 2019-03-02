@@ -37,6 +37,18 @@ export class MemberCheckoutsComponent implements OnInit, OnDestroy {
     });
   }
 
+  returnAsset(id: number) {
+    this.alertify.confirm('Are you sure you want to return this item?', () => {
+      this.checkoutService.returnAsset(id).subscribe(() => {
+        this.checkouts.splice(this.checkouts.findIndex(c => c.id === id), 1);
+        this.alertify.success('Item has been returned successfully');
+        this.count = this.checkouts.length;
+      }, error => {
+        this.alertify.error(error);
+      });
+    });
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
