@@ -1,7 +1,7 @@
 import { Checkout } from '../_models/checkout';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CheckoutService {
   baseUrl = environment.apiUrl;
+  private checkout = new Subject<Checkout>();
 
   constructor(private http: HttpClient) { }
 
@@ -34,5 +35,13 @@ export class CheckoutService {
 
   checkoutAsset(checkout: Checkout) {
     return this.http.post(this.baseUrl + 'checkouts/', checkout);
+  }
+
+  getNewCheckout(): Observable<Checkout> {
+    return this.checkout.asObservable();
+  }
+
+  sendNewCheckout(checkout: Checkout) {
+    this.checkout.next(checkout);
   }
 }

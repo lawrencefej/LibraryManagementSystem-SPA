@@ -17,7 +17,7 @@
         <td>{{asset.authorName}}</td>
         <td>{{asset.year}}</td>
         <td>{{asset.assetType}}</td>
-        <td><button class="btn btn-info btn-sm" (click)="CheckoutAsset(asset.id)"><span><i class="fa fa-sign-out"></i></span></button></td>
+        <td><button type="button" class="btn btn-outline-success btn-sm" (click)="CheckoutAsset(asset.id)"><span><i class="fa fa-sign-out"></i></span></button></td>
       </tr>
     </table>
     <div *ngIf="assets?.length < 1">
@@ -26,9 +26,6 @@
     </div>
   </div>
   <div class="card-footer text-muted" *ngIf="assets?.length > 0">
-    <div style="float: right">
-      <button class="btn btn-info btn-sm checkout-asset" (click)="selectTab(0)">Done</button>
-    </div>
     <div class="count" style="float: left">
       <b>Count: {{count}}</b>
     </div>

@@ -3,6 +3,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/_models/user';
 import { TabsetComponent } from 'ngx-bootstrap';
+import { Checkout } from 'src/app/_models/checkout';
 
 @Component({
   selector: 'app-member-detail',
@@ -11,13 +12,20 @@ import { TabsetComponent } from 'ngx-bootstrap';
 })
 export class MemberDetailComponent implements OnInit {
   @Input() member: User;
-  @ViewChild('assetTabs') assetTabs: TabsetComponent;
+  @ViewChild('memberTabs') memberTabs: TabsetComponent;
+  show = false;
+  checkout: Checkout;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.member = data['member'];
+    });
+
+    this.route.queryParams.subscribe(params => {
+      const selectedTab = params['tab'];
+      this.memberTabs.tabs[selectedTab > 0 ? selectedTab : 0].active = true;
     });
   }
 
@@ -30,7 +38,15 @@ export class MemberDetailComponent implements OnInit {
   }
 
   selectTab(tabId: number) {
-    this.assetTabs.tabs[tabId].active = true;
+    this.memberTabs.tabs[tabId].active = true;
+  }
+
+  isVisible() {
+    return this.show;
+  }
+
+  getNewCheckout(checkout: Checkout) {
+    this.checkout = checkout;
   }
 
 }
