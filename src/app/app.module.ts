@@ -1,4 +1,4 @@
-import { BsDatepickerModule, BsDropdownModule, TabsModule } from 'ngx-bootstrap';
+import { BsDatepickerModule, BsDropdownModule, TabsModule, ModalModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AdminPanelComponent } from './Admin/admin-panel/admin-panel.component';
@@ -82,6 +82,7 @@ export function tokenGetter() {
       BsDatepickerModule.forRoot(),
       BsDropdownModule.forRoot(),
       TabsModule.forRoot(),
+      ModalModule.forRoot(),
       JwtModule.forRoot({
          config: {
             tokenGetter: tokenGetter,
@@ -103,6 +104,9 @@ export function tokenGetter() {
       MemberDetailResolver,
       CheckoutListResolver,
       CheckoutDetailResolver
+   ],
+   entryComponents: [
+      MemberEditComponent
    ],
    bootstrap: [
       AppComponent

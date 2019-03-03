@@ -2,8 +2,12 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/_models/user';
-import { TabsetComponent } from 'ngx-bootstrap';
+import { TabsetComponent, BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { Checkout } from 'src/app/_models/checkout';
+import { MemberEditComponent } from '../member-edit/member-edit.component';
+import { UserService } from 'src/app/_services/user.service';
+import { AuthService } from 'src/app/_services/auth.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-member-detail',
@@ -15,8 +19,10 @@ export class MemberDetailComponent implements OnInit {
   @ViewChild('memberTabs') memberTabs: TabsetComponent;
   show = false;
   checkout: Checkout;
+  bsModalRef: BsModalRef;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private modalService: BsModalService,
+    private userService: UserService, private authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -47,6 +53,24 @@ export class MemberDetailComponent implements OnInit {
 
   getNewCheckout(checkout: Checkout) {
     this.checkout = checkout;
+  }
+
+  updateUser(member: User) {
+    this.userService.updateUser(this.authService.decodedToken.nameid, this.member).subscribe(next => {
+      this.alertify.success('Member Updated Successfully');
+    }, error => {
+      this.alertify.error(error);
+    });
+  }
+
+  editUserModal(member: User) {
+    const initialState = {
+      member
+    };
+    this.bsModalRef = this.modalService.show(MemberEditComponent, {initialState});
+    this.bsModalRef.content.updateSelectedMember.subscribe((value) => {
+      this.updateUser(value);
+    });
   }
 
 }

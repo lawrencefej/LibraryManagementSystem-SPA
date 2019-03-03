@@ -4,7 +4,10 @@
           <div class="card">
             <img class="card-img-top img-thumbnail" src="{{member?.photoUrl || '../../../assets/user.png'}}" alt="{{member.lastName}}, {{member.firstName}}">
             <div class="card-body">
+              <div class="row test">
                 <h4 class="card-title">{{member.lastName}}, {{member.firstName}}</h4>
+                <a (click)="editUserModal(member)" id="edit"><span><i class="fa fa-edit"></i></span></a>
+              </div>
                 <div class="container member-details">
                     <div class="row">
                           <b>Email: </b>
@@ -12,7 +15,7 @@
                     </div>
                     <div class="row">
                           <b>Gender: </b>
-                          <p>{{member.gender}}</p>
+                          <p (dblclick)="editUserModal()">{{member.gender}}</p>
                     </div>
                     <div class="row">
                           <b>Age: </b>
@@ -50,8 +53,8 @@
             </div>
             <div class="card-footer" >
               <div class="btn-group d-flex" *ngIf="!hasFees()">
-                <button class="btn btn-primary w-100">Reserve</button>
-                <button class="btn btn-success w-100" (click)="selectTab(2)" >New Checkout</button>
+                <!-- <button class="btn btn-success w-100" (click)="selectTab(2)" >New Checkout</button> -->
+                <button class="btn btn-success w-100"  (dblclick)="editUserModal()" >New Checkout</button>
               </div>
               <div class="btn-group d-flex" *ngIf="hasFees()">
                 <button class="btn btn-info w-100">Pay Fees</button>
