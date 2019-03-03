@@ -24,6 +24,11 @@ export class CheckoutAssetComponent implements OnInit {
   }
 
   searchAssets(value: string) {
+    if (value === '') {
+      this.assets = [];
+      return;
+    }
+
     this.value = value;
     this.assetService.searchAsset(value).subscribe((assets: LibraryAsset[]) => {
       this.assets = assets;
