@@ -43,6 +43,7 @@ import { AssetCheckoutsComponent } from './libraryAssets/asset-checkouts/asset-c
 import { CheckoutAssetComponent } from './checkout/checkout-asset/checkout-asset.component';
 import { AuthorListComponent } from './author/author-list/author-list.component';
 import { AuthorAssetComponent } from './author/author-asset/author-asset.component';
+import { AuthorService } from './_services/author.service';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -107,7 +108,8 @@ export function tokenGetter() {
       MemberListResolver,
       MemberDetailResolver,
       CheckoutListResolver,
-      CheckoutDetailResolver
+      CheckoutDetailResolver,
+      AuthorService
    ],
    entryComponents: [
       MemberEditComponent

@@ -22,6 +22,7 @@ import { NgModule } from '@angular/core';
 import { RegisterComponent } from './register/register.component';
 import { AuthorListComponent } from './author/author-list/author-list.component';
 import { AuthorAssetComponent } from './author/author-asset/author-asset.component';
+import { AuthorListResolver } from './_resolver/author-list-resolver';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -47,7 +48,7 @@ const routes: Routes = [
       { path: 'checkouts/:id', component: CheckoutDetailComponent, data: { roles: ['Admin', 'Librarian'] },
         resolve: { checkout: CheckoutDetailResolver } },
       { path: 'authors', component: AuthorListComponent, data: { roles: ['Admin', 'Librarian'] },
-        resolve: { checkouts: CheckoutListResolver } },
+        resolve: { checkouts: AuthorListResolver } },
       { path: 'authors/:id', component: AuthorAssetComponent, data: { roles: ['Admin', 'Librarian'] },
         resolve: { checkout: CheckoutDetailResolver } },
     ]
