@@ -6,7 +6,7 @@
 @import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
 @import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css';
 
- .tab-panel {
+ /* .tab-panel {
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 4px;
@@ -50,4 +50,24 @@
     border: 0;
     border-top: 1px solid #eee;
     padding: 15px 0;
+  } */
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    height: 100%;
+  }
+
+  body {
+    height: 100%;
+  }
+
+  .shadow {
+    box-shadow: 0 8px 12px rgba(0,0,0,0.2), 0 5px 6px rgba(0,0,0,0.3);
+  }
+
+  .section-container {
+    padding: 30px;
   }

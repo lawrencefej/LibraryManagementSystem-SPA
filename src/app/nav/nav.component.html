@@ -1,20 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand mr-auto" routerLink="" routerLinkActive="active">LMS</a>
   
-    <ul class="navbar-nav">
+    <ul class="navbar-nav list-inline">
         <li *ngIf="isAdmin" class="nav-item" routerLinkActive="active" >
             <a class="nav-link" [routerLink]="['/admin']"  id="side-menu">Admin</a>
           </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li class="nav-item list-inline-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['catalog']">Catalog</a>
       </li>
-      <li  *ngIf="loggedIn()" class="nav-item" routerLinkActive="active">
+      <li  *ngIf="loggedIn()" class="nav-item list-inline-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/history']">History</a>
       </li>
-      <li *ngIf="loggedIn()" class="nav-item" routerLinkActive="active">
+      <li *ngIf="loggedIn()" class="nav-item list-inline-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/currentitems']">Current Items</a>
       </li>
-      <li *ngIf="!loggedIn()" class="nav-item" routerLinkActive="active">
+      <li *ngIf="!loggedIn()" class="nav-item list-inline-item" routerLinkActive="active">
         <a class="nav-link" routerLink="/login">Login</a>
       </li>
     </ul>
@@ -38,4 +38,44 @@
               <i class="fa fa-sign-out"></i> Logout</a>
           </div> 
       </div>
-</nav>
+</nav> -->
+
+<div class="container">
+    <a class="navbar-brand mr-auto" routerLink="" routerLinkActive="active">LMS</a>
+  <ul class="list-inline">
+    <li *ngIf="isAdmin" class="nav-item list-inline-item" routerLinkActive="active">
+      <a class="nav-link" [routerLink]="['/admin']" id="side-menu">Admin</a>
+    </li>
+    <li class="nav-item list-inline-item" routerLinkActive="active">
+      <a class="nav-link" [routerLink]="['catalog']">Catalog</a>
+    </li>
+    <li *ngIf="loggedIn()" class="nav-item list-inline-item" routerLinkActive="active">
+      <a class="nav-link" [routerLink]="['/history']">History</a>
+    </li>
+    <li *ngIf="loggedIn()" class="nav-item list-inline-item" routerLinkActive="active">
+      <a class="nav-link" [routerLink]="['/currentitems']">Current Items</a>
+    </li>
+    <li *ngIf="!loggedIn()" class="nav-item list-inline-item" routerLinkActive="active">
+      <a class="nav-link" routerLink="/login">Login</a>
+    </li>
+    <div *ngIf="loggedIn()" class="dropdown list-inline-item" dropdown>
+      <span class="mr-1">
+        <img src="{{photoUrl || '../../assets/user.png'}}" alt="">
+      </span>
+      <a class="dropdown-toggle text-light mr-1" dropdownToggle>
+        <!-- Welcome {{authService.decodedToken?.email | titlecase}} -->
+      </a>
+
+      <div class="dropdown-menu mt-3 mr-1" *dropdownMenu>
+        <a class="dropdown-item" [routerLink]="['profileedit']"><i class="fa fa-user">
+          </i> Edit Profile</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" [routerLink]="['/member/edit']"><i class="fa fa-cog">
+          </i>Settings</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="logout()">
+          <i class="fa fa-sign-out"></i> Logout</a>
+      </div>
+    </div>
+  </ul>
+</div>
