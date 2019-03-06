@@ -30,7 +30,7 @@ export class AuthorService {
   }
 
   getAssetForAuthor(authorId: number): Observable<LibraryAsset[]> {
-    return this.http.get<LibraryAsset[]>(this.baseUrl + 'author/asset/' + authorId);
+    return this.http.get<LibraryAsset[]>(this.baseUrl + 'catalog/author/' + authorId);
   }
 
   addAuthor(author: Author) {

@@ -23,6 +23,7 @@ import { RegisterComponent } from './register/register.component';
 import { AuthorListComponent } from './author/author-list/author-list.component';
 import { AuthorAssetComponent } from './author/author-asset/author-asset.component';
 import { AuthorListResolver } from './_resolver/author-list-resolver';
+import { AuthorAssetResolver } from './_resolver/author-asset.resolver';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -50,7 +51,7 @@ const routes: Routes = [
       { path: 'authors', component: AuthorListComponent, data: { roles: ['Admin', 'Librarian'] },
         resolve: { authors: AuthorListResolver } },
       { path: 'authors/:id', component: AuthorAssetComponent, data: { roles: ['Admin', 'Librarian'] },
-        resolve: { checkout: CheckoutDetailResolver } },
+        resolve: { author: AuthorAssetResolver } },
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },

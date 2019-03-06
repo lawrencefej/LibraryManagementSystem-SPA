@@ -1,0 +1,30 @@
+.fa-check {
+  font-size: 20px;
+}
+
+.fa-trash {
+  font-size: 20px;
+  color: red;
+}
+
+.fa-check:hover {
+  font-size: 30px;
+}
+
+.fa-trash:hover {
+  font-size: 30px;
+  color: red;
+}
+
+.form-inline {
+  float: right;
+}
+
+.addNew {
+  float: left;
+}
+
+.search-box {
+  float: right;
+  width: 30%;
+}
