@@ -1,0 +1,16 @@
+.fa-check {
+  font-size: 20px;
+}
+
+.form-inline {
+  float: right;
+}
+
+.addNew {
+  float: left;
+}
+
+.search-box {
+  float: right;
+  width: 30%;
+}

@@ -48,7 +48,7 @@ const routes: Routes = [
       { path: 'checkouts/:id', component: CheckoutDetailComponent, data: { roles: ['Admin', 'Librarian'] },
         resolve: { checkout: CheckoutDetailResolver } },
       { path: 'authors', component: AuthorListComponent, data: { roles: ['Admin', 'Librarian'] },
-        resolve: { checkouts: AuthorListResolver } },
+        resolve: { authors: AuthorListResolver } },
       { path: 'authors/:id', component: AuthorAssetComponent, data: { roles: ['Admin', 'Librarian'] },
         resolve: { checkout: CheckoutDetailResolver } },
     ]

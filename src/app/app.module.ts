@@ -44,6 +44,7 @@ import { CheckoutAssetComponent } from './checkout/checkout-asset/checkout-asset
 import { AuthorListComponent } from './author/author-list/author-list.component';
 import { AuthorAssetComponent } from './author/author-asset/author-asset.component';
 import { AuthorService } from './_services/author.service';
+import { AuthorListResolver } from './_resolver/author-list-resolver';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -103,13 +104,14 @@ export function tokenGetter() {
       AssetService,
       AuthGuard,
       UserService,
+      AuthorService,
       AssetDetailResolver,
       AssetListResolver,
       MemberListResolver,
       MemberDetailResolver,
       CheckoutListResolver,
       CheckoutDetailResolver,
-      AuthorService
+      AuthorListResolver,
    ],
    entryComponents: [
       MemberEditComponent
