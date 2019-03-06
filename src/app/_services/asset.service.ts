@@ -21,7 +21,11 @@ export class AssetService {
   }
 
   searchAsset(name): Observable<LibraryAsset[]> {
-    return this.http.get<LibraryAsset[]>(this.baseUrl + 'catalog/search?SearchAsset=' + name);
+    return this.http.get<LibraryAsset[]>(this.baseUrl + 'catalog/search?SearchString=' + name);
+  }
+
+  getAssetForAuthor(authorId: number): Observable<LibraryAsset> {
+    return this.http.get<LibraryAsset>(this.baseUrl + 'catalog/author/' + authorId);
   }
 
 }

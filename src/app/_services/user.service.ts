@@ -1,10 +1,10 @@
-import { Checkout } from '../_models/checkout';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ReserveAsset } from '../_models/reserveAsset';
 import { User } from '../_models/user';
 import { environment } from 'src/environments/environment';
+import { ReserveAsset } from '../_models/reserveAsset';
+import { Checkout } from '../_models/checkout';
 
 @Injectable({
   providedIn: 'root'
