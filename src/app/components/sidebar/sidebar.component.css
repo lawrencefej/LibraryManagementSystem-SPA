@@ -1,22 +1,15 @@
 .btn-close{
-  position:absolute;
+  /* position:absolute; */
   top:0;
   right:10px;
   font-size:36px;
-  margin-left:50px;
-  /* margin-top: 60px; */
+  margin-left:95%;
 }
 
-.logo {
+/* .logo {
     position: absolute;
     top: 0%;
-}
-
-a:hover {
-    /* background-color: #18bc9c; */
-    /* background-color: #679188;
-    color: white; */
-}
+} */
 
 li:hover {
     background-color: #18bc9c;
@@ -35,7 +28,7 @@ li.active {
     /* background-color: #2c3e50; */
 }
 
-#sidenav {
+#sideNav {
     margin-left: 20px;
     padding-left: 20px;
     font-size: 20px;
@@ -45,6 +38,7 @@ li.active {
 #sidebar ul {
     padding: 0;
     margin: 0;
+    
 }
 
 #sidebar ul li {
@@ -59,4 +53,8 @@ li.active {
 #sidebar ul li a {
     text-decoration: none;
     color: lightgray;
+}
+
+#sideNav ul li a span i span {
+    margin-left: 200px;
 }

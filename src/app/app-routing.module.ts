@@ -20,6 +20,8 @@ import { MemberListComponent } from './members/member-list/member-list.component
 import { MemberListResolver } from './_resolver/member-list.resolver';
 import { NgModule } from '@angular/core';
 import { RegisterComponent } from './register/register.component';
+import { AuthorListComponent } from './author/author-list/author-list.component';
+import { AuthorAssetComponent } from './author/author-asset/author-asset.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -42,7 +44,11 @@ const routes: Routes = [
         resolve: { member: MemberDetailResolver } },
       { path: 'checkouts', component: CheckoutListComponent, data: { roles: ['Admin', 'Librarian'] },
         resolve: { checkouts: CheckoutListResolver } },
-      { path: 'checkout/:id', component: CheckoutDetailComponent, data: { roles: ['Admin', 'Librarian'] },
+      { path: 'checkouts/:id', component: CheckoutDetailComponent, data: { roles: ['Admin', 'Librarian'] },
+        resolve: { checkout: CheckoutDetailResolver } },
+      { path: 'authors', component: AuthorListComponent, data: { roles: ['Admin', 'Librarian'] },
+        resolve: { checkouts: CheckoutListResolver } },
+      { path: 'authors/:id', component: AuthorAssetComponent, data: { roles: ['Admin', 'Librarian'] },
         resolve: { checkout: CheckoutDetailResolver } },
     ]
   },

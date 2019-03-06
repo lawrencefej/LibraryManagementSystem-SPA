@@ -41,6 +41,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { UserService } from './_services/user.service';
 import { AssetCheckoutsComponent } from './libraryAssets/asset-checkouts/asset-checkouts.component';
 import { CheckoutAssetComponent } from './checkout/checkout-asset/checkout-asset.component';
+import { AuthorListComponent } from './author/author-list/author-list.component';
+import { AuthorAssetComponent } from './author/author-asset/author-asset.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -70,7 +72,9 @@ export function tokenGetter() {
       CheckoutListComponent,
       CheckoutDetailComponent,
       CheckoutAssetComponent,
-      AssetCheckoutsComponent
+      AssetCheckoutsComponent,
+      AuthorListComponent,
+      AuthorAssetComponent
 
    ],
    imports: [
