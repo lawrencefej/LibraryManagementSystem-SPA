@@ -20,14 +20,6 @@ export class MemberEditComponent implements OnInit {
   ngOnInit() {
   }
 
-  updateUser() {
-    this.userService.updateUser(this.authService.decodedToken.nameid, this.member).subscribe(next => {
-      this.alertify.success('Member Updated Successfully');
-    }, error => {
-      this.alertify.error(error);
-    });
-  }
-
   updateMember() {
     this.updateSelectedMember.emit(this.member);
     this.bsModalRef.hide();

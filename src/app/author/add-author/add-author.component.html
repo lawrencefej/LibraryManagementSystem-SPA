@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left text-center">Add Author</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form  #authorForm="ngForm" class="form-inline my-2 my-lg-0 " >
+        <input class="form-control mr-sm-2" type="text" name="firstName" 
+          placeholder="First Name" required [(ngModel)]="model.firstName">
+        <input class="form-control mr-sm-2" type="text" name="lastName" 
+          placeholder="Last Name" required [(ngModel)]="model.lastName">
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
+    <button [disabled]="!authorForm.valid" class="btn btn-success btn-sm" (click)="addAuthor()" form="editForm">Submit</button>
+  </div>

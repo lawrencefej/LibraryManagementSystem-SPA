@@ -46,6 +46,7 @@ import { AuthorAssetComponent } from './author/author-asset/author-asset.compone
 import { AuthorService } from './_services/author.service';
 import { AuthorListResolver } from './_resolver/author-list-resolver';
 import { AuthorAssetResolver } from './_resolver/author-asset.resolver';
+import { AddAuthorComponent } from './author/add-author/add-author.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -77,7 +78,8 @@ export function tokenGetter() {
       CheckoutAssetComponent,
       AssetCheckoutsComponent,
       AuthorListComponent,
-      AuthorAssetComponent
+      AuthorAssetComponent,
+      AddAuthorComponent
 
    ],
    imports: [
@@ -116,7 +118,8 @@ export function tokenGetter() {
       AuthorAssetResolver
    ],
    entryComponents: [
-      MemberEditComponent
+      MemberEditComponent,
+      AddAuthorComponent
    ],
    bootstrap: [
       AppComponent
