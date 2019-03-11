@@ -33,7 +33,7 @@ export class AuthorAssetComponent implements OnInit {
       this.assets = assets;
       this.count = this.assets.length;
     }, error => {
-      this.alertify.error(error)
+      this.alertify.error(error);
     });
   }
   searchAsset(value: string) {

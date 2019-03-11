@@ -1,4 +1,4 @@
-import { BsDatepickerModule, BsDropdownModule, TabsModule, ModalModule } from 'ngx-bootstrap';
+import { BsDatepickerModule, BsDropdownModule, TabsModule, ModalModule, TypeaheadModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AdminPanelComponent } from './Admin/admin-panel/admin-panel.component';
@@ -47,6 +47,7 @@ import { AuthorService } from './_services/author.service';
 import { AuthorListResolver } from './_resolver/author-list-resolver';
 import { AuthorAssetResolver } from './_resolver/author-asset.resolver';
 import { AddAuthorComponent } from './author/add-author/add-author.component';
+import { AddAssetComponent } from './libraryAssets/add-asset/add-asset.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -79,7 +80,8 @@ export function tokenGetter() {
       AssetCheckoutsComponent,
       AuthorListComponent,
       AuthorAssetComponent,
-      AddAuthorComponent
+      AddAuthorComponent,
+      AddAssetComponent
 
    ],
    imports: [
@@ -89,6 +91,7 @@ export function tokenGetter() {
       ReactiveFormsModule,
       AppRoutingModule,
       BsDatepickerModule.forRoot(),
+      TypeaheadModule.forRoot(),
       BsDropdownModule.forRoot(),
       TabsModule.forRoot(),
       ModalModule.forRoot(),
@@ -119,7 +122,8 @@ export function tokenGetter() {
    ],
    entryComponents: [
       MemberEditComponent,
-      AddAuthorComponent
+      AddAuthorComponent,
+      AddAssetComponent
    ],
    bootstrap: [
       AppComponent

@@ -28,4 +28,8 @@ export class AssetService {
     return this.http.get<LibraryAsset>(this.baseUrl + 'catalog/author/' + authorId);
   }
 
+  addAuthor(asset: LibraryAsset) {
+    return this.http.post(this.baseUrl + 'catalog/', asset);
+  }
+
 }

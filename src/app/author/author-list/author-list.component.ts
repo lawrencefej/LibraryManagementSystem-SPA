@@ -27,7 +27,7 @@ export class AuthorListComponent implements OnInit {
     });
   }
 
-  searchMembers(value: string) {
+  searchAuthors(value: string) {
     this.authorService.searchAuthors(value).subscribe((authors: Author[]) => {
       this.authors = authors;
       this.count = this.authors.length;
@@ -42,6 +42,7 @@ export class AuthorListComponent implements OnInit {
       this.addAuthor(value);
     });
   }
+
   addAuthor(author: Author) {
     this.authorService.addAuthor(author).subscribe((author: Author) => {
       this.alertify.success('Author Added Successfully');

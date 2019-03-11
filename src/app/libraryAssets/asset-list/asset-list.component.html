@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="card text-center">
     <div class="card-header">
-      <button class="btn btn-info addasset">Add New</button>
+      <button class="btn btn-info addasset" (click)="addAssetModal()">Add New</button>
       <input class="form-control search-box" placeholder="Search" #searchInput
         (keyup.enter)="searchAssets(searchInput.value)" (blur)="searchAssets(searchInput.value)">
     </div>
