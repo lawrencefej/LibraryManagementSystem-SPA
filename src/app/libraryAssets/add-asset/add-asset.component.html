@@ -1,46 +1,54 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left text-center">Add Item</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form  #authorForm="ngForm" class=" my-2 my-lg-0 " >
-        <input class="form-control mr-sm-2" type="text" name="title" 
-          placeholder="Title" required [(ngModel)]="model.title">
+  <h4 class="modal-title pull-left text-center">Add Item</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #authorForm="ngForm" class=" my-2 my-lg-0 ">
+    <div class="form-group">
+      <input class="form-control mr-sm-2" type="text" name="title" placeholder="Title" required
+        [(ngModel)]="model.title">
+    </div>
+    <div class="form-group">
+      <input placeholder="Search Author" name="firstName" autocomplete="off" [(ngModel)]="selectedValue"
+        [typeahead]="authors" typeaheadOptionField="firstName" (typeaheadOnSelect)="onSelect($event)"
+        class="form-control">
+    </div>
+    <div class="form-group">
+      <input class="form-control mr-sm-2" type="text" name="year" placeholder="Year" required [(ngModel)]="model.year">
+    </div>
+    <div class="form-group">
+      <input class="form-control mr-sm-2" type="number" name="numberOfCopies" placeholder="Copies" required
+        [(ngModel)]="model.numberOfCopies">
+    </div>
+    <div class="form-group">
+      <textarea class="form-control mr-sm-2" type="text" name="description" placeholder="Description" required
+        [(ngModel)]="model.description"></textarea>
+    </div>
+    <div class="form-group">
+      <select name="category" class="custom-select form-control" required
+        (change)="filterCategory($event.target.value)">
+        <option value="0" selected disabled>--Select Category--</option>
+        <option *ngFor="let category of categories" value={{category.id}}>
+          {{category.name}}
+        </option>
+      </select>
+    </div>
 
-        <pre class="card card-block card-header mb-3">Model: {{selectedValue | json}}</pre>
-        <pre class="card card-block card-header mb-3">Selected option: {{selectedOption | json}}</pre>
-        
-        <input placeholder="Search Author" name="firstName" autocomplete="off" [(ngModel)]="selectedValue"
-              [typeahead]="authors"
-              typeaheadOptionField="firstName"
-              (typeaheadOnSelect)="onSelect($event)"
-              class="form-control">
-
-        <input class="form-control mr-sm-2" type="text" name="year" 
-          placeholder="Year" required [(ngModel)]="model.year">
-        <input class="form-control mr-sm-2" type="number" name="numberOfCopies" 
-          placeholder="Copies" required [(ngModel)]="model.numberOfCopies">
-        <textarea class="form-control mr-sm-2" type="text" name="description" 
-          placeholder="Description" required [(ngModel)]="model.description"></textarea>
-
-          <select name="category" class="custom-select form-control" required  (change)="filterCategory($event.target.value)">
-              <option value="0" selected disabled>--Select Category--</option>
-              <option *ngFor="let category of categories" value={{category.id}}>
-                  {{category.name}}
-              </option>
-          </select>
-
-          <select name="assetType" class="custom-select form-control" required  (change)="filterAssetType($event.target.value)">
-              <option value="0" selected disabled>--Select Type--</option>
-              <option *ngFor="let assetType of assetTypes" value={{assetType.id}}>
-                  {{assetType.name}}
-              </option>
-          </select>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
-    <button [disabled]="!authorForm.valid || (model.categoryId === 0 || model.assetTypeId === 0)" class="btn btn-success btn-sm" (click)="addAsset()" form="addForm">Submit</button>
-  </div>
+    <div class="form-group">
+      <select name="assetType" class="custom-select form-control" required
+        (change)="filterAssetType($event.target.value)">
+        <option value="0" selected disabled>--Select Type--</option>
+        <option *ngFor="let assetType of assetTypes" value={{assetType.id}}>
+          {{assetType.name}}
+        </option>
+      </select>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
+  <button [disabled]="!authorForm.valid || (model.categoryId === 0 || model.assetTypeId === 0)"
+    class="btn btn-success btn-sm" (click)="addAsset()" form="addForm">Submit</button>
+</div>

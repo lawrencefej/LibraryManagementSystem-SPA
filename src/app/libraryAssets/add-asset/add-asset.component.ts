@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BsModalRef, TypeaheadMatch } from 'ngx-bootstrap';
 import { Author } from 'src/app/_models/author';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthorService } from 'src/app/_services/author.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { AssetTypeService } from 'src/app/_services/asset-type.service';
@@ -30,8 +30,8 @@ export class AddAssetComponent implements OnInit {
 
 
   constructor(public bsModalRef: BsModalRef, private route: ActivatedRoute,
-     private authorService: AuthorService, private alertify: AlertifyService,
-     private assetTypeService: AssetTypeService, private categoryService: CategoryService) { }
+    private authorService: AuthorService, private alertify: AlertifyService,
+    private assetTypeService: AssetTypeService, private categoryService: CategoryService) { }
 
   ngOnInit() {
     // this.route.data.subscribe(data => {
@@ -46,7 +46,6 @@ export class AddAssetComponent implements OnInit {
     this.model.authorId = this.selectedOption.id;
     this.addedAsset.emit(this.model);
     this.bsModalRef.hide();
-    console.log(this.model);
   }
 
   onSelect(event: TypeaheadMatch): void {
@@ -84,24 +83,13 @@ export class AddAssetComponent implements OnInit {
   }
 
   filterCategory(value: any) {
-    if (value == '0') {
-      // this.forecasts = this.cacheForecasts;
-      console.log('');
-    }
-    else {
-      this.categories.filter((item) => item.id === value);
-      this.model.categoryId = value;
-    }
+    this.categories.filter((item) => item.id === value);
+    this.model.categoryId = value;
   }
 
   filterAssetType(value: any) {
-    if (value == '0') {
-      console.log('');
-    }
-    else {
-      this.assetTypes.filter((item) => item.id === value);
-      this.model.assetTypeId = value;
-    }
+    this.assetTypes.filter((item) => item.id === value);
+    this.model.assetTypeId = value;
   }
 
 }
