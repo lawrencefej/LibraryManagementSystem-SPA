@@ -6,4 +6,10 @@ export interface Author {
     lastName?: string;
     assets?: LibraryAsset[];
     fullName?: string;
+    // name: function(): string {
+    //     return this.firstName + ' ' + this.lastName;
+    // }
+
+    // test(): string {
+    // }
 }

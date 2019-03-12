@@ -12,38 +12,43 @@
     </div>
     <div class="form-group">
       <input placeholder="Search Author" name="firstName" autocomplete="off" [(ngModel)]="selectedValue"
-        [typeahead]="authors" typeaheadOptionField="firstName" (typeaheadOnSelect)="onSelect($event)"
+        [typeahead]="authors" typeaheadOptionField="fullName" (typeaheadOnSelect)="onSelect($event)"
         class="form-control">
     </div>
     <div class="form-group">
       <input class="form-control mr-sm-2" type="text" name="year" placeholder="Year" required [(ngModel)]="model.year">
     </div>
     <div class="form-group">
-      <input class="form-control mr-sm-2" type="number" name="numberOfCopies" placeholder="Copies" required
+      <input class="form-control mr-sm-2" type="number" name="numberOfCopies" placeholder="Copies" required min="1"
         [(ngModel)]="model.numberOfCopies">
     </div>
     <div class="form-group">
       <textarea class="form-control mr-sm-2" type="text" name="description" placeholder="Description" required
         [(ngModel)]="model.description"></textarea>
     </div>
+
     <div class="form-group">
-      <select name="category" class="custom-select form-control" required
-        (change)="filterCategory($event.target.value)">
-        <option value="0" selected disabled>--Select Category--</option>
-        <option *ngFor="let category of categories" value={{category.id}}>
+      <select name="category" class="custom-select form-control" required (ngModelChange)="onCategoryChange($event)"
+        [(ngModel)]="selectedCategory">
+        <option [ngValue]="undefined" selected disabled>--Select Category--</option>
+        <option *ngFor="let category of categories" [ngValue]="category">
           {{category.name}}
         </option>
       </select>
     </div>
 
     <div class="form-group">
-      <select name="assetType" class="custom-select form-control" required
-        (change)="filterAssetType($event.target.value)">
-        <option value="0" selected disabled>--Select Type--</option>
-        <option *ngFor="let assetType of assetTypes" value={{assetType.id}}>
+      <select name="selectedAssetType" class="custom-select form-control" required
+        (ngModelChange)="onItemChange($event)" [(ngModel)]="selectedAssetType">
+        <option [ngValue]="undefined" selected disabled>--Select Type--</option>
+        <option *ngFor="let assetType of assetTypes" [ngValue]="assetType">
           {{assetType.name}}
         </option>
       </select>
+    </div>
+
+    <div *ngIf="isBook()" class="form-group">
+      <input class="form-control mr-sm-2" name="isbn" placeholder="ISBN" required [(ngModel)]="model.isbn">
     </div>
   </form>
 </div>

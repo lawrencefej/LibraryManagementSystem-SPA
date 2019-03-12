@@ -8,6 +8,7 @@ import { AssetTypeService } from 'src/app/_services/asset-type.service';
 import { CategoryService } from 'src/app/_services/category.service';
 import { AssetType } from 'src/app/_models/assetType';
 import { Category } from 'src/app/_models/category';
+import { LibraryAsset } from 'src/app/_models/libraryAsset';
 
 @Component({
   selector: 'app-add-asset',
@@ -22,11 +23,12 @@ export class AddAssetComponent implements OnInit {
   selectedValue: string;
   selectedOption: any;
   model: any = {
-    firstName: '',
     categoryId: 0,
     assetTypeId: 0
   };
   authors: Author[];
+  selectedCategory: any;
+  selectedAssetType: any;
 
 
   constructor(public bsModalRef: BsModalRef, private route: ActivatedRoute,
@@ -43,23 +45,23 @@ export class AddAssetComponent implements OnInit {
   }
 
   addAsset() {
-    this.model.authorId = this.selectedOption.id;
     this.addedAsset.emit(this.model);
     this.bsModalRef.hide();
   }
 
   onSelect(event: TypeaheadMatch): void {
     this.selectedOption = event.item;
+    this.model.authorId = this.selectedOption.id;
   }
 
-  search($event) {
-    let value = $event.target.value;
-    this.authorService.searchAuthors(value).subscribe((authors: Author[]) => {
-      this.authors = authors;
-    }, error => {
-      this.alertify.error(error);
-    });
-  }
+  // search($event) {
+  //   let value = $event.target.value;
+  //   this.authorService.searchAuthors(value).subscribe((authors: Author[]) => {
+  //     this.authors = authors;
+  //   }, error => {
+  //     this.alertify.error(error);
+  //   });
+  // }
 
   getAuthors() {
     this.authorService.getAuthors().subscribe((authors: Author[]) => {
@@ -82,14 +84,21 @@ export class AddAssetComponent implements OnInit {
     // TODO add error
   }
 
-  filterCategory(value: any) {
-    this.categories.filter((item) => item.id === value);
-    this.model.categoryId = value;
+  onItemChange(value: AssetType) {
+    this.model.assetTypeId = value.id;
   }
 
-  filterAssetType(value: any) {
-    this.assetTypes.filter((item) => item.id === value);
-    this.model.assetTypeId = value;
+  onCategoryChange(value: any) {
+    this.model.categoryId = value.id;
+  }
+
+  isBook() {
+    if (this.selectedAssetType === undefined) {
+      return false;
+    }
+    if (this.selectedAssetType.name === 'Book') {
+      return true;
+    }
   }
 
 }
