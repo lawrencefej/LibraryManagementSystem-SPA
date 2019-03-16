@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Checkout } from 'src/app/_models/checkout';
 import { CheckoutService } from 'src/app/_services/checkout.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
@@ -15,7 +15,8 @@ export class CheckoutListComponent implements OnInit {
   count: number;
   value = '';
 
-  constructor(private route: ActivatedRoute, private checkoutService: CheckoutService, private alertify: AlertifyService) { }
+  constructor(private route: ActivatedRoute, private checkoutService: CheckoutService,
+     private alertify: AlertifyService, private router: Router) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -31,6 +32,11 @@ export class CheckoutListComponent implements OnInit {
     }, error => {
       this.alertify.error(error);
     });
+  }
+
+  newCheckout() {
+    this.router.navigate(['/members']);
+    this.alertify.message('Select a member');
   }
 
 }

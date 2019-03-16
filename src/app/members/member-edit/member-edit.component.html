@@ -5,34 +5,42 @@
   </button>
 </div>
 <div class="modal-body">
+  <div class="container mx-auto">
   <form #editForm="ngForm" id="editForm">
-    <div class="form-group">
-      <div class="form-inline">
-        <input class="form-control mr-sm-2" type="text" name="firstName" [(ngModel)]="member.firstName">
-        <input class="form-control mr-sm-2" type="text" name="lastName" [(ngModel)]="member.lastName">
+      <div class="form-group">
+          <label for="firstName" class="mr-4">First Name: </label>
+        <input class="form-control mr-sm-2 col-md-6" type="text" name="firstName" [(ngModel)]="member.firstName">
       </div>
-      <div class="form-inline">
-        <!-- <label for="city" class="mr-4">Email: </label> -->
-        <input class="form-control mr-sm-2" type="email" name="email" [(ngModel)]="member.email">
+      <div class="form-group">
+          <label for="lastName" class="mr-4">Last Name: </label>
+        <input class="form-control mr-sm-2 col-md-6" type="text" name="lastName" [(ngModel)]="member.lastName">
       </div>
-      <div class="form-inline">
-        <!-- <label for="city" class="mr-3">Address:</label> -->
-        <input class="form-control mr-sm-6" type="text" name="address" [(ngModel)]="member.address">
+      <div class="form-group">
+        <label for="email" class="mr-4">Email: </label>
+        <input class="form-control mr-sm-2 col-md-6" type="email" name="email" [(ngModel)]="member.email">
       </div>
-      <div class="form-inline">
-        <!-- <label for="city" class="mr-5">City: </label> -->
-        <input class="form-control mr-sm-2" type="text" name="city" [(ngModel)]="member.city">
+      <div class="form-group">
+        <label for="phoneNumber" class="mr-4">Phone Number: </label>
+        <input class="form-control mr-sm-2 col-md-5" type="tel" name="phoneNumber" [(ngModel)]="member.phoneNumber">
       </div>
-      <div class="form-inline">
-        <!-- <label for="city" class="mr-3">State: </label> -->
-        <input class="form-control mr-sm-2" type="text" name="state" [(ngModel)]="member.state">
+      <div class="form-group">
+        <label for="address" class="mr-3">Address:</label>
+        <input class="form-control mr-sm-6 col-md-6" type="text" name="address" [(ngModel)]="member.address">
       </div>
-      <div class="form-inline">
-        <!-- <label for="city" class="mr-2">Zip Code: </label> -->
-        <input class="form-control mr-sm-2" type="text" name="zipcode" [(ngModel)]="member.zipcode">
+      <div class="form-group">
+        <label for="state" class="mr-3">State: </label>
+        <input class="form-control mr-sm-2 col-md-3" type="text" name="state" [(ngModel)]="member.state">
       </div>
-    </div>
+      <div class="form-group">
+        <label for="city" class="mr-5">City: </label>
+        <input class="form-control mr-sm-2 col-md-3" type="text" name="city" [(ngModel)]="member.city">
+      </div>
+      <div class="form-group">
+        <label for="zipcode" class="mr-2">Zip Code: </label>
+        <input class="form-control mr-sm-2 col-md-2" type="text" name="zipcode" [(ngModel)]="member.zipcode">
+      </div>
   </form>
+</div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>

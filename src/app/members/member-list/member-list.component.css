@@ -1,7 +1,19 @@
-/* .fa-trash {
+.fa-trash {
   color: red;
   font-size: 20px;
-} */
+}
+
+.fa-edit {
+  font-size: 20px;
+  color: #3498db;
+}
+
+.fa-trash:hover {
+  cursor: pointer;
+}
+.fa-edit:hover {
+  cursor: pointer;
+}
 
 .fa-check {
   font-size: 20px;
