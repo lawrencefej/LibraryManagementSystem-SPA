@@ -49,6 +49,9 @@ import { AuthorListResolver } from './_resolver/author-list-resolver';
 import { AuthorAssetResolver } from './_resolver/author-asset.resolver';
 import { AddAuthorComponent } from './author/add-author/add-author.component';
 import { AddAssetComponent } from './libraryAssets/add-asset/add-asset.component';
+import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
+import { LineChartComponent } from './charts/line-chart/line-chart.component';
+import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -82,7 +85,10 @@ export function tokenGetter() {
       AuthorListComponent,
       AuthorAssetComponent,
       AddAuthorComponent,
-      AddAssetComponent
+      AddAssetComponent,
+      PieChartComponent,
+      LineChartComponent,
+      BarChartComponent
 
    ],
    imports: [
