@@ -52,6 +52,7 @@ import { AddAssetComponent } from './libraryAssets/add-asset/add-asset.component
 import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 import { LineChartComponent } from './charts/line-chart/line-chart.component';
 import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -88,7 +89,8 @@ export function tokenGetter() {
       AddAssetComponent,
       PieChartComponent,
       LineChartComponent,
-      BarChartComponent
+      BarChartComponent,
+      DashboardComponent
 
    ],
    imports: [

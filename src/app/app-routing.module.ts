@@ -24,6 +24,7 @@ import { AuthorListComponent } from './author/author-list/author-list.component'
 import { AuthorAssetComponent } from './author/author-asset/author-asset.component';
 import { AuthorListResolver } from './_resolver/author-list-resolver';
 import { AuthorAssetResolver } from './_resolver/author-asset.resolver';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -52,6 +53,7 @@ const routes: Routes = [
         resolve: { authors: AuthorListResolver } },
       { path: 'authors/:id', component: AuthorAssetComponent, data: { roles: ['Admin', 'Librarian'] },
         resolve: { author: AuthorAssetResolver } },
+      { path: 'dashboard', component: DashboardComponent, data: { roles: ['Admin', 'Librarian'] }}
     ]
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },
