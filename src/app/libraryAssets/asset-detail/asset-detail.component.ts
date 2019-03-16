@@ -21,7 +21,6 @@ export class AssetDetailComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private alertify: AlertifyService,
-    private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -34,12 +33,12 @@ export class AssetDetailComponent implements OnInit {
     return this.authService.loggedIn();
   }
 
-  reserveAsset(assetId: number) {
-    this.userService.reserveAsset(this.authService.decodedToken.nameid, assetId).subscribe(data => {
-      this.alertify.success(this.asset.title + 'was reserved successfully');
-    }, error => {
-      this.alertify.error(error);
-    });
-  }
+  // reserveAsset(assetId: number) {
+  //   this.userService.reserveAsset(this.authService.decodedToken.nameid, assetId).subscribe(data => {
+  //     this.alertify.success(this.asset.title + 'was reserved successfully');
+  //   }, error => {
+  //     this.alertify.error(error);
+  //   });
+  // }
 
 }
