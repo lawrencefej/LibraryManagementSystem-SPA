@@ -1,5 +1,6 @@
 import { BsDatepickerModule, BsDropdownModule, TabsModule, ModalModule, TypeaheadModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
 
 import { AdminPanelComponent } from './Admin/admin-panel/admin-panel.component';
 import { AlertifyService } from './_services/alertify.service';
@@ -90,6 +91,7 @@ export function tokenGetter() {
       FormsModule,
       ReactiveFormsModule,
       AppRoutingModule,
+      ChartsModule,
       BsDatepickerModule.forRoot(),
       TypeaheadModule.forRoot(),
       BsDropdownModule.forRoot(),
