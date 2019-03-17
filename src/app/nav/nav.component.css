@@ -18,3 +18,7 @@ img {
 .test {
     justify-content: end;
 }
+
+#title {
+    color: white;
+}
