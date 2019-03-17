@@ -1,3 +1,12 @@
 .dash-box{
   text-align:center;
+  height: 90px;
+}
+
+#test {
+  height: 100px;
+}
+
+.card-bottom {
+  /* height: 40vh; */
 }

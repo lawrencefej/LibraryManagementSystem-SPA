@@ -1,7 +1,7 @@
 <div class="flex">
   <div class="flex-item">
-    <div style="display: block;">
-      <canvas baseChart  
+    <div class="chart">
+      <canvas baseChart
         [datasets]="lineChartData" 
         [labels]="lineChartLabels"
         [options]="lineChartOptions" 
@@ -14,6 +14,8 @@
     </div>
   </div>
   <div class="flex-item">
-    <button mat-button mat-raised-button color="primary" (click)="randomize()">CLICK</button>
+    <!-- <button mat-button mat-raised-button color="primary" (click)="randomize()">CLICK</button> -->
   </div>
 </div>
+
+<!-- style="width: 100px; height: 10px;" -->

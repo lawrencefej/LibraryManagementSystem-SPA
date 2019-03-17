@@ -6,7 +6,8 @@
           <h5>Daily Activity</h5>
         </div>
         <div class="card-body">
-          <app-line-chart></app-line-chart>
+          <app-bar-chart></app-bar-chart>
+          <!-- <app-line-chart></app-line-chart> -->
         </div>
       </div>
       <div class="card mb-3 shadow card-theme">
@@ -31,26 +32,26 @@
   <div class="row-fluid cards">
   <div class="card-deck mb-3">
     <div class="card card bg-secondary text-white text-center p-2 col-md-3 dash-box shadow">
-      <div class="well dash-box ">
-        <h2><a><span><i class="fa fa-user"></i></span><span> {{TotalMembers}}</span></a></h2>
+      <div class="well">
+        <h3><a><span><i class="fa fa-user"> </i></span><span> {{TotalMembers}}</span></a></h3>
         <h4>Total Members</h4>
       </div>
     </div>
-    <div class="card card bg-light text-white text-center p-3 col-md-3 dash-box shadow">
-      <div class="well dash-box ">
-        <h2><a><span><i class="fa fa-book"></i></span><span> {{TotalItems}}</span></a></h2>
+    <div class="card card bg-light text-white text-center p-2 col-md-3 dash-box shadow">
+      <div class="well">
+        <h3><a><span><i class="fa fa-book"></i></span><span> {{TotalItems}}</span></a></h3>
         <h4>Total Items</h4>
       </div>
     </div>
-    <div class="card card bg-info text-white text-center p-3 col-md-3 dash-box shadow">
-      <div class="well dash-box ">
-        <h2><a><span><i class="fa fa-user-circle"></i></span><span> {{TotalAuthors}}</span></a></h2>
+    <div class="card card bg-info text-white text-center p-2 col-md-3 dash-box shadow">
+      <div class="well">
+        <h3><a><span><i class="fa fa-user-circle"></i></span><span> {{TotalAuthors}}</span></a></h3>
         <h4>Total Authors</h4>
       </div>
     </div>
-    <div class="card card bg-success text-white text-center p-3 col-md-3 dash-box shadow">
-      <div class="well dash-box ">
-        <h2><a><span><i class="fa fa-sign-out"></i></span><span> {{TotalCheckouts}}</span></a></h2>
+    <div class="card card bg-success text-white text-center p-2 col-md-3 dash-box shadow">
+      <div class="well">
+        <h3><a><span><i class="fa fa-sign-out"></i></span><span> {{TotalCheckouts}}</span></a></h3>
         <h4>Total Checkouts</h4>
       </div>
     </div>
