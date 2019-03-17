@@ -1,3 +1,19 @@
-<p>
-  line-chart works!
-</p>
+<div class="flex">
+  <div class="flex-item">
+    <div style="display: block;">
+      <canvas baseChart  
+        [datasets]="lineChartData" 
+        [labels]="lineChartLabels"
+        [options]="lineChartOptions" 
+        [colors]="lineChartColors" 
+        [legend]="lineChartLegend" 
+        [chartType]="lineChartType"
+        (chartHover)="chartHovered($event)" 
+        (chartClick)="chartClicked($event)">
+      </canvas>
+    </div>
+  </div>
+  <div class="flex-item">
+    <button mat-button mat-raised-button color="primary" (click)="randomize()">CLICK</button>
+  </div>
+</div>
