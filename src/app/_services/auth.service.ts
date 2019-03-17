@@ -64,8 +64,8 @@ logout() {
   this.decodedToken = null;
   this.currentUser = null;
   this.currentUserSubject.next(null);
+  this.router.navigate(['/login']);
   this.alertify.message('logged out');
-  this.router.navigate(['/home']);
 }
 
 roleMatch(allowedRoles): boolean {

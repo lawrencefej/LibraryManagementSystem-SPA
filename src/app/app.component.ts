@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './_services/auth.service';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import { User } from './_models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent implements OnInit {
   currentUser: User;
   isVisible = false;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.authService.currentUser.subscribe(x => this.currentUser = x);
   }
 
@@ -24,10 +25,33 @@ export class AppComponent implements OnInit {
     if (token) {
       this.authService.decodedToken = this.jwtHelper.decodeToken(token);
     }
+  }
 
-    // if (user) {
-    //   this.authService.currentUser = user;
-    // }
+  loggedIn() {
+    return this.authService.loggedIn();
+  }
+
+  // showNav() {
+  //   // console.log(this.router.url);
+  //   if (this.loggedIn) {
+  //     if (this.router.url === '/dashboard') {
+  //       return false;
+  //     }
+  //     return true;
+  //   }
+  //   return false;
+  // }
+
+  showNav() {
+    // console.log(this.router.url);
+    if (this.authService.loggedIn()) {
+      if (this.router.url === '/dashboard') {
+        return false;
+      }
+      return true;
+    } else {
+      return false;
+    }
   }
 
     get isAdmin() {
@@ -37,6 +61,5 @@ export class AppComponent implements OnInit {
         }
       }
       return false;
-      // return this.authService.isAdmin(this.currentUser);
   }
 }

@@ -27,12 +27,9 @@ import { AuthorAssetResolver } from './_resolver/author-asset.resolver';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'catalog', component: AssetListComponent, resolve: { assets: AssetListResolver } },
-  { path: 'catalog/:id', component: AssetDetailComponent, resolve: { asset: AssetDetailResolver } },
+  { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home', component: HomeComponent },
   {
     path: '',
     runGuardsAndResolvers: 'always',
@@ -40,6 +37,8 @@ const routes: Routes = [
     children: [
       { path: 'currentitems', component: MemberHistoryComponent },
       { path: 'profileedit', component: MemberEditComponent },
+      { path: 'catalog', component: AssetListComponent, resolve: { assets: AssetListResolver } },
+      { path: 'catalog/:id', component: AssetDetailComponent, resolve: { asset: AssetDetailResolver } },
       { path: 'admin', component: AdminPanelComponent, data: { roles: ['Admin', 'Librarian'] } },
       { path: 'members', component: MemberListComponent, data: { roles: ['Admin', 'Librarian'] },
         resolve: { members: MemberListResolver } },
@@ -56,7 +55,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent, data: { roles: ['Admin', 'Librarian'] }}
     ]
   },
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+  { path: '**', redirectTo: 'members', pathMatch: 'full' },
 ];
 
 @NgModule({

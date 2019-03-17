@@ -10,12 +10,11 @@
     </div>
 </div> -->
 
-<app-nav id="navbar" class="navbar navbar-dark fixed-top bg-primary"></app-nav>
-<!-- <app-nav></app-nav> -->
+<app-nav *ngIf="showNav()" id="navbar" class="navbar navbar-dark fixed-top bg-primary"></app-nav>
 
 <div class="container-fluid">
     <div class="row" id="mainContent">
-        <app-sidebar id="sideBar" class="col-sm-2 col-md-2 d-none d-sm-block sidebar"></app-sidebar>
+        <app-sidebar *ngIf="showNav()" id="sideBar" class="col-sm-2 col-md-2 d-none d-sm-block sidebar"></app-sidebar>
         <div class="col-sm-9 ml-sm-auto col-md-10 pt-3" id="content">
             <router-outlet></router-outlet>
         </div>
