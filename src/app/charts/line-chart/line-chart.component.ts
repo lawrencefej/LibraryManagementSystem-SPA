@@ -68,6 +68,8 @@ export class LineChartComponent implements OnInit {
           {'data': this.data2.map(a => a.data), 'label': this.chartData2.label}];
       });
       this.lineChartLabels = this.data.map(a => a.name);
+      console.log(this.lineChartData);
+
     });
   }
 

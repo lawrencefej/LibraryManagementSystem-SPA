@@ -6,8 +6,7 @@
           <h5>Daily Activity</h5>
         </div>
         <div class="card-body">
-          <app-bar-chart></app-bar-chart>
-          <!-- <app-line-chart></app-line-chart> -->
+          <app-bar-chart *ngIf="dailyActivityData" [barChartData]='dailyActivityData' [barChartLabels]='dailyActivityLabel'></app-bar-chart>
         </div>
       </div>
       <div class="card mb-3 shadow card-theme">
