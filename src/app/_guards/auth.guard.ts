@@ -19,8 +19,9 @@ export class AuthGuard implements CanActivate {
       if (roles.includes(userRole)) {
         return true;
       } else {
-        this.router.navigate(['members']);
+        this.authService.logout();
         this.alertify.error('You are not authorized to access this area');
+        this.router.navigate(['/login']);
       }
     }
     if (this.authService.loggedIn()) {
