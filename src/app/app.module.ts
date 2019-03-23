@@ -53,6 +53,7 @@ import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 import { LineChartComponent } from './charts/line-chart/line-chart.component';
 import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { ReportService } from './_services/report.service';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -121,6 +122,7 @@ export function tokenGetter() {
       AuthGuard,
       UserService,
       AuthorService,
+      ReportService,
       AssetDetailResolver,
       AssetListResolver,
       MemberListResolver,
