@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { ChartOptions, ChartType } from 'chart.js';
+import { ReportService } from 'src/app/_services/report.service';
+import { ChartModel } from 'src/app/_models/chartModel';
+import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-bar-chart',
@@ -10,58 +12,37 @@ import { Label } from 'ng2-charts';
 export class BarChartComponent implements OnInit {
   public barChartOptions: ChartOptions = {
     responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
-    scales: { xAxes: [{}], yAxes: [{}] },
-    plugins: {
-      datalabels: {
-        anchor: 'end',
-        align: 'end',
-      }
-    }
   };
-  public barChartLabels: Label[] = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun'];
+  public barChartLabels: any[];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
-  // public barChartPlugins = [pluginDataLabels];
 
-  public barChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Checkouts' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Returns' }
+  constructor(private reportService: ReportService) { }
+  chartData: ChartModel;
+  data: Data[];
+  chartData2: ChartModel;
+  data2: Data[];
+  localLabel: any;
+  LocalBarChartLabels: any[];
+
+  barChartData = [
+    {'data': [0], 'label': ''},
+    {'data': [0], 'label': ''}
   ];
 
-  constructor() { }
-
   ngOnInit() {
-  }
-
-   // events
-   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public randomize(): void {
-    // Only Change 3 values
-    const data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      (Math.random() * 100),
-      56,
-      (Math.random() * 100),
-      40];
-    const clone = JSON.parse(JSON.stringify(this.barChartData));
-    clone[0].data = data;
-    this.barChartData = clone;
-    /**
-     * (My guess), for Angular to recognize the change in the dataset
-     * it has to change the dataset variable directly,
-     * so one way around it, is to clone the data, change it and then
-     * assign it;
-     */
+    this.reportService.getCheckoutByDay().subscribe((chartModel: ChartModel) => {
+      this.chartData = chartModel;
+      this.data = this.chartData.data;
+      this.reportService.getReturnByDay().subscribe((chartModel: ChartModel) => {
+        this.chartData2 = chartModel;
+        this.data2 = this.chartData2.data;
+        this.barChartData = [
+          {'data': this.data.map(a => a.data), 'label': this.chartData.label},
+          {'data': this.data2.map(a => a.data), 'label': this.chartData2.label}];
+      });
+      this.barChartLabels = this.data.map(a => a.name);
+    });
   }
 
 }

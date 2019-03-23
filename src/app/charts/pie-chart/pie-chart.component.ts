@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartOptions } from 'chart.js';
+import { ReportService } from 'src/app/_services/report.service';
+import { ChartModel } from 'src/app/_models/chartModel';
+import { ChartData } from 'src/app/_models/chartData';
 
 @Component({
   selector: 'app-pie-chart',
@@ -7,8 +10,10 @@ import { ChartOptions } from 'chart.js';
   styleUrls: ['./pie-chart.component.css']
 })
 export class PieChartComponent implements OnInit {
+  chartData: ChartModel;
+  data: ChartData[];
 
-  constructor() { }
+  constructor(private reportService: ReportService) { }
   public pieChartOptions: ChartOptions = {
     responsive: true,
     plugins: {
@@ -20,8 +25,8 @@ export class PieChartComponent implements OnInit {
       },
     }
   };
-  pieChartData: number[] = [350, 450, 120];
-  pieChartLabels: string[] = ['Science', 'Computer', 'Other'];
+  pieChartData: any[] = [0];
+  pieChartLabels: any[] = [''];
   colors: any[] = [
     {
       backgroundColor: ['#26547c', '#ff6b6b', '#ffd166']
@@ -31,6 +36,12 @@ export class PieChartComponent implements OnInit {
   pieChartType = 'pie';
 
   ngOnInit() {
+    this.reportService.getAssetDistribution().subscribe((chartModel: ChartModel) => {
+      this.chartData = chartModel;
+      this.data = this.chartData.data;
+      this.pieChartData = this.data.map(a => a.data);
+      this.pieChartLabels = this.data.map(a => a.name);
+    });
   }
 
 }
