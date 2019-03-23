@@ -27,7 +27,7 @@ import { AuthorAssetResolver } from './_resolver/author-asset.resolver';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  // { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {
@@ -35,11 +35,14 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
+      // { path: '', component: MemberListComponent },
       { path: 'currentitems', component: MemberHistoryComponent },
       { path: 'profileedit', component: MemberEditComponent },
       { path: 'catalog', component: AssetListComponent, resolve: { assets: AssetListResolver } },
       { path: 'catalog/:id', component: AssetDetailComponent, resolve: { asset: AssetDetailResolver } },
       { path: 'admin', component: AdminPanelComponent, data: { roles: ['Admin', 'Librarian'] } },
+      { path: '', component: MemberListComponent, data: { roles: ['Admin', 'Librarian'] },
+        resolve: { members: MemberListResolver } },
       { path: 'members', component: MemberListComponent, data: { roles: ['Admin', 'Librarian'] },
         resolve: { members: MemberListResolver } },
       { path: 'members/:id', component: MemberDetailComponent, data: { roles: ['Admin', 'Librarian'] },
