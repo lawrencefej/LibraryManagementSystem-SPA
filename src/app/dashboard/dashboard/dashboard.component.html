@@ -6,7 +6,7 @@
           <h5>Daily Activity</h5>
         </div>
         <div class="card-body">
-          <app-bar-chart *ngIf="dailyActivityData" [barChartData]='dailyActivityData' [barChartLabels]='dailyActivityLabel'></app-bar-chart>
+          <app-bar-chart *ngIf="monthlyActivityData" [barChartData]='monthlyActivityData' [barChartLabels]='monthlyActivityLabel'></app-bar-chart>
         </div>
       </div>
       <div class="card mb-3 shadow card-theme">
@@ -14,8 +14,8 @@
           <h5>Category Chart</h5>
         </div>
         <div class="card-body">
-          <!-- <app-pie-chart *ngIf="categoryDistributionData" [pieChartData]='categoryDistributionData' [pieChartLabels]='categoryDistributionLabel'></app-pie-chart> -->
-          <app-bar-chart *ngIf="monthlyActivityData" [barChartData]='monthlyActivityData' [barChartLabels]='monthlyActivityLabel'></app-bar-chart>
+          <app-pie-chart *ngIf="categoryDistributionData" [pieChartData]='categoryDistributionData' [pieChartLabels]='categoryDistributionLabel'></app-pie-chart>
+          <!-- <app-bar-chart *ngIf="monthlyActivityData" [barChartData]='monthlyActivityData' [barChartLabels]='monthlyActivityLabel'></app-bar-chart> -->
         </div>
       </div>
       <div class="card mb-3 shadow card-theme">
@@ -64,7 +64,7 @@
         <h5>Monthly Activity</h5>
       </div>
       <div class="card-body">
-        <app-line-chart></app-line-chart>
+        <app-line-chart *ngIf="dailyActivityData" [lineChartData]='dailyActivityData' [lineChartLabels]='dailyActivityLabel'></app-line-chart>
       </div>
     </div>
   </div>
