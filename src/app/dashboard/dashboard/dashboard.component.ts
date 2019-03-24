@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportService } from 'src/app/_services/report.service';
 import { ChartModel } from 'src/app/_models/chartmodel';
+import { TotalsReport } from 'src/app/_models/totalsReport';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,9 +23,9 @@ export class DashboardComponent implements OnInit {
   categoryDistributionLabel: any;
 
   TotalMembers: number;
-  TotalItems: number = 10000;
-  TotalAuthors: number = 2000;
-  TotalCheckouts: number = 2000;
+  TotalItems: number;
+  TotalAuthors: number;
+  TotalCheckouts: number;
 
   constructor(private reportService: ReportService) { }
 
@@ -33,6 +34,7 @@ export class DashboardComponent implements OnInit {
     this.getAssetTypeDistribution();
     this.getCategoryDistribution();
     this.getMonthlyActivity();
+    this.getTotals();
   }
 
   getDailyActivity() {
@@ -68,6 +70,15 @@ export class DashboardComponent implements OnInit {
     this.reportService.getCategoryDistribution().subscribe((chartModel: ChartModel) => {
       this.categoryDistributionData = chartModel.data.map(a => a.count);
       this.categoryDistributionLabel = chartModel.data.map(a => a.name);
+    });
+  }
+
+  getTotals() {
+    this.reportService.getTotals().subscribe((result: TotalsReport) => {
+      this.TotalAuthors = result.totalAuthors;
+      this.TotalCheckouts = result.totalCheckouts;
+      this.TotalItems = result.totalItems;
+      this.TotalMembers = result.totalMembers;
     });
   }
 

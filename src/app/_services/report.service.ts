@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ChartModel } from '../_models/chartModel';
+import { TotalsReport } from '../_models/totalsReport';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,10 @@ export class ReportService {
 
   getReturnByDay(): Observable<ChartModel> {
     return this.http.get<ChartModel>(this.baseUrl + 'reports/returns');
+  }
+
+  getTotals(): Observable<TotalsReport> {
+    return this.http.get<TotalsReport>(this.baseUrl + 'reports/totals');
   }
 
 }
