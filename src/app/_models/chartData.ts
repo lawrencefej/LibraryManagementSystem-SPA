@@ -1,5 +1,5 @@
 export interface ChartData {
-  data: number;
+  count: number;
   name: string;
   date: Date;
   day: string;

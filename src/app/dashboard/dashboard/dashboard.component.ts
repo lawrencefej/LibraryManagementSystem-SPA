@@ -12,6 +12,8 @@ export class DashboardComponent implements OnInit {
   returnsDataByDay: any;
   dailyActivityLabel: any;
   dailyActivityData: any;
+  monthlyActivityData: any;
+  monthlyActivityLabel: any;
   checkoutsDataByMonth: any;
   returnsDataByMonth: any;
   assetTypeDistributionData: any;
@@ -19,7 +21,7 @@ export class DashboardComponent implements OnInit {
   categoryDistributionData: any;
   categoryDistributionLabel: any;
 
-  TotalMembers: number = 2000;
+  TotalMembers: number;
   TotalItems: number = 10000;
   TotalAuthors: number = 2000;
   TotalCheckouts: number = 2000;
@@ -30,31 +32,41 @@ export class DashboardComponent implements OnInit {
     this.getDailyActivity();
     this.getAssetTypeDistribution();
     this.getCategoryDistribution();
+    this.getMonthlyActivity();
   }
 
   getDailyActivity() {
     this.reportService.getCheckoutByDay().subscribe((checkouts: ChartModel) => {
-      this.checkoutsDataByDay = checkouts;
       this.reportService.getReturnByDay().subscribe((returns: ChartModel) => {
-        this.returnsDataByDay = returns;
         this.dailyActivityData = [
-          {'data': this.checkoutsDataByDay.data.map((a: { data: any; }) => a.data), 'label': this.checkoutsDataByDay.label},
-          {'data': this.returnsDataByDay.data.map((a: { data: any; }) => a.data), 'label': this.returnsDataByDay.label}];
+          {'data': checkouts.data.map((a: { count: any; }) => a.count), 'label': checkouts.label},
+          {'data': returns.data.map((a: { count: any; }) => a.count), 'label': returns.label}];
       });
-      this.dailyActivityLabel = this.checkoutsDataByDay.data.map((a: { name: any; }) => a.name);
+      this.dailyActivityLabel = checkouts.data.map((a: { name: any; }) => a.name);
+    });
+  }
+
+  getMonthlyActivity() {
+    this.reportService.getCheckoutByMonth().subscribe((checkouts: ChartModel) => {
+      this.reportService.getReturnsByMonth().subscribe((returns: ChartModel) => {
+        this.monthlyActivityData = [
+          {'data': checkouts.data.map((a: { count: any; }) => a.count), 'label': checkouts.label},
+          {'data': returns.data.map((a: { count: any; }) => a.count), 'label': returns.label}];
+      });
+      this.monthlyActivityLabel = checkouts.data.map((a: { name: any; }) => a.name);
     });
   }
 
   getAssetTypeDistribution() {
     this.reportService.getAssetDistribution().subscribe((chartModel: ChartModel) => {
-      this.assetTypeDistributionData = chartModel.data.map(a => a.data);
+      this.assetTypeDistributionData = chartModel.data.map(a => a.count);
       this.assetTypeDistributionLabel = chartModel.data.map(a => a.name);
     });
   }
 
   getCategoryDistribution() {
     this.reportService.getCategoryDistribution().subscribe((chartModel: ChartModel) => {
-      this.categoryDistributionData = chartModel.data.map(a => a.data);
+      this.categoryDistributionData = chartModel.data.map(a => a.count);
       this.categoryDistributionLabel = chartModel.data.map(a => a.name);
     });
   }
