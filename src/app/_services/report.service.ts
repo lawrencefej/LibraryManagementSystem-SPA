@@ -16,7 +16,11 @@ export class ReportService {
     return this.http.get<ChartModel>(this.baseUrl + 'reports/assetDistribution');
   }
 
-  getCheckoutBymonth(): Observable<ChartModel> {
+  getCategoryDistribution(): Observable<ChartModel> {
+    return this.http.get<ChartModel>(this.baseUrl + 'reports/CategoryDistribution');
+  }
+
+  getCheckoutByMonth(): Observable<ChartModel> {
     return this.http.get<ChartModel>(this.baseUrl + 'reports/byMonth');
   }
 
