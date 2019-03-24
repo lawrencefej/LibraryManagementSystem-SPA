@@ -14,6 +14,11 @@ export class DashboardComponent implements OnInit {
   dailyActivityData: any;
   checkoutsDataByMonth: any;
   returnsDataByMonth: any;
+  assetTypeDistributionData: any;
+  assetTypeDistributionLabel: any;
+  categoryDistributionData: any;
+  categoryDistributionLabel: any;
+
   TotalMembers: number = 2000;
   TotalItems: number = 10000;
   TotalAuthors: number = 2000;
@@ -23,22 +28,34 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getDailyActivity();
+    this.getAssetTypeDistribution();
+    this.getCategoryDistribution();
   }
 
   getDailyActivity() {
     this.reportService.getCheckoutByDay().subscribe((checkouts: ChartModel) => {
       this.checkoutsDataByDay = checkouts;
-      // this.data = this.checkoutsDataByDay.data;
       this.reportService.getReturnByDay().subscribe((returns: ChartModel) => {
         this.returnsDataByDay = returns;
-        // this.data2 = this.chartData2.data;
         this.dailyActivityData = [
-          {'data': this.checkoutsDataByDay.data.map(a => a.data), 'label': this.checkoutsDataByDay.label},
-          {'data': this.returnsDataByDay.data.map(a => a.data), 'label': this.returnsDataByDay.label}];
+          {'data': this.checkoutsDataByDay.data.map((a: { data: any; }) => a.data), 'label': this.checkoutsDataByDay.label},
+          {'data': this.returnsDataByDay.data.map((a: { data: any; }) => a.data), 'label': this.returnsDataByDay.label}];
       });
-      this.dailyActivityLabel = this.checkoutsDataByDay.data.map(a => a.name);
-      // console.log(this.dailyActivityData);
-      // console.log(this.dailyActivityLabel);
+      this.dailyActivityLabel = this.checkoutsDataByDay.data.map((a: { name: any; }) => a.name);
+    });
+  }
+
+  getAssetTypeDistribution() {
+    this.reportService.getAssetDistribution().subscribe((chartModel: ChartModel) => {
+      this.assetTypeDistributionData = chartModel.data.map(a => a.data);
+      this.assetTypeDistributionLabel = chartModel.data.map(a => a.name);
+    });
+  }
+
+  getCategoryDistribution() {
+    this.reportService.getCategoryDistribution().subscribe((chartModel: ChartModel) => {
+      this.categoryDistributionData = chartModel.data.map(a => a.data);
+      this.categoryDistributionLabel = chartModel.data.map(a => a.name);
     });
   }
 

@@ -14,7 +14,7 @@
           <h5>Category Chart</h5>
         </div>
         <div class="card-body">
-          <app-bar-chart></app-bar-chart>
+          <app-pie-chart *ngIf="categoryDistributionData" [pieChartData]='categoryDistributionData' [pieChartLabels]='categoryDistributionLabel'></app-pie-chart>
         </div>
       </div>
       <div class="card mb-3 shadow card-theme">
@@ -22,7 +22,7 @@
           <h5>Asset Type Distribution</h5>
         </div>
         <div class="card-body">
-          <app-pie-chart></app-pie-chart>
+          <app-pie-chart *ngIf="assetTypeDistributionData" [pieChartData]='assetTypeDistributionData' [pieChartLabels]='assetTypeDistributionLabel'></app-pie-chart>
         </div>
       </div>
     </div>
