@@ -31,19 +31,7 @@ export class AppComponent implements OnInit {
     return this.authService.loggedIn();
   }
 
-  // showNav() {
-  //   // console.log(this.router.url);
-  //   if (this.loggedIn) {
-  //     if (this.router.url === '/dashboard') {
-  //       return false;
-  //     }
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
   showNav() {
-    // console.log(this.router.url);
     if (this.authService.loggedIn()) {
       if (this.router.url === '/dashboard') {
         return false;

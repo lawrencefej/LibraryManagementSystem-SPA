@@ -47,7 +47,7 @@ export class LineChartComponent implements OnInit {
   public lineChartLegend = true;
   public lineChartType = 'line';
 
-  constructor(private reportService: ReportService) {
+  constructor() {
     this.lineChartData = [{'data': []}];
    }
   chartData: ChartModel;
@@ -56,26 +56,9 @@ export class LineChartComponent implements OnInit {
   data2: Data[];
   localLabel: any;
   LocalBarChartLabels: any[];
-  // lineChartData = [
-  //   {'data': [0], 'label': ''},
-  //   {'data': [0], 'label': ''}
-  // ];
 
   ngOnInit() {
-    // this.reportService.getCheckoutByDay().subscribe((chartModel: ChartModel) => {
-    //   this.chartData = chartModel;
-    //   this.data = this.chartData.data;
-    //   this.reportService.getReturnByDay().subscribe((chartModel: ChartModel) => {
-    //     this.chartData2 = chartModel;
-    //     this.data2 = this.chartData2.data;
-    //     this.lineChartData = [
-    //       {'data': this.data.map(a => a.data), 'label': this.chartData.label},
-    //       {'data': this.data2.map(a => a.data), 'label': this.chartData2.label}];
-    //   });
-    //   this.lineChartLabels = this.data.map(a => a.name);
-    //   console.log(this.lineChartData);
-
-    // });
+    console.log(this.lineChartData);
   }
 
   // events
