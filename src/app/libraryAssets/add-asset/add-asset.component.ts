@@ -17,8 +17,10 @@ import { LibraryAsset } from 'src/app/_models/libraryAsset';
 })
 export class AddAssetComponent implements OnInit {
   @Output() addedAsset = new EventEmitter();
+  @Output() updatedAsset = new EventEmitter();
   author: Author;
   categories: Category[];
+  assetType: AssetType;
   assetTypes: AssetType[];
   selectedValue: string;
   selectedOption: any;
@@ -29,10 +31,11 @@ export class AddAssetComponent implements OnInit {
   authors: Author[];
   selectedCategory: any;
   selectedAssetType: any;
+  asset: LibraryAsset;
+  button = 'Save';
 
 
-  constructor(public bsModalRef: BsModalRef, private route: ActivatedRoute,
-    private authorService: AuthorService, private alertify: AlertifyService,
+  constructor(public bsModalRef: BsModalRef, private authorService: AuthorService,
     private assetTypeService: AssetTypeService, private categoryService: CategoryService) { }
 
   ngOnInit() {
@@ -42,11 +45,17 @@ export class AddAssetComponent implements OnInit {
     this.getAuthors();
     this.getCategories();
     this.getAssetTypes();
+    this.isUpdate();
   }
 
   addAsset() {
-    this.addedAsset.emit(this.model);
-    this.bsModalRef.hide();
+    if (this.button === 'Update') {
+      this.updatedAsset.emit(this.model);
+      this.bsModalRef.hide();
+    } else {
+      this.addedAsset.emit(this.model);
+      this.bsModalRef.hide();
+    }
   }
 
   onSelect(event: TypeaheadMatch): void {
@@ -70,9 +79,23 @@ export class AddAssetComponent implements OnInit {
     // TODO add error
   }
 
+  isUpdate() {
+    if (this.asset !== undefined) {
+      this.model = this.asset;
+      this.selectedValue = this.asset.authorName;
+      this.model.authorId = this.asset.authorId;
+      this.button = 'Update';
+      return true;
+    }
+  }
+
   getAssetTypes() {
     this.assetTypeService.getCategories().subscribe((assetTypes: AssetType[]) => {
       this.assetTypes = assetTypes;
+      if (this.asset !== undefined) {
+        this.selectedAssetType = assetTypes.find(a => a.name === this.asset.assetType);
+        this.model.assetTypeId = this.selectedAssetType.id;
+      }
     });
     // TODO add error
   }
@@ -80,6 +103,10 @@ export class AddAssetComponent implements OnInit {
   getCategories() {
     this.categoryService.getCategories().subscribe((categories: Category[]) => {
       this.categories = categories;
+      if (this.asset !== undefined) {
+        this.selectedCategory = categories.find(a => a.name === this.asset.category);
+        this.model.categoryId = this.selectedCategory.id;
+      }
     });
     // TODO add error
   }

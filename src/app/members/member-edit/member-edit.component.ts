@@ -1,9 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap';
 import { User } from 'src/app/_models/user';
-import { UserService } from 'src/app/_services/user.service';
-import { AuthService } from 'src/app/_services/auth.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-member-edit',
@@ -14,8 +11,7 @@ export class MemberEditComponent implements OnInit {
   @Output() updateSelectedMember = new EventEmitter();
   member: User;
 
-  constructor(public bsModalRef: BsModalRef, private userService: UserService,
-    private authService: AuthService, private alertify: AlertifyService) { }
+  constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit() {
   }

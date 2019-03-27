@@ -32,4 +32,8 @@ export class AssetService {
     return this.http.post(this.baseUrl + 'catalog/', asset);
   }
 
+  updateAsset(id: number, asset: LibraryAsset) {
+    return this.http.put(this.baseUrl + 'catalog/' + id, asset);
+  }
+
 }

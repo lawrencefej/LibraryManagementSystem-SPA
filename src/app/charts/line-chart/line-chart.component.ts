@@ -58,7 +58,6 @@ export class LineChartComponent implements OnInit {
   LocalBarChartLabels: any[];
 
   ngOnInit() {
-    console.log(this.lineChartData);
   }
 
   // events

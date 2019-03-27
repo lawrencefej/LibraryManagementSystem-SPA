@@ -6,7 +6,8 @@ import { AssetService } from 'src/app/_services/asset.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { LibraryAsset } from 'src/app/_models/libraryAsset';
 import { ReserveAsset } from 'src/app/_models/reserveAsset';
-import { UserService } from 'src/app/_services/user.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { AddAssetComponent } from '../add-asset/add-asset.component';
 
 @Component({
   selector: 'app-asset-detail',
@@ -16,12 +17,12 @@ import { UserService } from 'src/app/_services/user.service';
 export class AssetDetailComponent implements OnInit {
   @Input() asset: LibraryAsset;
   reserve: ReserveAsset;
+  bsModalRef: BsModalRef;
 
   constructor(private assetService: AssetService,
-    private userService: UserService,
     private authService: AuthService,
     private alertify: AlertifyService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -33,12 +34,23 @@ export class AssetDetailComponent implements OnInit {
     return this.authService.loggedIn();
   }
 
-  // reserveAsset(assetId: number) {
-  //   this.userService.reserveAsset(this.authService.decodedToken.nameid, assetId).subscribe(data => {
-  //     this.alertify.success(this.asset.title + 'was reserved successfully');
-  //   }, error => {
-  //     this.alertify.error(error);
-  //   });
-  // }
+  updateAsset(asset: LibraryAsset) {
+    this.assetService.updateAsset(this.authService.decodedToken.nameid, asset).subscribe(() => {
+      this.alertify.success('Item Updated Successfully');
+      this.asset = asset;
+    }, error => {
+      this.alertify.error(error);
+    });
+  }
+
+  editAssetModal(asset: LibraryAsset) {
+    const initialState = {
+      asset
+    };
+    this.bsModalRef = this.modalService.show(AddAssetComponent, {initialState});
+    this.bsModalRef.content.updatedAsset.subscribe((value: LibraryAsset) => {
+      this.updateAsset(value);
+    });
+  }
 
 }

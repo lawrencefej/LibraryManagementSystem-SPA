@@ -1,6 +1,4 @@
 import { Photo } from './photo';
-import { Author } from './author';
-import { AssetType } from './assetType';
 
 export interface LibraryAsset {
     id: number;

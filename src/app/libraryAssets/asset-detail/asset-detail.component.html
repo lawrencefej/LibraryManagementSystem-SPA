@@ -43,7 +43,7 @@
         </div>
         <div class="card-footer">
           <div class="btn-group d-flex">
-            <button class="btn btn-info w-100">Edit {{asset.assetType}}</button>
+            <button (click)="editAssetModal(asset)" class="btn btn-info w-100">Edit {{asset.assetType}}</button>
           </div>
         </div>
       </div>
