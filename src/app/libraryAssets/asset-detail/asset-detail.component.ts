@@ -36,7 +36,7 @@ export class AssetDetailComponent implements OnInit {
 
   updateAsset(asset: LibraryAsset) {
     this.assetService.updateAsset(this.authService.decodedToken.nameid, asset).subscribe(() => {
-      this.alertify.success('Item Updated Successfully');
+      this.alertify.success('Updated Successful');
       this.asset = asset;
     }, error => {
       this.alertify.error(error);

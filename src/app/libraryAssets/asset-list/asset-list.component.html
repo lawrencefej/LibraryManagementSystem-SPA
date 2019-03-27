@@ -22,8 +22,8 @@
           <td>{{asset.year}}</td>
           <td>{{asset.assetType}}</td>
           <td><a [routerLink]="['/catalog/', asset.id]"><span><i class="fa fa-check"></i></span></a></td>
-          <td><a href=""><span><i class="fa fa-edit"></i></span></a></td>
-          <td><a href=""><span><i class="fa fa-trash"></i></span></a></td>
+          <td><a (click)="getAsset(asset.id)"><span><i class="fa fa-edit"></i></span></a></td>
+          <td><a (click)="deleteAsset(asset.id)"><span><i class="fa fa-trash"></i></span></a></td>
         </tr>
       </table>
       <div *ngIf="assets?.length < 1">

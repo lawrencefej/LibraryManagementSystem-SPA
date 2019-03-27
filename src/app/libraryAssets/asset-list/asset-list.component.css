@@ -5,6 +5,7 @@
 
 .fa-edit {
   font-size: 20px;
+  color: #3498db;
 }
 
 .fa-trash {
@@ -18,4 +19,16 @@
 
 .addasset {
   float: left;
+}
+
+.fa-trash:hover {
+  cursor: pointer;
+}
+
+.fa-edit:hover {
+  cursor: pointer;
+}
+
+.fa-check {
+  font-size: 20px;
 }
