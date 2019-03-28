@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="card text-center" id="memberlist">
     <div class="card-header">
-      <button class="btn btn-info addmember">Add New</button>
+      <button class="btn btn-info addmember" (click)="addMemberModal()">Add New</button>
       <input class="form-control search-box" placeholder="Search" #searchInput
         (keyup.enter)="searchMembers(searchInput.value)" (blur)="searchMembers(searchInput.value)">
     </div>

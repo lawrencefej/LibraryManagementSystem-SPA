@@ -5,7 +5,7 @@
   </button>
 </div>
 <div class="modal-body">
-  <form #authorForm="ngForm" class=" my-2 my-lg-0 ">
+  <form #assetForm="ngForm" class=" my-2 my-lg-0 ">
     <div class="form-group">
       <input class="form-control mr-sm-2" type="text" name="title" placeholder="Title" required
         [(ngModel)]="model.title">
@@ -58,6 +58,6 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
-  <button [disabled]="!authorForm.valid || (model.categoryId === 0 || model.assetTypeId === 0)"
+  <button [disabled]="!assetForm.valid || (model.categoryId === 0 || model.assetTypeId === 0)"
     class="btn btn-success btn-sm" (click)="addAsset()" form="addForm">{{button}}</button>
 </div>

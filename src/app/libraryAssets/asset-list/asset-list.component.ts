@@ -38,9 +38,19 @@ export class AssetListComponent implements OnInit {
     });
   }
 
+  editAssetModal(asset: LibraryAsset) {
+    const initialState = {
+      asset
+    };
+    this.bsModalRef = this.modalService.show(AddAssetComponent, {initialState});
+    this.bsModalRef.content.updatedAsset.subscribe((value: LibraryAsset) => {
+      this.updateAsset(value);
+    });
+  }
+
   addAssetModal() {
     this.bsModalRef = this.modalService.show(AddAssetComponent);
-    this.bsModalRef.content.addedAsset.subscribe((value) => {
+    this.bsModalRef.content.addedAsset.subscribe((value: LibraryAsset) => {
       this.addAsset(value);
     });
   }
@@ -57,6 +67,17 @@ export class AssetListComponent implements OnInit {
     });
   }
 
+  updateAsset(asset: LibraryAsset) {
+    this.assetService.updateAsset(this.authService.decodedToken.nameid, asset).subscribe(() => {
+      this.alertify.success('Updated Successful');
+      const item = this.assets.find(a => a.id === asset.id);
+      const index = this.assets.indexOf(item);
+      this.assets[index] = asset;
+    }, error => {
+      this.alertify.error(error);
+    });
+  }
+
   deleteAsset(id) {
     // this.alertify.confirm('are you sure you want to delete this member');
     this.alertify.success('Item Deleted');
@@ -70,25 +91,6 @@ export class AssetListComponent implements OnInit {
     });
   }
 
-  editAssetModal(asset: LibraryAsset) {
-    const initialState = {
-      asset
-    };
-    this.bsModalRef = this.modalService.show(AddAssetComponent, {initialState});
-    this.bsModalRef.content.updatedAsset.subscribe((value: LibraryAsset) => {
-      this.updateAsset(value);
-    });
-  }
 
-  updateAsset(asset: LibraryAsset) {
-    this.assetService.updateAsset(this.authService.decodedToken.nameid, asset).subscribe(() => {
-      this.alertify.success('Updated Successful');
-      const item = this.assets.find(a => a.id === asset.id);
-      const index = this.assets.indexOf(item);
-      this.assets[index] = asset;
-    }, error => {
-      this.alertify.error(error);
-    });
-  }
 
 }

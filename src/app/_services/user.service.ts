@@ -28,4 +28,8 @@ export class UserService {
     return this.http.put(this.baseUrl + 'user/' + id, user);
   }
 
+  AddMember(user: User) {
+    return this.http.post(this.baseUrl + 'user/', user);
+  }
+
 }

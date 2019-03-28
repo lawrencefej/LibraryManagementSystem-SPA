@@ -1,9 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BsModalRef, TypeaheadMatch } from 'ngx-bootstrap';
 import { Author } from 'src/app/_models/author';
-import { ActivatedRoute, Router } from '@angular/router';
 import { AuthorService } from 'src/app/_services/author.service';
-import { AlertifyService } from 'src/app/_services/alertify.service';
 import { AssetTypeService } from 'src/app/_services/asset-type.service';
 import { CategoryService } from 'src/app/_services/category.service';
 import { AssetType } from 'src/app/_models/assetType';
@@ -18,6 +16,7 @@ import { LibraryAsset } from 'src/app/_models/libraryAsset';
 export class AddAssetComponent implements OnInit {
   @Output() addedAsset = new EventEmitter();
   @Output() updatedAsset = new EventEmitter();
+
   author: Author;
   categories: Category[];
   assetType: AssetType;

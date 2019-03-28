@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { User } from 'src/app/_models/user';
 import { UserService } from 'src/app/_services/user.service';
@@ -21,7 +21,7 @@ export class MemberListComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute, private userService: UserService,
-     private alertify: AlertifyService, private modalService: BsModalService, private authService: AuthService) { }
+     private alertify: AlertifyService, private modalService: BsModalService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -44,9 +44,30 @@ export class MemberListComponent implements OnInit {
       member
     };
     this.bsModalRef = this.modalService.show(MemberEditComponent, {initialState});
-    this.bsModalRef.content.updateSelectedMember.subscribe((value) => {
+    this.bsModalRef.content.updatedMember.subscribe((value: User) => {
       this.updateUser(value);
     });
+  }
+
+  addMemberModal() {
+    this.bsModalRef = this.modalService.show(MemberEditComponent);
+    this.bsModalRef.content.addedMember.subscribe((value: User) => {
+      this.addMember(value);
+    });
+  }
+
+  addMember(value: User) {
+    this.userService.AddMember(value).subscribe((member: User) => {
+      this.alertify.success('Member Added Successfully');
+      this.members.unshift(member);
+      // value = member;
+      this.router.navigate(['/members/', member.id]);
+    }, error => {
+      this.alertify.error(error);
+    });
+    // , () => {
+    //   this.router.navigate(['/members/', value.id]);
+    // });
   }
 
   updateUser(member: User) {
