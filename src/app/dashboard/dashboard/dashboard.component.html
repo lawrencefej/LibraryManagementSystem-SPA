@@ -3,7 +3,7 @@
     <div class="card-deck">
       <div class="card mb-3 shadow card-theme">
         <div class="card-header card-header-theme bg-primary text-white">
-          <h5>Daily Activity</h5>
+          <h5>Monthly Activity</h5>
         </div>
         <div class="card-body">
           <app-bar-chart *ngIf="monthlyActivityData" [barChartData]='monthlyActivityData' [barChartLabels]='monthlyActivityLabel'></app-bar-chart>
@@ -11,7 +11,7 @@
       </div>
       <div class="card mb-3 shadow card-theme">
         <div class="card-header card-header-theme bg-primary text-white">
-          <h5>Category Chart</h5>
+          <h5>Category Distribution</h5>
         </div>
         <div class="card-body">
           <app-pie-chart *ngIf="categoryDistributionData" [pieChartData]='categoryDistributionData' [pieChartLabels]='categoryDistributionLabel'></app-pie-chart>
@@ -37,7 +37,7 @@
         <h4>Total Members</h4>
       </div>
     </div>
-    <div class="card card bg-light text-white text-center p-2 col-md-3 dash-box shadow">
+    <div class="card card bg-primary text-white text-center p-2 col-md-3 dash-box shadow">
       <div class="well">
         <h3><a><span><i class="fa fa-book"></i></span><span> {{TotalItems}}</span></a></h3>
         <h4>Total Items</h4>
@@ -61,7 +61,7 @@
   <div class="row-fluid cards">
     <div class="card shadow card-theme card-bottom">
       <div class="card-header card-header theme  bg-primary text-white">
-        <h5>Monthly Activity</h5>
+        <h5>Daily Activity</h5>
       </div>
       <div class="card-body">
         <app-line-chart *ngIf="dailyActivityData" [lineChartData]='dailyActivityData' [lineChartLabels]='dailyActivityLabel'></app-line-chart>

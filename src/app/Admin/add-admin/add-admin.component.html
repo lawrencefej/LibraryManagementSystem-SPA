@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="container mx-auto">
+    <form #editForm="ngForm" id="editForm">
+      <div class="form-group">
+        <label for="firstName" class="mr-4">First Name: </label>
+        <input class="form-control mr-sm-2 col-md-6" type="text" name="firstName" required
+          [(ngModel)]="model.firstName">
+      </div>
+      <div class="form-group">
+        <label for="lastName" class="mr-4">Last Name: </label>
+        <input class="form-control mr-sm-2 col-md-6" type="text" name="lastName" required [(ngModel)]="model.lastName">
+      </div>
+      <div class="form-group">
+        <label for="email" class="mr-4">Email: </label>
+        <input class="form-control mr-sm-2 col-md-6" type="email" name="email" required [(ngModel)]="model.email">
+      </div>
+
+      <div class="form-group">
+        <label for="role" class="mr-4">Role: </label>
+        <select name="role" class="mr-sm-2 custom-select form-control col-md-3" required
+          (ngModelChange)="onRoleChange($event)" [(ngModel)]="selectedRole">
+          <option *ngFor="let r of roles" [ngValue]="r">
+            {{r.name}}
+          </option>
+        </select>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
+  <button type="button" class="btn btn-success" (click)="outputMember()" form="editForm">{{button}}</button>
+</div>

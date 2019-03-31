@@ -1,4 +1,5 @@
 import { Photo } from './photo';
+import { Role } from './role';
 
 export interface User {
     id: number;
@@ -19,4 +20,5 @@ export interface User {
     profilePicture?: Photo[];
     role: string;
     libraryCardNumber: number;
+    UserRoles?: Role[];
 }

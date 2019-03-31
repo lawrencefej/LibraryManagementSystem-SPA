@@ -60,14 +60,10 @@ export class MemberListComponent implements OnInit {
     this.userService.AddMember(value).subscribe((member: User) => {
       this.alertify.success('Member Added Successfully');
       this.members.unshift(member);
-      // value = member;
       this.router.navigate(['/members/', member.id]);
     }, error => {
       this.alertify.error(error);
     });
-    // , () => {
-    //   this.router.navigate(['/members/', value.id]);
-    // });
   }
 
   updateUser(member: User) {

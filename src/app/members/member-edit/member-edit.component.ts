@@ -8,7 +8,6 @@ import { User } from 'src/app/_models/user';
   styleUrls: ['./member-edit.component.css']
 })
 export class MemberEditComponent implements OnInit {
-  // @Output() updateSelectedMember = new EventEmitter();
   @Output() updatedMember = new EventEmitter();
   @Output() addedMember = new EventEmitter();
 
@@ -41,8 +40,6 @@ export class MemberEditComponent implements OnInit {
   isUpdate() {
     if (this.member !== undefined) {
       this.model = this.member;
-      // this.selectedValue = this.asset.authorName;
-      // this.model.authorId = this.asset.authorId;
       this.button = 'Update';
       return true;
     }

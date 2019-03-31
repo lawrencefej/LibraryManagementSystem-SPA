@@ -54,6 +54,8 @@ import { LineChartComponent } from './charts/line-chart/line-chart.component';
 import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { ReportService } from './_services/report.service';
+import { AdminService } from './_services/admin.service';
+import { AddAdminComponent } from './Admin/add-admin/add-admin.component';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -91,7 +93,8 @@ export function tokenGetter() {
       PieChartComponent,
       LineChartComponent,
       BarChartComponent,
-      DashboardComponent
+      DashboardComponent,
+      AddAdminComponent
 
    ],
    imports: [
@@ -119,6 +122,7 @@ export function tokenGetter() {
       ErrorinterceptorProvider,
       AlertifyService,
       AssetService,
+      AdminService,
       AuthGuard,
       UserService,
       AuthorService,
@@ -135,7 +139,8 @@ export function tokenGetter() {
    entryComponents: [
       MemberEditComponent,
       AddAuthorComponent,
-      AddAssetComponent
+      AddAssetComponent,
+      AddAdminComponent
    ],
    bootstrap: [
       AppComponent
