@@ -15,4 +15,8 @@ constructor(private http: HttpClient) { }
     return this.http.get<User[]>(this.baseUrl + 'admin');
   }
 
+  AddUser(user: User) {
+    return this.http.post(this.baseUrl + 'admin/', user);
+  }
+
 }

@@ -42,7 +42,7 @@ export class AdminPanelComponent implements OnInit {
       this.updatedUser(value);
     });
   }
-  updatedUser(value: User): any {
+  updatedUser(value: User) {
     throw new Error("Method not implemented.");
   }
 
@@ -52,8 +52,13 @@ export class AdminPanelComponent implements OnInit {
       this.addUser(value);
     });
   }
-  addUser(value: User): any {
-    throw new Error("Method not implemented.");
+  addUser(user: User) {
+    this.adminService.AddUser(user).subscribe((value: User) => {
+      this.alertify.success('User added Successfully');
+      this.users.unshift(value);
+    }, error => {
+      this.alertify.error(error);
+    });
   }
 
   deleteUser(id: number) {

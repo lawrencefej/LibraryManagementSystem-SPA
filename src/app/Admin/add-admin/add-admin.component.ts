@@ -39,8 +39,8 @@ export class AddAdminComponent implements OnInit {
       // this.bsModalRef.hide();
       console.log(this.model);
     } else {
-      // this.addedUser.emit(this.model);
-      // this.bsModalRef.hide();
+      this.addedUser.emit(this.model);
+      this.bsModalRef.hide();
       console.log(this.model);
     }
   }
