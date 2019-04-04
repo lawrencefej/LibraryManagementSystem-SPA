@@ -35,8 +35,8 @@ export class AddAdminComponent implements OnInit {
 
   outputMember() {
     if (this.button === 'Update') {
-      // this.updatedUser.emit(this.model);
-      // this.bsModalRef.hide();
+      this.updatedUser.emit(this.model);
+      this.bsModalRef.hide();
       console.log(this.model);
     } else {
       this.addedUser.emit(this.model);

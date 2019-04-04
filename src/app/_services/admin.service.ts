@@ -19,4 +19,8 @@ constructor(private http: HttpClient) { }
     return this.http.post(this.baseUrl + 'admin/', user);
   }
 
+  UpdateUser(user: User) {
+    return this.http.put(this.baseUrl + 'admin/', user);
+  }
+
 }

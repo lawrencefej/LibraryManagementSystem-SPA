@@ -43,7 +43,14 @@ export class AdminPanelComponent implements OnInit {
     });
   }
   updatedUser(value: User) {
-    throw new Error("Method not implemented.");
+    this.adminService.UpdateUser(value).subscribe(() => {
+      this.alertify.success('User updated successfully');
+      const user = this.users.find(a => a.id === value.id);
+      const index = this.users.indexOf(user);
+      this.users[index] = user;
+    }, error => {
+      this.alertify.error(error);
+    });
   }
 
   addUserModal() {

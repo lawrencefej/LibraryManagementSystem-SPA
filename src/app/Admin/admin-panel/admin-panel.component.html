@@ -14,11 +14,11 @@
           <th style="width: 5%">Delete</th>
         </tr>
         <tr *ngFor="let u of users">
-          <td>{{u.firstName}}</td>
-          <td>{{u.lastName}}</td>
-          <td>{{u.email}}</td>
-          <td>{{u.role}}</td>
-          <td><button class="btn btn-info btn-sm" (click)="editRolesModal(u)">Edit Role</button></td>
+          <td>{{u.firstName | titlecase}}</td>
+          <td>{{u.lastName | titlecase}}</td>
+          <td>{{u.email | titlecase}}</td>
+          <td>{{u.role | titlecase}}</td>
+          <td><button class="btn btn-info btn-sm" (click)="editRolesModal(u)">Edit</button></td>
           <td><button class="btn btn-danger btn-sm" (click)="editRolesModal(u)">Delete</button></td>
         </tr>
       </table>

@@ -25,7 +25,7 @@
         <select name="role" class="mr-sm-2 custom-select form-control col-md-3" required
           (ngModelChange)="onRoleChange($event)" [(ngModel)]="selectedRole">
           <option *ngFor="let r of roles" [ngValue]="r">
-            {{r.name}}
+            {{r.name | titlecase}}
           </option>
         </select>
       </div>
