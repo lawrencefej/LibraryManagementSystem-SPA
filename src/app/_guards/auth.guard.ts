@@ -15,7 +15,11 @@ export class AuthGuard implements CanActivate {
     const roles = next.firstChild.data['roles'] as Array<string>;
     if (roles) {
       // const match = this.authService.roleMatch(roles);
+
       const userRole = this.authService.currentUserValue.role;
+      if (userRole === null) {
+        this.blockAccess();
+      }
       if (roles.includes(userRole)) {
         return true;
       } else {
@@ -49,5 +53,11 @@ export class AuthGuard implements CanActivate {
     //     this.alertify.error('Please Login');
     //     this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
     //     return false;
+  }
+
+  blockAccess() {
+    this.authService.logout();
+    this.alertify.error('You are not authorized to access this area');
+    this.router.navigate(['/login']);
   }
 }
