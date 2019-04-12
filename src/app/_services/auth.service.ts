@@ -90,4 +90,12 @@ roleMatch(allowedRoles): boolean {
     return false;
   }
 
+  sendForgotPasswordLink(model: any) {
+    return this.http.post(this.baseurl + 'forgotpassword', model);
+  }
+
+  resetPassword(model: any) {
+    return this.http.post(this.baseurl + 'resetpassword', model);
+  }
+
 }
