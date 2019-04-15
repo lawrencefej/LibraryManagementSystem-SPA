@@ -19,10 +19,10 @@ export class AdminPanelComponent implements OnInit {
     private modalService: BsModalService) { }
 
   ngOnInit() {
-    this.getMembers();
+    this.getUsers();
   }
 
-  getMembers() {
+  getUsers() {
     this.adminService.getAdmins().subscribe((users => {
       this.users = users;
       this.count = this.users.length;
@@ -59,7 +59,8 @@ export class AdminPanelComponent implements OnInit {
       this.addUser(value);
     });
   }
-  addUser(user: User) {
+  addUser(user: any) {
+    user.callbackurl = 'http://localhost:4200/resetpassword';
     this.adminService.AddUser(user).subscribe((value: User) => {
       this.alertify.success('User added Successfully');
       this.users.unshift(value);
