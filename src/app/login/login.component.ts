@@ -1,7 +1,8 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_services/auth.service';
+
 import { AlertifyService } from '../_services/alertify.service';
-import { Router } from '@angular/router';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,11 +11,13 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   model: any = {};
+  returnUrl: string;
 
   constructor(public authService: AuthService, private alertify: AlertifyService,
-    private router: Router) { }
+    private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   login() {
@@ -23,7 +26,7 @@ export class LoginComponent implements OnInit {
     }, error => {
       this.alertify.error(error);
     }, () => {
-      this.router.navigate(['/members']);
+      this.router.navigate([this.returnUrl]);
     });
   }
 

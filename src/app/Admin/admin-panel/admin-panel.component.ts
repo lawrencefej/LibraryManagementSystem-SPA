@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/_models/user';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { AlertifyService } from 'src/app/_services/alertify.service';
-import { AdminService } from 'src/app/_services/admin.service';
+import { Component, OnInit } from '@angular/core';
+
 import { AddAdminComponent } from '../add-admin/add-admin.component';
+import { AdminService } from 'src/app/_services/admin.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { User } from 'src/app/_models/user';
 
 @Component({
   selector: 'app-admin-panel',
@@ -26,7 +27,6 @@ export class AdminPanelComponent implements OnInit {
     this.adminService.getAdmins().subscribe((users => {
       this.users = users;
       this.count = this.users.length;
-      console.log(this.users);
     }), error => {
       this.alertify.error(error);
     });
