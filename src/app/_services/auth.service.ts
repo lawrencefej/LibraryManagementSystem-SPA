@@ -35,8 +35,6 @@ login(model: any) {
         localStorage.setItem('token', user.token);
         localStorage.setItem('user', JSON.stringify(user.user));
         this.decodedToken = this.jwtHelper.decodeToken(user.token);
-        // this.decodedToken = this.jwtHelper.decodeToken(localStorage.getItem('token'));
-        // this.currentUser = user.user;
         this.currentUserSubject.next(user.user);
       }
 
@@ -68,7 +66,7 @@ logout() {
   this.alertify.message('logged out');
 }
 
-roleMatch(allowedRoles): boolean {
+roleMatch(allowedRoles: { forEach: (arg0: (element: any) => void) => void; }): boolean {
   let isMatch = false;
   // const userRoles = this.decodedToken.role as Array<string>;
   const userRoles = this.jwtHelper.decodeToken(localStorage.getItem('token')) as Array<string>;
@@ -96,6 +94,28 @@ roleMatch(allowedRoles): boolean {
 
   resetPassword(model: any) {
     return this.http.post(this.baseurl + 'resetpassword', model);
+  }
+
+  isAuthorized(allowedRoles: string[]) {
+
+    // if (allowedRoles === undefined || allowedRoles.length === 0) {
+    //   return true;
+    // }
+
+    // get token from local storage or state management
+      const token = localStorage.getItem('token');
+
+    // decode token to read the payload details
+      const decodeToken = this.jwtHelper.decodeToken(token);
+
+    // check if it was decoded successfully, if not the token is not valid, deny access
+    if (!decodeToken) {
+      console.log('Invalid token');
+      return false;
+    }
+
+    // check if the user roles is in the list of allowed roles, return true if allowed and false if not allowed
+    return allowedRoles.includes(decodeToken['role']);
   }
 
 }

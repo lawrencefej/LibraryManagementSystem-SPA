@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from
 import { AlertifyService } from '../_services/alertify.service';
 import { AuthService } from '../_services/auth.service';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,53 +12,26 @@ export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router,
     private alertify: AlertifyService) {}
 
-  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const roles = next.firstChild.data['roles'] as Array<string>;
-    if (roles) {
-      // const match = this.authService.roleMatch(roles);
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    const allowedRoles = next.firstChild.data['allowedRoles'] as Array<string>;
 
-      const userRole = this.authService.currentUserValue.role;
-      if (userRole === null) {
-        this.blockAccess();
-      }
-      if (roles.includes(userRole)) {
-        return true;
-      } else {
-        this.authService.logout();
-        this.alertify.error('You are not authorized to access this area');
-        this.router.navigate(['/login']);
-      }
-    }
     if (this.authService.loggedIn()) {
-      return true;
+      if (allowedRoles && this.authService.isAuthorized(allowedRoles)) {
+        // if (this.authService.isAuthorized(allowedRoles)) {
+          return true;
+        // }
+      }
+      this.blockAccess();
+      return false;
     }
 
-    this.alertify.error('Please Login');
-    this.router.navigate(['/login']);
-    return false;
-
-    // const currentUser = this.authService.currentUserValue;
-    //     if (currentUser) {
-    //         // check if route is restricted by role
-    //         if (next.data.roles && next.data.roles.indexOf(currentUser.role) === -1) {
-    //             // role not authorised so redirect to home page
-    //             this.router.navigate(['/']);
-    //             return false;
-    //         }
-
-    //         // authorised so return true
-    //         return true;
-    //     }
-
-    //     // not logged in so redirect to login page with the return url
-    //     this.alertify.error('Please Login');
-    //     this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-    //     return false;
+      this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+      return false;
   }
 
   blockAccess() {
-    this.authService.logout();
-    this.alertify.error('You are not authorized to access this area');
-    this.router.navigate(['/login']);
+    // this.authService.logout();
+    this.alertify.error('Access Denied');
+    this.router.navigate(['/']);
   }
 }

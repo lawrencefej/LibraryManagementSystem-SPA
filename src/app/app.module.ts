@@ -81,7 +81,6 @@ export function tokenGetter() {
       SidebarComponent,
       FooterComponent,
       AdminPanelComponent,
-      HasRoleDirective,
       MemberListComponent,
       MemberDetailComponent,
       CheckoutListComponent,
@@ -98,7 +97,8 @@ export function tokenGetter() {
       DashboardComponent,
       AddAdminComponent,
       ForgotPasswordComponent,
-      ResetPasswordComponent
+      ResetPasswordComponent,
+      HasRoleDirective
 
    ],
    imports: [
