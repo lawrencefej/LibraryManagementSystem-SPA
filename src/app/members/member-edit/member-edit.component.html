@@ -9,7 +9,7 @@
   <form #editForm="ngForm" id="editForm">
       <div *ngIf="!isUpdate()" class="form-group text-center">
           <label class="radio-inline">
-            <input class="mr-3" type="radio" value="male" name="gender" [(ngModel)]="model.gender">Male
+            <input class="mr-3" type="radio" value="male" name="gender" required [(ngModel)]="model.gender">Male
           </label>
           <label class="radio-inline ml-3">
             <input class="mr-3" type="radio" value="female" name="gender" [(ngModel)]="model.gender">Female

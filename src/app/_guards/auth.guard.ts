@@ -15,23 +15,32 @@ export class AuthGuard implements CanActivate {
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const allowedRoles = next.firstChild.data['allowedRoles'] as Array<string>;
 
-    if (this.authService.loggedIn()) {
-      if (allowedRoles && this.authService.isAuthorized(allowedRoles)) {
-        // if (this.authService.isAuthorized(allowedRoles)) {
+    if (allowedRoles) {
+      if (this.authService.loggedIn) {
+        if (this.authService.isAuthorized(allowedRoles)) {
           return true;
-        // }
+        }
+        this.blockAccess();
       }
-      this.blockAccess();
-      return false;
+      this.login(state);
     }
 
-      this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-      return false;
+    if (this.authService.loggedIn()) {
+      return true;
+    }
+
+    this.login(state);
   }
 
   blockAccess() {
     // this.authService.logout();
     this.alertify.error('Access Denied');
     this.router.navigate(['/']);
+    return false;
+  }
+
+  login(state: any) {
+    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+      return false;
   }
 }
