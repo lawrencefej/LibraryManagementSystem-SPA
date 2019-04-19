@@ -23,6 +23,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { MemberHistoryComponent } from './members/member-history/member-history.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberListResolver } from './_resolver/member-list.resolver';
+import { MemberSearchComponent } from './members/member-search/member-search.component';
 import { NgModule } from '@angular/core';
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './password/reset-password/reset-password.component';
@@ -38,9 +39,10 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'members',  pathMatch: 'full' },
+      { path: '', redirectTo: 'memberSearch',  pathMatch: 'full' },
       { path: 'currentitems', component: MemberHistoryComponent },
       { path: 'profileedit', component: MemberEditComponent },
+      { path: 'memberSearch', component: MemberSearchComponent},
       { path: 'catalog', component: AssetListComponent, resolve: { assets: AssetListResolver } },
       { path: 'catalog/:id', component: AssetDetailComponent, resolve: { asset: AssetDetailResolver } },
       { path: 'admin', component: AdminPanelComponent, data: { allowedRoles: ['Admin'] } },

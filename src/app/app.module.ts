@@ -50,6 +50,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { MemberHistoryComponent } from './members/member-history/member-history.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberListResolver } from './_resolver/member-list.resolver';
+import { MemberSearchComponent } from './members/member-search/member-search.component';
 import { NavComponent } from './nav/nav.component';
 import { NgModule } from '@angular/core';
 import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
@@ -98,7 +99,8 @@ export function tokenGetter() {
       AddAdminComponent,
       ForgotPasswordComponent,
       ResetPasswordComponent,
-      HasRoleDirective
+      HasRoleDirective,
+      MemberSearchComponent
 
    ],
    imports: [
