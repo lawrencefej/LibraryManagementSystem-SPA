@@ -16,6 +16,10 @@ export class UserService {
     return this.http.get<User>(this.baseUrl + 'user/' + id);
   }
 
+  getMemberByCardNumber(id): Observable<User> {
+    return this.http.get<User>(this.baseUrl + 'user/card/' + id);
+  }
+
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl + 'user/');
   }

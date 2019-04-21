@@ -2,7 +2,7 @@
   <a href="#" class="btn-close ">&times;</a>
   <ul class="nav nav-pills flex-column" id="sideNav">
     <li *appHasRole="['Admin']" [routerLink]="['/dashboard']" routerLinkActive="active"><a><span><i class="fa fa-bar-chart fa-fw"></i></span><span> Dashboard</span></a></li>
-    <li [routerLink]="['/members']" routerLinkActive="active"><a ><span><i class="fa fa-users"></i></span><span> Members</span></a></li>
+    <li [routerLink]="['/memberSearch']" routerLinkActive="active"><a ><span><i class="fa fa-users"></i></span><span> Members</span></a></li>
     <li [routerLink]="['/catalog']" routerLinkActive="active"><a><span><i class="fa fa-book"></i></span><span> Items</span></a></li>
     <li [routerLink]="['/authors']" routerLinkActive="active"><a><span><i class="fa fa-user"></i></span><span> Authors</span></a></li>
     <li [routerLink]="['/checkouts']" routerLinkActive="active"><a ><span><i class="fa fa-folder-open"></i></span><span> Checkouts</span></a></li>

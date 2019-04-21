@@ -6,6 +6,7 @@ import { AddAssetComponent } from './libraryAssets/add-asset/add-asset.component
 import { AddAuthorComponent } from './author/add-author/add-author.component';
 import { AdminPanelComponent } from './Admin/admin-panel/admin-panel.component';
 import { AdminService } from './_services/admin.service';
+import { AdvancedSearchComponent } from './members/advanced-search/advanced-search.component';
 import { AlertifyService } from './_services/alertify.service';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -100,7 +101,8 @@ export function tokenGetter() {
       ForgotPasswordComponent,
       ResetPasswordComponent,
       HasRoleDirective,
-      MemberSearchComponent
+      MemberSearchComponent,
+      AdvancedSearchComponent
 
    ],
    imports: [
