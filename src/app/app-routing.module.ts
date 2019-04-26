@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 
 import { AdminPanelComponent } from './Admin/admin-panel/admin-panel.component';
+import { AdvancedSearchComponent } from './members/advanced-search/advanced-search.component';
 import { AssetDetailComponent } from './libraryAssets/asset-detail/asset-detail.component';
 import { AssetDetailResolver } from './_resolver/asset-detail.resolver';
 import { AssetListComponent } from './libraryAssets/asset-list/asset-list.component';
@@ -43,6 +44,7 @@ const routes: Routes = [
       { path: 'currentitems', component: MemberHistoryComponent },
       { path: 'profileedit', component: MemberEditComponent },
       { path: 'memberSearch', component: MemberSearchComponent},
+      { path: 'advanced-search', component: AdvancedSearchComponent},
       { path: 'catalog', component: AssetListComponent, resolve: { assets: AssetListResolver } },
       { path: 'catalog/:id', component: AssetDetailComponent, resolve: { asset: AssetDetailResolver } },
       { path: 'admin', component: AdminPanelComponent, data: { allowedRoles: ['Admin'] } },

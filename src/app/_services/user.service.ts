@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../_models/user';
@@ -16,12 +16,24 @@ export class UserService {
     return this.http.get<User>(this.baseUrl + 'user/' + id);
   }
 
+  getMemberByCardNumber(id): Observable<User> {
+    return this.http.get<User>(this.baseUrl + 'user/card/' + id);
+  }
+
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl + 'user/');
   }
 
   searchMembers(searchString): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl + 'user/search?SearchString=' + searchString);
+  }
+
+  // advancedMemberSearch(params: any): Observable<HttpResponse<User[]>> {
+  //   return this.http.get<User[]>(this.baseUrl + 'user/searchMembers', {observe: 'response', params});
+  // }
+
+  advancedMemberSearch(params: any): Observable<User[]> {
+    return this.http.get<User[]>(this.baseUrl + 'user/' + params);
   }
 
   updateUser(id: number, user: User) {
