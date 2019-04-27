@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LibraryAsset } from '../_models/libraryAsset';
 import {Observable} from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { PaginatedResult } from '../_models/pagination';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +36,35 @@ export class AssetService {
 
   updateAsset(id: number, asset: LibraryAsset) {
     return this.http.put(this.baseUrl + 'catalog/' + id, asset);
+  }
+
+  getPaginatedAssets(page?, itemsPerPage?, userParams?, likesParam?): Observable<PaginatedResult<LibraryAsset[]>> {
+    const paginatedResult: PaginatedResult<LibraryAsset[]> = new PaginatedResult<LibraryAsset[]>();
+
+    let params = new HttpParams();
+
+    if (page != null && itemsPerPage != null) {
+      params = params.append('pagenumber', page);
+      params = params.append('pageSize', itemsPerPage);
+    }
+
+    if (userParams != null) {
+      params = params.append('minAge', userParams.minAge);
+      params = params.append('maxAge', userParams.maxAge);
+      params = params.append('gender', userParams.gender);
+      params = params.append('orderBy', userParams.orderBy);
+    }
+
+    return this.http.get<LibraryAsset[]>(this.baseUrl + 'catalog', {observe: 'response', params})
+      .pipe(
+        map(response => {
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') != null) {
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+          return paginatedResult;
+        })
+      );
   }
 
 }

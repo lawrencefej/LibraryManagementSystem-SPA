@@ -29,9 +29,11 @@
         </div>
     </div>
     <div class="card-footer">
-      <button [disabled]="!searchMemberForm.valid" type="submit" class="btn btn-success search-btn btn-sm"
-        (click)="searchMember()">Search</button>
-      <div class="advanced-toggle">
+      <button [disabled]="!searchMemberForm.valid" type="submit" class="btn btn-success search-btn btn-sm" (click)="searchMember()">Search</button>
+      <div class="full-list">
+        <button type="submit" class="btn btn-info search-btn btn-sm" (click)="fullList()">Full List </button>
+      </div>
+        <div class="advanced-toggle">
         <p class="text-center" ><a [routerLink]="['/advanced-search']">Advanced Search</a> </p>
       </div>
     </div>

@@ -47,4 +47,8 @@ export class MemberSearchComponent implements OnInit {
     this.router.navigate(['/members/', this.model.id]);
   }
 
+  fullList() {
+    this.router.navigate(['/members']);
+  }
+
 }

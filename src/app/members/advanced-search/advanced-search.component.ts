@@ -18,8 +18,7 @@ export class AdvancedSearchComponent implements OnInit {
   firstName: string;
   lastName: string;
 
-  constructor(
-    private userService: UserService, private alertify: AlertifyService,
+  constructor(private userService: UserService, private alertify: AlertifyService,
     private router: Router
   ) {}
 
