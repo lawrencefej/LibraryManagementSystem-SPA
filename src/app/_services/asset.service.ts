@@ -55,7 +55,7 @@ export class AssetService {
       params = params.append('orderBy', userParams.orderBy);
     }
 
-    return this.http.get<LibraryAsset[]>(this.baseUrl + 'catalog', {observe: 'response', params})
+    return this.http.get<LibraryAsset[]>(this.baseUrl + 'catalog/pagination', {observe: 'response', params})
       .pipe(
         map(response => {
           paginatedResult.result = response.body;

@@ -6,6 +6,7 @@ import { LibraryAsset } from 'src/app/_models/libraryAsset';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { AddAssetComponent } from '../add-asset/add-asset.component';
 import { AuthService } from 'src/app/_services/auth.service';
+import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 @Component({
   selector: 'app-asset-list',
   templateUrl: './asset-list.component.html',
@@ -14,8 +15,9 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class AssetListComponent implements OnInit {
   assets: LibraryAsset[];
   count: number;
-  value = '';
+  // value = '';
   bsModalRef: BsModalRef;
+  pagination: Pagination;
 
   constructor(private assetService: AssetService,
     private alertify: AlertifyService,
@@ -24,7 +26,8 @@ export class AssetListComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.assets = data['assets'];
+      this.assets = data['assets'].result;
+      this.pagination = data['assets'].pagination;
       this.count = this.assets.length;
     });
   }
@@ -78,6 +81,11 @@ export class AssetListComponent implements OnInit {
     });
   }
 
+  pageChanged(event: any): void {
+    this.pagination.currentPage = event.page;
+    this.loadAssets();
+  }
+
   deleteAsset(id) {
     // this.alertify.confirm('are you sure you want to delete this member');
     this.alertify.success('Item Deleted');
@@ -91,6 +99,15 @@ export class AssetListComponent implements OnInit {
     });
   }
 
-
-
+  loadAssets() {
+    this.assetService
+      .getPaginatedAssets(this.pagination.currentPage, this.pagination.itemsPerPage)
+      .subscribe(
+        (res: PaginatedResult<LibraryAsset[]>) => {
+        this.assets = res.result;
+        this.pagination = res.pagination;
+    }, error => {
+      this.alertify.error(error);
+    });
+  }
 }

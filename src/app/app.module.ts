@@ -1,4 +1,4 @@
-import { BsDatepickerModule, BsDropdownModule, ModalModule, TabsModule, TypeaheadModule } from 'ngx-bootstrap';
+import { BsDatepickerModule, BsDropdownModule, ModalModule, TabsModule, TypeaheadModule, PaginationModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AddAdminComponent } from './Admin/add-admin/add-admin.component';
@@ -114,6 +114,7 @@ export function tokenGetter() {
       ChartsModule,
       BsDatepickerModule.forRoot(),
       TypeaheadModule.forRoot(),
+      PaginationModule.forRoot(),
       BsDropdownModule.forRoot(),
       TabsModule.forRoot(),
       ModalModule.forRoot(),
