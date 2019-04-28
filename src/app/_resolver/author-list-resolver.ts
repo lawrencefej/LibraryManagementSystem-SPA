@@ -17,7 +17,7 @@ export class AuthorListResolver implements Resolve<Author[]> {
     return this.authorService.getPaginatedAuthors(this.pageNumber, this.pageSize).pipe(
       catchError(error => {
         this.alertify.error('Problem retrieving data');
-        this.router.navigate(['/home']);
+        this.router.navigate(['/memberSearch']);
         return of(null);
       })
     );
