@@ -32,18 +32,20 @@
       </div>
     </div>
     <div class="card-footer text-muted">
-      <div class="count" style="float: left">
-        <b>Count: {{count}}</b>
-      </div>
       <div class="d-flex justify-content-center">
-          <pagination [boundaryLinks]="true" 
-                      [totalItems]="pagination.totalItems"
-                      [itemsPerPage]="pagination.itemsPerPage"
-                      [(ngModel)]="pagination.currentPage"
-                      (pageChanged)="pageChanged($event)"
-                    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+        <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+          [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+          nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
         </pagination>
+        <div class="form-group ">
+          <select class="form-control ml-1 perPage" id="itemsPerPage" [(ngModel)]="selectedItemPerPage"
+            name="itemsPerPage" (ngModelChange)="onPageSizeChange($event)">
+            <option *ngFor="let item of itemsPerPage" [value]="item.value">
+              {{item.display}}
+            </option>
+          </select>
         </div>
+      </div>
     </div>
   </div>
 </div>

@@ -17,10 +17,14 @@ import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 export class MemberListComponent implements OnInit {
   members: User[];
   member: User;
-  count: number;
   value = '';
   bsModalRef: BsModalRef;
   pagination: Pagination;
+  itemsPerPage = [
+    { value: '5', display: 'Show 5 items Per Page' },
+    { value: '10', display: 'Show 10 items Per Page' }
+  ];
+  selectedItemPerPage: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +39,7 @@ export class MemberListComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.members = data['members'].result;
       this.pagination = data['members'].pagination;
-      this.count = this.members.length;
+      this.selectedItemPerPage = this.pagination.itemsPerPage;
     });
   }
 
@@ -43,7 +47,6 @@ export class MemberListComponent implements OnInit {
     this.userService.searchMembers(value).subscribe(
       (members: User[]) => {
         this.members = members;
-        this.count = this.members.length;
       },
       error => {
         this.alertify.error(error);
@@ -114,10 +117,11 @@ export class MemberListComponent implements OnInit {
 
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
-    this.loadMembers();
+    this.loadData();
   }
 
-  loadMembers() {
+  loadData() {
+    this.pagination.itemsPerPage = this.selectedItemPerPage;
     this.userService
       .getPaginatedMembers(
         this.pagination.currentPage,
@@ -132,5 +136,9 @@ export class MemberListComponent implements OnInit {
           this.alertify.error(error);
         }
       );
+  }
+
+  onPageSizeChange(value: any): void {
+    this.loadData();
   }
 }

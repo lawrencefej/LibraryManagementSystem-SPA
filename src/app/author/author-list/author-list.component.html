@@ -35,6 +35,14 @@
                       (pageChanged)="pageChanged($event)"
                     previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
         </pagination>
+        <div class="form-group ">
+          <select class="form-control ml-1 perPage" id="itemsPerPage"
+            [(ngModel)]="selectedItemPerPage" name="itemsPerPage" (ngModelChange)="onPageSizeChange($event)">
+            <option *ngFor="let item of itemsPerPage" [value]="item.value">
+              {{item.display}}
+            </option>
+          </select>
+        </div>
         </div>
     </div>
   </div>
