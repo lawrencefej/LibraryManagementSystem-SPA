@@ -14,7 +14,9 @@ import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 })
 export class AssetListComponent implements OnInit {
   assets: LibraryAsset[];
-  count: number;
+  itemsPerPage = [{value: '5', display: 'Show 5 items Per Page'},
+                  {value: '10', display: 'Show 10 items Per Page'}];
+  selectedItemPerPage: any;
   // value = '';
   bsModalRef: BsModalRef;
   pagination: Pagination;
@@ -28,14 +30,13 @@ export class AssetListComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.assets = data['assets'].result;
       this.pagination = data['assets'].pagination;
-      this.count = this.assets.length;
+      this.selectedItemPerPage = this.pagination.itemsPerPage;
     });
   }
 
   searchAssets(value: string) {
     this.assetService.searchAsset(value).subscribe((assets: LibraryAsset[]) => {
       this.assets = assets;
-      this.count = this.assets.length;
     }, error => {
       this.alertify.error(error);
     });
@@ -83,7 +84,11 @@ export class AssetListComponent implements OnInit {
 
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
-    this.loadAssets();
+    this.loadData();
+  }
+
+  onPageSizeChange(value: any): void {
+    this.loadData();
   }
 
   deleteAsset(id) {
@@ -99,7 +104,8 @@ export class AssetListComponent implements OnInit {
     });
   }
 
-  loadAssets() {
+  loadData() {
+    this.pagination.itemsPerPage = this.selectedItemPerPage;
     this.assetService
       .getPaginatedAssets(this.pagination.currentPage, this.pagination.itemsPerPage)
       .subscribe(

@@ -6,7 +6,6 @@
     <li [routerLink]="['/catalog']" routerLinkActive="active"><a><span><i class="fa fa-book"></i></span><span> Items</span></a></li>
     <li [routerLink]="['/authors']" routerLinkActive="active"><a><span><i class="fa fa-user"></i></span><span> Authors</span></a></li>
     <li [routerLink]="['/checkouts']" routerLinkActive="active"><a ><span><i class="fa fa-folder-open"></i></span><span> Checkouts</span></a></li>
-    <li [routerLink]="['/catalog1']" routerLinkActive="active"><a ><span><i class="fa fa-folder"></i></span> <span> Reserves</span></a></li>
     <li *appHasRole="['Admin']" [routerLink]="['/admin']" routerLinkActive="active"><a ><span><i class="fa fa-user"></i></span> <span> Admin</span></a></li>
   </ul>
 </div>

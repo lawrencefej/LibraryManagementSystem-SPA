@@ -14,10 +14,14 @@ import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 })
 export class AuthorListComponent implements OnInit {
   authors: Author[];
-  count: number;
   value = '';
   bsModalRef: BsModalRef;
   pagination: Pagination;
+  itemsPerPage = [
+    { value: '5', display: 'Show 5 items Per Page' },
+    { value: '10', display: 'Show 10 items Per Page' }
+  ];
+  selectedItemPerPage: any;
 
   constructor(private route: ActivatedRoute, private authorService: AuthorService,
      private alertify: AlertifyService, private modalService: BsModalService) { }
@@ -26,14 +30,13 @@ export class AuthorListComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.authors = data['authors'].result;
       this.pagination = data['authors'].pagination;
-      this.count = this.authors.length;
+      this.selectedItemPerPage = this.pagination.itemsPerPage;
     });
   }
 
   searchAuthors(value: string) {
     this.authorService.searchAuthors(value).subscribe((authors: Author[]) => {
       this.authors = authors;
-      this.count = this.authors.length;
     }, error => {
       this.alertify.error(error);
     });
@@ -50,7 +53,6 @@ export class AuthorListComponent implements OnInit {
     this.authorService.addAuthor(author).subscribe((author: Author) => {
       this.alertify.success('Author Added Successfully');
       this.authors.unshift(author);
-      this.count = this.authors.length;
     }, error => {
       this.alertify.error(error);
     });
@@ -58,10 +60,11 @@ export class AuthorListComponent implements OnInit {
 
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
-    this.loadAuthors();
+    this.loadData();
   }
 
-  loadAuthors() {
+  loadData() {
+    this.pagination.itemsPerPage = this.selectedItemPerPage;
     this.authorService
       .getPaginatedAuthors(
         this.pagination.currentPage,
@@ -76,6 +79,10 @@ export class AuthorListComponent implements OnInit {
           this.alertify.error(error);
         }
       );
+  }
+
+  onPageSizeChange(value: any): void {
+    this.loadData();
   }
 
 }
