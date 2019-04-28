@@ -5,6 +5,7 @@ import { AuthorService } from 'src/app/_services/author.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { AddAuthorComponent } from '../add-author/add-author.component';
+import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
 
 @Component({
   selector: 'app-author-list',
@@ -16,13 +17,15 @@ export class AuthorListComponent implements OnInit {
   count: number;
   value = '';
   bsModalRef: BsModalRef;
+  pagination: Pagination;
 
   constructor(private route: ActivatedRoute, private authorService: AuthorService,
      private alertify: AlertifyService, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.authors = data['authors'];
+      this.authors = data['authors'].result;
+      this.pagination = data['authors'].pagination;
       this.count = this.authors.length;
     });
   }
@@ -51,6 +54,28 @@ export class AuthorListComponent implements OnInit {
     }, error => {
       this.alertify.error(error);
     });
+  }
+
+  pageChanged(event: any): void {
+    this.pagination.currentPage = event.page;
+    this.loadAuthors();
+  }
+
+  loadAuthors() {
+    this.authorService
+      .getPaginatedAuthors(
+        this.pagination.currentPage,
+        this.pagination.itemsPerPage
+      )
+      .subscribe(
+        (res: PaginatedResult<Author[]>) => {
+          this.authors = res.result;
+          this.pagination = res.pagination;
+        },
+        error => {
+          this.alertify.error(error);
+        }
+      );
   }
 
 }
