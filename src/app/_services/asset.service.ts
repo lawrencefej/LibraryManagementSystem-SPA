@@ -38,7 +38,7 @@ export class AssetService {
     return this.http.put(this.baseUrl + 'catalog/' + id, asset);
   }
 
-  getPaginatedAssets(page?, itemsPerPage?, userParams?, likesParam?): Observable<PaginatedResult<LibraryAsset[]>> {
+  getPaginatedAssets(page?, itemsPerPage?): Observable<PaginatedResult<LibraryAsset[]>> {
     const paginatedResult: PaginatedResult<LibraryAsset[]> = new PaginatedResult<LibraryAsset[]>();
 
     let params = new HttpParams();
@@ -46,13 +46,6 @@ export class AssetService {
     if (page != null && itemsPerPage != null) {
       params = params.append('pagenumber', page);
       params = params.append('pageSize', itemsPerPage);
-    }
-
-    if (userParams != null) {
-      params = params.append('minAge', userParams.minAge);
-      params = params.append('maxAge', userParams.maxAge);
-      params = params.append('gender', userParams.gender);
-      params = params.append('orderBy', userParams.orderBy);
     }
 
     return this.http.get<LibraryAsset[]>(this.baseUrl + 'catalog/pagination', {observe: 'response', params})

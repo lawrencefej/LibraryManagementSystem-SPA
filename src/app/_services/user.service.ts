@@ -1,8 +1,10 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../_models/user';
 import { environment } from 'src/environments/environment';
+import { PaginatedResult } from '../_models/pagination';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -28,10 +30,6 @@ export class UserService {
     return this.http.get<User[]>(this.baseUrl + 'user/search?SearchString=' + searchString);
   }
 
-  // advancedMemberSearch(params: any): Observable<HttpResponse<User[]>> {
-  //   return this.http.get<User[]>(this.baseUrl + 'user/searchMembers', {observe: 'response', params});
-  // }
-
   advancedMemberSearch(params: any): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl + 'user/' + params);
   }
@@ -42,6 +40,28 @@ export class UserService {
 
   AddMember(user: User) {
     return this.http.post(this.baseUrl + 'user/', user);
+  }
+
+  getPaginatedMembers(page?, itemsPerPage?): Observable<PaginatedResult<User[]>> {
+    const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<User[]>();
+
+    let params = new HttpParams();
+
+    if (page != null && itemsPerPage != null) {
+      params = params.append('pagenumber', page);
+      params = params.append('pageSize', itemsPerPage);
+    }
+
+    return this.http.get<User[]>(this.baseUrl + 'user/pagination', {observe: 'response', params})
+      .pipe(
+        map(response => {
+          paginatedResult.result = response.body;
+          if (response.headers.get('Pagination') != null) {
+            paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+          return paginatedResult;
+        })
+      );
   }
 
 }

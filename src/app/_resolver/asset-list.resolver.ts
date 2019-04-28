@@ -10,16 +10,21 @@ import { catchError } from 'rxjs/operators';
 export class AssetListResolver implements Resolve<LibraryAsset[]> {
   pageNumber = 1;
   pageSize = 5;
-  constructor (private assetService: AssetService,
-    private router: Router, private alertify: AlertifyService ) {}
+  constructor(
+    private assetService: AssetService,
+    private router: Router,
+    private alertify: AlertifyService
+  ) {}
 
-    resolve(route: ActivatedRouteSnapshot): Observable<LibraryAsset[]> {
-      return this.assetService.getPaginatedAssets(this.pageNumber, this.pageSize).pipe(
+  resolve(route: ActivatedRouteSnapshot): Observable<LibraryAsset[]> {
+    return this.assetService
+      .getPaginatedAssets(this.pageNumber, this.pageSize)
+      .pipe(
         catchError(error => {
           this.alertify.error('Problem retrieving data');
           this.router.navigate(['/memberSearch']);
           return of(null);
         })
-        );
-    }
+      );
+  }
 }
