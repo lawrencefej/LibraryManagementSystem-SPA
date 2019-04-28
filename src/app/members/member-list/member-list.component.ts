@@ -37,7 +37,6 @@ export class MemberListComponent implements OnInit {
       this.pagination = data['members'].pagination;
       this.count = this.members.length;
     });
-    console.log(this.members);
   }
 
   searchMembers(value: string) {

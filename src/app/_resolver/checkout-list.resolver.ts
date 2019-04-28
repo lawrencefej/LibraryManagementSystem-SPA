@@ -9,14 +9,16 @@ import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class CheckoutListResolver implements Resolve<Checkout[]> {
+  pageNumber = 1;
+  pageSize = 5;
   constructor (private checkoutService: CheckoutService,
     private router: Router, private alertify: AlertifyService ) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<Checkout[]> {
-      return this.checkoutService.getCheckouts().pipe(
+      return this.checkoutService.getPaginatedAuthors(this.pageNumber, this.pageSize).pipe(
         catchError(error => {
           this.alertify.error('Problem retrieving data');
-          this.router.navigate(['/home']);
+          this.router.navigate(['/memberSearch']);
           return of(null);
         })
         );

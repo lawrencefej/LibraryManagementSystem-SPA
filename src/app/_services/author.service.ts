@@ -1,3 +1,4 @@
+import { Checkout } from 'src/app/_models/checkout';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -49,7 +50,7 @@ export class AuthorService {
       params = params.append('pageSize', itemsPerPage);
     }
 
-    return this.http.get<LibraryAsset[]>(this.baseUrl + 'author/pagination', {observe: 'response', params})
+    return this.http.get<Checkout[]>(this.baseUrl + 'author/pagination', {observe: 'response', params})
       .pipe(
         map(response => {
           paginatedResult.result = response.body;
