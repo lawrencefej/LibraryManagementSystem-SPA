@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Photo } from './../../_models/photo';
+import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/_models/user';
@@ -17,9 +18,15 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 export class MemberDetailComponent implements OnInit {
   @Input() member: User;
   @ViewChild('memberTabs') memberTabs: TabsetComponent;
+  @ViewChild('fileInput') myInputVariable: ElementRef;
   show = false;
   checkout: Checkout;
   bsModalRef: BsModalRef;
+  selectedFile: File = null;
+  model: any = {
+    file: null,
+    userId: null
+  };
 
   constructor(private route: ActivatedRoute, private modalService: BsModalService,
     private userService: UserService, private authService: AuthService, private alertify: AlertifyService) { }
@@ -71,6 +78,22 @@ export class MemberDetailComponent implements OnInit {
     this.bsModalRef.content.updateSelectedMember.subscribe((value) => {
       this.updateUser(value);
     });
+  }
+
+  onFileSelected(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      const fd = new FormData;
+      fd.append('userId', this.member.id.toString());
+      fd.append('file', file);
+      this.userService.changeMemberPhoto(fd).subscribe((res: Photo) => {
+        this.member.photoUrl = res.url;
+        this.alertify.success('Photo changed successfully');
+      }, error => {
+        this.alertify.error(error);
+      });
+    }
+    this.myInputVariable.nativeElement.value = '';
   }
 
 }

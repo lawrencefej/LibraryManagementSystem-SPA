@@ -64,4 +64,8 @@ export class UserService {
       );
   }
 
+  changeMemberPhoto(data: any) {
+    return this.http.post(this.baseUrl + 'photo/userPhoto', data);
+  }
+
 }

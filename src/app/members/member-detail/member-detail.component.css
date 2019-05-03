@@ -8,8 +8,32 @@
 img {
   max-height: 250px;
   /* width: auto; */
-  max-width: 230px;
+  max-width: 310px;
   padding-bottom: 10;
+}
+
+.card-img-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.photo-btn {
+  position: absolute;
+  bottom: -30%;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+  opacity: 0;
+}
+
+.card-img-wrapper:hover .photo-btn {
+  bottom: 0;
+  opacity: 1;
+}
+
+.animate {
+  transition: all 0.3s ease-in-out;
 }
 
 .card-body {
