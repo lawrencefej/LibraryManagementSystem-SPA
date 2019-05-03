@@ -25,6 +25,7 @@ export class MemberListComponent implements OnInit {
     { value: '10', display: 'Show 10 items Per Page' }
   ];
   selectedItemPerPage: any;
+  count: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,6 +41,7 @@ export class MemberListComponent implements OnInit {
       this.members = data['members'].result;
       this.pagination = data['members'].pagination;
       this.selectedItemPerPage = this.pagination.itemsPerPage;
+      this.count = this.pagination.totalItems;
     });
   }
 
@@ -87,16 +89,14 @@ export class MemberListComponent implements OnInit {
   }
 
   updateUser(member: User) {
-    this.userService
-      .updateUser(this.authService.decodedToken.nameid, member)
-      .subscribe(
-        next => {
-          this.alertify.success('Member Updated Successfully');
-        },
-        error => {
-          this.alertify.error(error);
-        }
-      );
+    this.userService.updateUser(this.authService.decodedToken.nameid, member).subscribe(
+      next => {
+        this.alertify.success('Member Updated Successfully');
+      },
+      error => {
+        this.alertify.error(error);
+      }
+    );
   }
 
   deleteMember(id) {
@@ -123,14 +123,12 @@ export class MemberListComponent implements OnInit {
   loadData() {
     this.pagination.itemsPerPage = this.selectedItemPerPage;
     this.userService
-      .getPaginatedMembers(
-        this.pagination.currentPage,
-        this.pagination.itemsPerPage
-      )
+      .getPaginatedMembers(this.pagination.currentPage, this.pagination.itemsPerPage)
       .subscribe(
         (res: PaginatedResult<User[]>) => {
           this.members = res.result;
           this.pagination = res.pagination;
+          this.count = res.pagination.totalItems;
         },
         error => {
           this.alertify.error(error);

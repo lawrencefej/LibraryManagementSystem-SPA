@@ -21,7 +21,7 @@
           <td>{{member.firstName}}</td>
           <td>{{member.lastName}}</td>
           <td>{{member.email}}</td>
-          <td><a [routerLink]="['/members/', member.id]"><span><i class="fa fa-check"></i></span></a></td>
+          <td><button class="btn btn-success" [routerLink]="['/members/', member.id]">Select</button></td>
           <td><a (click)="getMember(member.id)"><span><i class="fa fa-edit"></i></span></a></td>
           <td><a (click)="deleteMember(member.id)"><span><i class="fa fa-trash"></i></span></a></td>
         </tr>
@@ -32,6 +32,9 @@
       </div>
     </div>
     <div class="card-footer text-muted">
+        <div class="count" style="float: left">
+            <b>Count: {{count}}</b>
+          </div>
       <div class="d-flex justify-content-center">
         <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
           [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"

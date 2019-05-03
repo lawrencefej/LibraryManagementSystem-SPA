@@ -20,6 +20,7 @@ export class CheckoutListComponent implements OnInit {
     { value: '10', display: 'Show 10 items Per Page' }
   ];
   selectedItemPerPage: any;
+  count: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,6 +34,7 @@ export class CheckoutListComponent implements OnInit {
       this.checkouts = data['checkouts'].result;
       this.pagination = data['checkouts'].pagination;
       this.selectedItemPerPage = this.pagination.itemsPerPage;
+      this.count = this.pagination.totalItems;
     });
   }
 

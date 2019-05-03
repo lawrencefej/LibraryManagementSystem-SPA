@@ -20,6 +20,7 @@ export class AssetListComponent implements OnInit {
   // value = '';
   bsModalRef: BsModalRef;
   pagination: Pagination;
+  count: number;
 
   constructor(private assetService: AssetService,
     private alertify: AlertifyService,
@@ -31,6 +32,7 @@ export class AssetListComponent implements OnInit {
       this.assets = data['assets'].result;
       this.pagination = data['assets'].pagination;
       this.selectedItemPerPage = this.pagination.itemsPerPage;
+      this.count = this.pagination.totalItems;
     });
   }
 
@@ -112,6 +114,8 @@ export class AssetListComponent implements OnInit {
         (res: PaginatedResult<LibraryAsset[]>) => {
         this.assets = res.result;
         this.pagination = res.pagination;
+        this.count = res.pagination.totalItems;
+
     }, error => {
       this.alertify.error(error);
     });
