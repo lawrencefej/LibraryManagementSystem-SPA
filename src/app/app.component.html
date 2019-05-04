@@ -16,6 +16,7 @@
     <div class="row" id="mainContent">
         <app-sidebar *ngIf="showNav()" id="sideBar" class="col-sm-2 col-md-2 d-none d-sm-block sidebar"></app-sidebar>
         <div class="col-sm-9 ml-sm-auto col-md-10 pt-3" id="content">
+            <app-loader></app-loader>
             <router-outlet></router-outlet>
         </div>
     </div>

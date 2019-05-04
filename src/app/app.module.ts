@@ -1,3 +1,4 @@
+import { LoaderService } from './_services/loader.service';
 import { BsDatepickerModule, BsDropdownModule, ModalModule, TabsModule, TypeaheadModule, PaginationModule } from 'ngx-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -39,7 +40,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ForgotPasswordComponent } from './password/forgot-password/forgot-password.component';
 import { HasRoleDirective } from './_directives/hasRole.directive';
 import { HomeComponent } from './home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LineChartComponent } from './charts/line-chart/line-chart.component';
 import { LoginComponent } from './login/login.component';
@@ -61,6 +62,8 @@ import { ResetPasswordComponent } from './password/reset-password/reset-password
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { UserService } from './_services/user.service';
 import { PhotoService } from './_services/photo.service';
+import { LoaderComponent } from './shared/loader/loader.component';
+import { LoaderInterceptor } from './_services/loader.interceptor';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -103,7 +106,8 @@ export function tokenGetter() {
       ResetPasswordComponent,
       HasRoleDirective,
       MemberSearchComponent,
-      AdvancedSearchComponent
+      AdvancedSearchComponent,
+      LoaderComponent
 
    ],
    imports: [
@@ -145,7 +149,9 @@ export function tokenGetter() {
       CheckoutDetailResolver,
       AuthorListResolver,
       AuthorAssetResolver,
-      PhotoService
+      PhotoService,
+      LoaderService,
+      { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
    ],
    entryComponents: [
       MemberEditComponent,
