@@ -24,8 +24,12 @@ export class AuthorListComponent implements OnInit {
   selectedItemPerPage: any;
   count: number;
 
-  constructor(private route: ActivatedRoute, private authorService: AuthorService,
-     private alertify: AlertifyService, private modalService: BsModalService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private authorService: AuthorService,
+    private alertify: AlertifyService,
+    private modalService: BsModalService
+  ) {}
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -37,27 +41,33 @@ export class AuthorListComponent implements OnInit {
   }
 
   searchAuthors(value: string) {
-    this.authorService.searchAuthors(value).subscribe((authors: Author[]) => {
-      this.authors = authors;
-    }, error => {
-      this.alertify.error(error);
-    });
+    this.authorService.searchAuthors(value).subscribe(
+      (authors: Author[]) => {
+        this.authors = authors;
+      },
+      error => {
+        this.alertify.error(error);
+      }
+    );
   }
 
   addAuthorModal() {
     this.bsModalRef = this.modalService.show(AddAuthorComponent);
-    this.bsModalRef.content.addedAuthor.subscribe((value) => {
+    this.bsModalRef.content.addedAuthor.subscribe(value => {
       this.addAuthor(value);
     });
   }
 
   addAuthor(author: Author) {
-    this.authorService.addAuthor(author).subscribe((author: Author) => {
-      this.alertify.success('Author Added Successfully');
-      this.authors.unshift(author);
-    }, error => {
-      this.alertify.error(error);
-    });
+    this.authorService.addAuthor(author).subscribe(
+      (value: Author) => {
+        this.alertify.success('Author Added Successfully');
+        this.authors.unshift(value);
+      },
+      error => {
+        this.alertify.error(error);
+      }
+    );
   }
 
   pageChanged(event: any): void {
@@ -68,10 +78,7 @@ export class AuthorListComponent implements OnInit {
   loadData() {
     this.pagination.itemsPerPage = this.selectedItemPerPage;
     this.authorService
-      .getPaginatedAuthors(
-        this.pagination.currentPage,
-        this.pagination.itemsPerPage
-      )
+      .getPaginatedAuthors(this.pagination.currentPage, this.pagination.itemsPerPage)
       .subscribe(
         (res: PaginatedResult<Author[]>) => {
           this.authors = res.result;
@@ -86,5 +93,4 @@ export class AuthorListComponent implements OnInit {
   onPageSizeChange(value: any): void {
     this.loadData();
   }
-
 }
