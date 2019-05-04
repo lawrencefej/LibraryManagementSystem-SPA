@@ -14,21 +14,17 @@
     <div class="card-body">
       <table class="table table-hover">
         <tr>
-          <!-- <th style="width: 5%">#</th> -->
           <th style="width: 40%">Title</th>
           <th style="width: 20%">Card#</th>
           <th style="width: 20%">Checkout Date</th>
           <th style="width: 20%">Due Date</th>
-          <!-- <th style="width: 10%">Status</th> -->
           <th style="width: 5%">Select</th>
         </tr>
         <tr *ngFor="let checkout of checkouts">
-          <!-- <td>{{checkout.id}}</td> -->
           <td>{{checkout.title}}</td>
           <td>{{checkout.libraryCardId}}</td>
           <td>{{checkout.since | date: 'mediumDate'}}</td>
           <td>{{checkout.until | date: 'mediumDate'}}</td>
-          <!-- <td>{{checkout.status}}</td> -->
           <td><button class="btn btn-success" [routerLink]="['/checkouts/', checkout.id]">Select</button></td>
         </tr>
       </table>

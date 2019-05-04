@@ -9,6 +9,7 @@ import { MemberEditComponent } from '../member-edit/member-edit.component';
 import { UserService } from 'src/app/_services/user.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { PhotoService } from 'src/app/_services/photo.service';
 
 @Component({
   selector: 'app-member-detail',
@@ -29,7 +30,8 @@ export class MemberDetailComponent implements OnInit {
   };
 
   constructor(private route: ActivatedRoute, private modalService: BsModalService,
-    private userService: UserService, private authService: AuthService, private alertify: AlertifyService) { }
+    private userService: UserService, private authService: AuthService,
+    private alertify: AlertifyService, private photoService: PhotoService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -75,7 +77,7 @@ export class MemberDetailComponent implements OnInit {
       member
     };
     this.bsModalRef = this.modalService.show(MemberEditComponent, {initialState});
-    this.bsModalRef.content.updateSelectedMember.subscribe((value) => {
+    this.bsModalRef.content.updatedMember.subscribe((value) => {
       this.updateUser(value);
     });
   }
@@ -86,7 +88,7 @@ export class MemberDetailComponent implements OnInit {
       const fd = new FormData;
       fd.append('userId', this.member.id.toString());
       fd.append('file', file);
-      this.userService.changeMemberPhoto(fd).subscribe((res: Photo) => {
+      this.photoService.changeMemberPhoto(fd).subscribe((res: Photo) => {
         this.member.photoUrl = res.url;
         this.alertify.success('Photo changed successfully');
       }, error => {

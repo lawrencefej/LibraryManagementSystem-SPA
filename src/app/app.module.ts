@@ -60,6 +60,7 @@ import { ReportService } from './_services/report.service';
 import { ResetPasswordComponent } from './password/reset-password/reset-password.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { UserService } from './_services/user.service';
+import { PhotoService } from './_services/photo.service';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -143,7 +144,8 @@ export function tokenGetter() {
       CheckoutListResolver,
       CheckoutDetailResolver,
       AuthorListResolver,
-      AuthorAssetResolver
+      AuthorAssetResolver,
+      PhotoService
    ],
    entryComponents: [
       MemberEditComponent,

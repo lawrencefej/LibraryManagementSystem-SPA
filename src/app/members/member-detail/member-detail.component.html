@@ -1,87 +1,85 @@
-  <div class="container mt-4">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-img-wrapper">
-              <img class="card-img-top img-thumbnail" src="{{member?.photoUrl || '../../../assets/user.png'}}" alt="{{member.lastName}}, {{member.firstName}}">
-              <input type="file" style="display: none" #fileInput (change)="onFileSelected($event)">
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <div class="card-img-wrapper">
+          <img class="card-img-top img-thumbnail" src="{{member?.photoUrl || '../../../assets/user.png'}}"
+            alt="{{member.lastName}}, {{member.firstName}}">
+        </div>
+        <div class="card-body">
+          <div class="row ">
+            <h4 class="card-title">{{member.lastName}}, {{member.firstName}}</h4>
+          </div>
+          <div class="container member-details">
+            <div class="row">
+              <b>Email: </b>
+              <p>{{member.email}}</p>
             </div>
-            <div class="card-body">
-              <div class="row ">
-                <h4 class="card-title">{{member.lastName}}, {{member.firstName}}</h4>
-              </div>
-                <div class="container member-details">
-                    <div class="row">
-                          <b>Email: </b>
-                          <p>{{member.email}}</p>
-                    </div>
-                    <div class="row">
-                          <b>Gender: </b>
-                          <p>{{member.gender}}</p>
-                    </div>
-                    <div class="row">
-                          <b>Phone Number: </b>
-                          <p>{{member.phoneNumber}}</p>
-                    </div>
-                    <div class="row">
-                          <b>Member Since: </b>
-                          <p>{{member.created | date: 'mediumDate'}}</p>
-                    </div>
-                    <div class="row">
-                          <b>Address: </b>
-                          <p>{{member.address}}</p>
-                    </div>
-                    <div class="row">
-                          <b>City: </b>
-                          <p>{{member.city}}</p>
-                    </div>
-                    <div class="row">
-                          <b>State: </b>
-                          <p>{{member.state}}</p>
-                    </div>
-                    <div class="row">
-                          <b>Zip Code: </b>
-                          <p>{{member.zipcode}}</p>
-                    </div>
-                    <div class="row">
-                          <b>Card Number: </b>
-                          <p>{{member.libraryCardNumber}}</p>
-                    </div>
-                    <div class="row" *ngIf="hasFees()">
-                          <b>Amount Owed: </b>
-                          <span class="badge badge-danger">${{member.fees}}</span>
-                    </div>
-                </div>
+            <div class="row">
+              <b>Gender: </b>
+              <p>{{member.gender}}</p>
             </div>
-            <div class="card-footer" >
-              <div class="btn-group d-flex">
-                  <button class="btn btn-primary w-100"  (click)="editUserModal(member)" >Edit</button>
-                  <button class="btn btn-info w-100"  (click)="fileInput.click()" >Photo</button>
-                  <button *ngIf="!hasFees()" class="btn btn-success w-100"  (click)="selectTab(2)" >New Checkout</button>
-                  <button *ngIf="hasFees()" class="btn btn-danger w-100"  (click)="selectTab(2)" >Pay Fees</button>
-                </div>
+            <div class="row">
+              <b>Phone Number: </b>
+              <p>{{member.phoneNumber}}</p>
+            </div>
+            <div class="row">
+              <b>Member Since: </b>
+              <p>{{member.created | date: 'mediumDate'}}</p>
+            </div>
+            <div class="row">
+              <b>Address: </b>
+              <p>{{member.address}}</p>
+            </div>
+            <div class="row">
+              <b>City: </b>
+              <p>{{member.city}}</p>
+            </div>
+            <div class="row">
+              <b>State: </b>
+              <p>{{member.state}}</p>
+            </div>
+            <div class="row">
+              <b>Zip Code: </b>
+              <p>{{member.zipcode}}</p>
+            </div>
+            <div class="row">
+              <b>Card Number: </b>
+              <p>{{member.libraryCardNumber}}</p>
+            </div>
+            <div class="row" *ngIf="hasFees()">
+              <b>Amount Owed: </b>
+              <span class="badge badge-danger">${{member.fees}}</span>
             </div>
           </div>
         </div>
-        <div class="col-sm-8">
-          <div class="tab-panel">
-            <tabset class="asset-tabset" #memberTabs>
-              <tab heading="Current Checkouts" class="nav-link">
-                <div class="container mt-4">
-                  <app-member-checkouts [member]="member"></app-member-checkouts>
-                </div>
-              </tab>
-              <tab heading="Checkout Item" class="nav-link">
-                <div class="container mt-4"> 
-                  <app-checkout-asset [userId]="member.id"></app-checkout-asset>
-                  <button class="btn btn-success w-100" (click)="selectTab(0)" >Done</button>
-                </div>
-              </tab>
-            </tabset>
+        <div class="card-footer">
+          <div class="btn-group d-flex">
+            <input type="file" style="display: none" #fileInput (change)="onFileSelected($event)">
+            <button class="btn btn-primary w-100" (click)="editUserModal(member)">Edit</button>
+            <button class="btn btn-info w-100" (click)="fileInput.click()">Photo</button>
+            <button *ngIf="!hasFees()" class="btn btn-success w-100" (click)="selectTab(1)">New Checkout</button>
+            <button *ngIf="hasFees()" class="btn btn-danger w-100" (click)="selectTab(1)">Pay Fees</button>
           </div>
         </div>
       </div>
     </div>
-    
-  
-  
+    <div class="col-sm-8">
+      <div class="tab-panel">
+        <tabset class="asset-tabset" #memberTabs>
+          <tab heading="Current Checkouts" class="nav-link">
+            <div class="container mt-4">
+              <app-member-checkouts [member]="member"></app-member-checkouts>
+            </div>
+          </tab>
+          <tab heading="Checkout Item" class="nav-link">
+            <div class="container mt-4">
+              <app-checkout-asset [userId]="member.id"></app-checkout-asset>
+              <button class="btn btn-success w-100" (click)="selectTab(0)">Done</button>
+            </div>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
