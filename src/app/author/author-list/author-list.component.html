@@ -15,7 +15,7 @@
         <tr *ngFor="let author of authors">
           <td>{{author?.firstName}}</td>
           <td>{{author?.lastName}}</td>
-          <td><a [routerLink]="['/authors/', author.id]"><span><i class="fa fa-check"></i></span></a></td>
+          <td><button class="btn btn-success" [routerLink]="['/authors/', author.id]">Select</button></td>
         </tr>
       </table>
       <div *ngIf="authors?.length < 1">

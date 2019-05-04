@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 export class UserService {
   baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getUser(id): Observable<User> {
     return this.http.get<User>(this.baseUrl + 'user/' + id);
@@ -52,7 +52,8 @@ export class UserService {
       params = params.append('pageSize', itemsPerPage);
     }
 
-    return this.http.get<User[]>(this.baseUrl + 'user/pagination', {observe: 'response', params})
+    return this.http
+      .get<User[]>(this.baseUrl + 'user/pagination', { observe: 'response', params })
       .pipe(
         map(response => {
           paginatedResult.result = response.body;
@@ -63,5 +64,4 @@ export class UserService {
         })
       );
   }
-
 }

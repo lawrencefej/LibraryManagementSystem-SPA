@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Photo } from './../../_models/photo';
+import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/_models/user';
@@ -8,6 +9,7 @@ import { MemberEditComponent } from '../member-edit/member-edit.component';
 import { UserService } from 'src/app/_services/user.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { PhotoService } from 'src/app/_services/photo.service';
 
 @Component({
   selector: 'app-member-detail',
@@ -17,12 +19,19 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 export class MemberDetailComponent implements OnInit {
   @Input() member: User;
   @ViewChild('memberTabs') memberTabs: TabsetComponent;
+  @ViewChild('fileInput') myInputVariable: ElementRef;
   show = false;
   checkout: Checkout;
   bsModalRef: BsModalRef;
+  selectedFile: File = null;
+  model: any = {
+    file: null,
+    userId: null
+  };
 
   constructor(private route: ActivatedRoute, private modalService: BsModalService,
-    private userService: UserService, private authService: AuthService, private alertify: AlertifyService) { }
+    private userService: UserService, private authService: AuthService,
+    private alertify: AlertifyService, private photoService: PhotoService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -68,9 +77,25 @@ export class MemberDetailComponent implements OnInit {
       member
     };
     this.bsModalRef = this.modalService.show(MemberEditComponent, {initialState});
-    this.bsModalRef.content.updateSelectedMember.subscribe((value) => {
+    this.bsModalRef.content.updatedMember.subscribe((value) => {
       this.updateUser(value);
     });
+  }
+
+  onFileSelected(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      const fd = new FormData;
+      fd.append('userId', this.member.id.toString());
+      fd.append('file', file);
+      this.photoService.changeMemberPhoto(fd).subscribe((res: Photo) => {
+        this.member.photoUrl = res.url;
+        this.alertify.success('Photo changed successfully');
+      }, error => {
+        this.alertify.error(error);
+      });
+    }
+    this.myInputVariable.nativeElement.value = '';
   }
 
 }

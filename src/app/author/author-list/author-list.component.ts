@@ -22,6 +22,7 @@ export class AuthorListComponent implements OnInit {
     { value: '10', display: 'Show 10 items Per Page' }
   ];
   selectedItemPerPage: any;
+  count: number;
 
   constructor(private route: ActivatedRoute, private authorService: AuthorService,
      private alertify: AlertifyService, private modalService: BsModalService) { }
@@ -31,6 +32,7 @@ export class AuthorListComponent implements OnInit {
       this.authors = data['authors'].result;
       this.pagination = data['authors'].pagination;
       this.selectedItemPerPage = this.pagination.itemsPerPage;
+      this.count = this.pagination.totalItems;
     });
   }
 

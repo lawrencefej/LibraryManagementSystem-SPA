@@ -10,16 +10,16 @@
           <th style="width: 10%">Last Name</th>
           <th style="width: 20%">Email</th>
           <th style="width: 5%">Role</th>
-          <th style="width: 5%">Edit Role</th>
           <th style="width: 5%">Delete</th>
+          <th style="width: 5%">Edit Role</th>
         </tr>
         <tr *ngFor="let u of users">
           <td>{{u.firstName | titlecase}}</td>
           <td>{{u.lastName | titlecase}}</td>
           <td>{{u.email | titlecase}}</td>
           <td>{{u.role | titlecase}}</td>
-          <td><button class="btn btn-info btn-sm" (click)="editRolesModal(u)">Edit</button></td>
           <td><button class="btn btn-danger btn-sm" (click)="editRolesModal(u)">Delete</button></td>
+          <td><button class="btn btn-info btn-sm" (click)="editRolesModal(u)">Edit</button></td>
         </tr>
       </table>
     </div>

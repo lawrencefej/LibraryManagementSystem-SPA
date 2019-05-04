@@ -1,6 +1,6 @@
 <div class="container mt-4">
   <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-4">
       <div class="card">
         <img class="card-img-top img-thumbnail" src="{{asset?.photoUrl || '../../../assets/book.jpg'}}"
           alt="{{asset.title}}">
@@ -43,6 +43,8 @@
         </div>
         <div class="card-footer">
           <div class="btn-group d-flex">
+            <input type="file" style="display: none" #fileInput (change)="onFileSelected($event)">
+            <button class="btn btn-success w-100" (click)="fileInput.click()">Photo</button>
             <button (click)="editAssetModal(asset)" class="btn btn-info w-100">Edit {{asset.assetType}}</button>
           </div>
         </div>
@@ -58,7 +60,7 @@
           </tab>
           <tab heading="Current Checkouts" class="nav-link">
             <div class="container mt-4">
-                <app-asset-checkouts [asset]="asset"></app-asset-checkouts>
+              <app-asset-checkouts [asset]="asset"></app-asset-checkouts>
             </div>
           </tab>
           <tab heading="Current Reserves" class="nav-link">
