@@ -1,3 +1,4 @@
+import { User } from './../../_models/user';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AssetService } from 'src/app/_services/asset.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
@@ -14,10 +15,12 @@ export class CheckoutAssetComponent implements OnInit {
 
   constructor(private assetService: AssetService, private alertify: AlertifyService, private checkoutService: CheckoutService) { }
   @Input() userId: number;
+  @Input() fees: number;
+  @Input() member: User;
   @Output() checkout = new EventEmitter<Checkout>();
   assets: LibraryAsset[];
-  count: number;
   value = '';
+  count: number;
   newCheckout: any = {};
 
   ngOnInit() {
@@ -33,6 +36,7 @@ export class CheckoutAssetComponent implements OnInit {
     this.assetService.searchAsset(value).subscribe((assets: LibraryAsset[]) => {
       this.assets = assets;
       this.count = this.assets.length;
+      console.log(this.count);
     }, error => {
       this.alertify.error(error);
     });
@@ -51,6 +55,14 @@ export class CheckoutAssetComponent implements OnInit {
 
   sendCheckout(checkout: Checkout): void {
     this.checkoutService.sendNewCheckout(checkout);
+  }
+
+  hasFees() {
+    if (this.fees > 0) {
+      return true;
+    }
+
+    return false;
   }
 
 }

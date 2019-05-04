@@ -17,7 +17,6 @@ export class AssetListComponent implements OnInit {
   itemsPerPage = [{value: '5', display: 'Show 5 items Per Page'},
                   {value: '10', display: 'Show 10 items Per Page'}];
   selectedItemPerPage: any;
-  // value = '';
   bsModalRef: BsModalRef;
   pagination: Pagination;
   count: number;

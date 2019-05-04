@@ -17,10 +17,10 @@
         <td>{{asset.authorName}}</td>
         <td>{{asset.year}}</td>
         <td>{{asset.assetType}}</td>
-        <td><button type="button" class="btn btn-outline-success btn-sm" (click)="CheckoutAsset(asset.id)"><span><i class="fa fa-sign-out"></i></span></button></td>
+        <td><button [disabled]="hasFees()" type="button" class="btn btn-outline-success btn-sm" (click)="CheckoutAsset(asset.id)"><span><i class="fa fa-sign-out"></i></span></button></td>
       </tr>
     </table>
-    <div *ngIf="assets?.length < 1">
+    <div *ngIf="assets.length < 1" class="text-center">
       <hr>
       <p>No results found :(</p>
     </div>
