@@ -74,7 +74,7 @@
           </tab>
           <tab heading="Checkout Item" class="nav-link">
             <div class="container mt-4">
-              <app-checkout-asset [userId]="member.id"></app-checkout-asset>
+              <app-checkout-asset [userId]="member.id" [fees]="member.fees"></app-checkout-asset>
               <button class="btn btn-success w-100" (click)="selectTab(0)">Done</button>
             </div>
           </tab>

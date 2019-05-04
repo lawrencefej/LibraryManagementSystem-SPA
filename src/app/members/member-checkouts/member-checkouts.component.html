@@ -10,11 +10,10 @@
           <td>{{checkout.title}}</td>
           <td>{{checkout.until | date: 'mediumDate'}}</td>
           <td>{{checkout.status}}</td>
-          <!-- <td><a ><span><i class="fa fa-check-square"></i></span></a></td> -->
           <td><button type="button" class="btn btn-outline-success btn-sm" (click)="returnAsset(checkout.id)"><span><i class="fa fa-sign-out"></i></span></button></td>
         </tr>
       </table>
-      <div *ngIf="checkouts?.length < 1">
+      <div *ngIf="checkouts?.length < 1" class="text-center">
         <hr>
         <p>No checkouts at this time :(</p>
       </div>

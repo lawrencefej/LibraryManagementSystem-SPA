@@ -37,6 +37,7 @@ export class MemberDetailComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.member = data['member'];
     });
+    this.hasFees();
 
     this.route.queryParams.subscribe(params => {
       const selectedTab = params['tab'];
