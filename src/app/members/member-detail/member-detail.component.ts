@@ -10,6 +10,7 @@ import { UserService } from 'src/app/_services/user.service';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { PhotoService } from 'src/app/_services/photo.service';
+import { FeesService } from 'src/app/_services/fees.service';
 
 @Component({
   selector: 'app-member-detail',
@@ -31,7 +32,8 @@ export class MemberDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private modalService: BsModalService,
     private userService: UserService, private authService: AuthService,
-    private alertify: AlertifyService, private photoService: PhotoService) { }
+    private alertify: AlertifyService, private photoService: PhotoService,
+    private feeService: FeesService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -97,6 +99,16 @@ export class MemberDetailComponent implements OnInit {
       });
     }
     this.myInputVariable.nativeElement.value = '';
+  }
+
+  payFees(libraryCardID: number) {
+    this.feeService.payFees(libraryCardID).subscribe(res => {
+      this.alertify.success('Payment was successful');
+      this.member.fees = 0;
+      // this.hasFees();
+    }, error => {
+      this.alertify.error(error);
+    });
   }
 
 }

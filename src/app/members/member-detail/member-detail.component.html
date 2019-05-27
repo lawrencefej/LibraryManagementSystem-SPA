@@ -59,7 +59,7 @@
             <button class="btn btn-primary w-100" (click)="editUserModal(member)">Edit</button>
             <button class="btn btn-info w-100" (click)="fileInput.click()">Photo</button>
             <button *ngIf="!hasFees()" class="btn btn-success w-100" (click)="selectTab(1)">New Checkout</button>
-            <button *ngIf="hasFees()" class="btn btn-danger w-100" (click)="selectTab(1)">Pay Fees</button>
+            <button *ngIf="hasFees()" class="btn btn-danger w-100" (click)="payFees(member.libraryCardNumber)">Pay Fees</button>
           </div>
         </div>
       </div>
