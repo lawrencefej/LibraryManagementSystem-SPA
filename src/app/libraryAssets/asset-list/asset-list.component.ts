@@ -7,6 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { AddAssetComponent } from '../add-asset/add-asset.component';
 import { AuthService } from 'src/app/_services/auth.service';
 import { Pagination, PaginatedResult } from 'src/app/_models/pagination';
+import { $ } from 'protractor';
 @Component({
   selector: 'app-asset-list',
   templateUrl: './asset-list.component.html',
@@ -92,9 +93,15 @@ export class AssetListComponent implements OnInit {
     this.loadData();
   }
 
-  deleteAsset(id) {
-    // this.alertify.confirm('are you sure you want to delete this member');
-    this.alertify.success('Item Deleted');
+  deleteAsset(asset: LibraryAsset) {
+    this.alertify.confirm('Are you sure you want to delete ' + asset.title + '?', () => {
+      this.assetService.deleteAsset(asset.id).subscribe(() => {
+        this.assets.splice(this.assets.findIndex(u => u.id === asset.id), 1);
+        this.alertify.success(asset.title + ' was deleted successfully');
+      }, error => {
+        this.alertify.error(error);
+        });
+      });
   }
 
   getAsset(id: any) {

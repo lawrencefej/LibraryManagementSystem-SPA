@@ -90,6 +90,10 @@ export class UserService {
     return this.http.put(this.baseUrl + 'user/' + id, user);
   }
 
+  deleteUser(memberId: number) {
+    return this.http.delete(this.baseUrl + 'user/' + memberId);
+  }
+
   AddMember(user: User) {
     return this.http.post(this.baseUrl + 'user/', user);
   }

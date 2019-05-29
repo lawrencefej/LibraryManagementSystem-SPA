@@ -15,12 +15,16 @@ constructor(private http: HttpClient) { }
     return this.http.get<User[]>(this.baseUrl + 'admin');
   }
 
-  AddUser(user: User) {
+  addUser(user: User) {
     return this.http.post(this.baseUrl + 'admin/', user);
   }
 
-  UpdateUser(user: User) {
+  updateUser(user: User) {
     return this.http.put(this.baseUrl + 'admin/', user);
+  }
+
+  deleteUser(userId: number) {
+    return this.http.delete(this.baseUrl + 'admin/' + userId);
   }
 
 }

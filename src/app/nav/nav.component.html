@@ -46,7 +46,7 @@
     <li *ngIf="isAdmin" class="nav-item list-inline-item" routerLinkActive="active">
       <a class="nav-link" [routerLink]="['/admin']" id="side-menu">Admin</a>
     </li>
-    <li class="nav-item list-inline-item" routerLinkActive="active">
+    <!-- <li class="nav-item list-inline-item" routerLinkActive="active">
       <a class="nav-link" [routerLink]="['catalog']">Catalog</a>
     </li>
     <li *ngIf="loggedIn()" class="nav-item list-inline-item" routerLinkActive="active">
@@ -54,7 +54,7 @@
     </li>
     <li *ngIf="loggedIn()" class="nav-item list-inline-item" routerLinkActive="active">
       <a class="nav-link" [routerLink]="['/currentitems']">Current Items</a>
-    </li>
+    </li> -->
     <li *ngIf="!loggedIn()" class="nav-item list-inline-item" routerLinkActive="active">
       <a class="nav-link" routerLink="/login">Login</a>
     </li>
@@ -66,13 +66,13 @@
         <!-- Welcome {{authService.decodedToken?.email | titlecase}} -->
       </a>
 
-      <div class="dropdown-menu mt-3 mr-1" *dropdownMenu>
-        <a class="dropdown-item" [routerLink]="['profileedit']"><i class="fa fa-user">
+      <div class="dropdown-menu mt-2 mr-1" *dropdownMenu>
+        <!-- <a class="dropdown-item" [routerLink]="['profileedit']"><i class="fa fa-user">
           </i> Edit Profile</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" [routerLink]="['/member/edit']"><i class="fa fa-cog">
-          </i>Settings</a>
-        <div class="dropdown-divider"></div>
+          </i>Settings</a> -->
+        <!-- <div class="dropdown-divider"></div> -->
         <a class="dropdown-item" (click)="logout()">
           <i class="fa fa-sign-out"></i> Logout</a>
       </div>

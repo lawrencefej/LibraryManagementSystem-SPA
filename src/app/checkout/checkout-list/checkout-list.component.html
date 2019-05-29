@@ -26,7 +26,6 @@
           <td>{{checkout.since | date: 'mediumDate'}}</td>
           <td>{{checkout.until | date: 'mediumDate'}}</td>
           <td>{{checkout.status}}</td>
-          <!-- <td><button class="btn btn-success" [routerLink]="['/checkouts/', checkout.id]">Select</button></td> -->
         </tr>
       </table>
       <div *ngIf="checkouts?.length < 1">

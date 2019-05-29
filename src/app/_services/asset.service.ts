@@ -60,4 +60,8 @@ export class AssetService {
       );
   }
 
+  deleteAsset(assetId: number) {
+    return this.http.delete(this.baseUrl + 'admin/' + assetId);
+  }
+
 }

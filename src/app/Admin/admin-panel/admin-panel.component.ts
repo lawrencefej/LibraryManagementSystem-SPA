@@ -43,7 +43,7 @@ export class AdminPanelComponent implements OnInit {
     });
   }
   updatedUser(value: User) {
-    this.adminService.UpdateUser(value).subscribe(() => {
+    this.adminService.updateUser(value).subscribe(() => {
       this.alertify.success('User updated successfully');
       const user = this.users.find(a => a.id === value.id);
       const index = this.users.indexOf(user);
@@ -61,7 +61,7 @@ export class AdminPanelComponent implements OnInit {
   }
   addUser(user: any) {
     user.callbackurl = 'http://localhost:4200/resetpassword';
-    this.adminService.AddUser(user).subscribe((value: User) => {
+    this.adminService.addUser(user).subscribe((value: User) => {
       this.alertify.success('User added Successfully');
       this.users.unshift(value);
     }, error => {
@@ -70,7 +70,14 @@ export class AdminPanelComponent implements OnInit {
   }
 
   deleteUser(id: number) {
-
+    this.alertify.confirm( 'Are you sure you want to delete this user?', () => {
+    this.adminService.deleteUser(id).subscribe(() => {
+      this.users.splice(this.users.findIndex(u => u.id === id), 1);
+      this.alertify.success('user was deleted successfully');
+    }, error => {
+      this.alertify.error(error);
+      });
+    });
   }
 
 }

@@ -99,12 +99,18 @@ export class MemberListComponent implements OnInit {
     );
   }
 
-  deleteMember(id) {
-    // this.alertify.confirm('are you sure you want to delete this member');
-    this.alertify.success('Member Deleted');
+  deleteMember(id: number) {
+    this.alertify.confirm( 'Are you sure you want to delete this member?', () => {
+      this.userService.deleteUser(id).subscribe(() => {
+        this.members.splice(this.members.findIndex(u => u.id === id), 1);
+        this.alertify.success('member was deleted successfully');
+      }, error => {
+        this.alertify.error(error);
+        });
+      });
   }
 
-  getMember(id) {
+  getMember(id: any) {
     this.userService.getUser(id).subscribe(
       (member: User) => {
         this.editUserModal(member);
