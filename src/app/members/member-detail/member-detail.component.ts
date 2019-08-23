@@ -1,3 +1,4 @@
+import { MemberService } from './../../_services/member.service';
 import { Photo } from './../../_models/photo';
 import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 
@@ -31,7 +32,7 @@ export class MemberDetailComponent implements OnInit {
   };
 
   constructor(private route: ActivatedRoute, private modalService: BsModalService,
-    private userService: UserService, private authService: AuthService,
+    private userService: UserService, private memberService: MemberService, private authService: AuthService,
     private alertify: AlertifyService, private photoService: PhotoService,
     private feeService: FeesService) { }
 
@@ -68,7 +69,8 @@ export class MemberDetailComponent implements OnInit {
   }
 
   updateUser(member: User) {
-    this.userService.updateUser(this.authService.decodedToken.nameid, member).subscribe(next => {
+    // this.userService.updateUser(this.authService.decodedToken.nameid, member).subscribe(next => {
+    this.memberService.updateMember(member).subscribe(next => {
       this.alertify.success('Member Updated Successfully');
     }, error => {
       this.alertify.error(error);

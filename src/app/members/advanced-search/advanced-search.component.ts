@@ -1,3 +1,4 @@
+import { MemberService } from './../../_services/member.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/_services/user.service';
@@ -18,7 +19,7 @@ export class AdvancedSearchComponent implements OnInit {
   firstName: string;
   lastName: string;
 
-  constructor(private userService: UserService, private alertify: AlertifyService,
+  constructor(private userService: UserService, private memberService: MemberService, private alertify: AlertifyService,
     private router: Router
   ) {}
 
@@ -27,7 +28,8 @@ export class AdvancedSearchComponent implements OnInit {
 
   searchMember() {
     const query = this.configureODataFilter();
-    this.userService.advancedMemberSearch(query).subscribe(
+    // this.userService.advancedMemberSearch(query).subscribe(
+    this.memberService.advancedMemberSearch(query).subscribe(
       (members: User[]) => {
         if (members.length > 0) {
           this.members = members;
