@@ -38,7 +38,6 @@ import { ErrorinterceptorProvider } from './_services/error.interceptor';
 import { FooterComponent } from './components/footer/footer.component';
 import { ForgotPasswordComponent } from './password/forgot-password/forgot-password.component';
 import { HasRoleDirective } from './_directives/hasRole.directive';
-import { HomeComponent } from './home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LineChartComponent } from './charts/line-chart/line-chart.component';
@@ -56,7 +55,6 @@ import { MemberService } from './_services/member.service';
 import { NavComponent } from './nav/nav.component';
 import { NgModule } from '@angular/core';
 import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
-import { RegisterComponent } from './register/register.component';
 import { ReportService } from './_services/report.service';
 import { ResetPasswordComponent } from './password/reset-password/reset-password.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -73,9 +71,7 @@ export function tokenGetter() {
    declarations: [
       AppComponent,
       NavComponent,
-      RegisterComponent,
       LoginComponent,
-      HomeComponent,
       MemberHistoryComponent,
       AssetListComponent,
       AssetCardComponent,
