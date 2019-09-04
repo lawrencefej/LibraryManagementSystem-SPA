@@ -35,7 +35,7 @@ export class AssetService {
   }
 
   updateAsset(id: number, asset: LibraryAsset) {
-    return this.http.put(this.baseUrl + 'catalog/' + id, asset);
+    return this.http.put(this.baseUrl + 'catalog/', asset);
   }
 
   getPaginatedAssets(page?, itemsPerPage?): Observable<PaginatedResult<LibraryAsset[]>> {
@@ -61,7 +61,7 @@ export class AssetService {
   }
 
   deleteAsset(assetId: number) {
-    return this.http.delete(this.baseUrl + 'admin/' + assetId);
+    return this.http.delete(this.baseUrl + 'catalog/' + assetId);
   }
 
 }

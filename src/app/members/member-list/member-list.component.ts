@@ -1,3 +1,4 @@
+import { MemberService } from './../../_services/member.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Component, OnInit } from '@angular/core';
@@ -30,6 +31,7 @@ export class MemberListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
+    private memberService: MemberService,
     private alertify: AlertifyService,
     private modalService: BsModalService,
     private authService: AuthService,
@@ -76,7 +78,7 @@ export class MemberListComponent implements OnInit {
   }
 
   addMember(value: User) {
-    this.userService.AddMember(value).subscribe(
+    this.memberService.AddMember(value).subscribe(
       (member: User) => {
         this.alertify.success('Member Added Successfully');
         this.members.unshift(member);
@@ -89,7 +91,8 @@ export class MemberListComponent implements OnInit {
   }
 
   updateUser(member: User) {
-    this.userService.updateUser(this.authService.decodedToken.nameid, member).subscribe(
+    // this.userService.updateUser(this.authService.decodedToken.nameid, member).subscribe(
+    this.memberService.updateMember(member).subscribe(
       next => {
         this.alertify.success('Member Updated Successfully');
       },
@@ -101,7 +104,7 @@ export class MemberListComponent implements OnInit {
 
   deleteMember(id: number) {
     this.alertify.confirm( 'Are you sure you want to delete this member?', () => {
-      this.userService.deleteUser(id).subscribe(() => {
+      this.memberService.deleteMember(id).subscribe(() => {
         this.members.splice(this.members.findIndex(u => u.id === id), 1);
         this.alertify.success('member was deleted successfully');
       }, error => {
@@ -111,7 +114,7 @@ export class MemberListComponent implements OnInit {
   }
 
   getMember(id: any) {
-    this.userService.getUser(id).subscribe(
+    this.memberService.getMember(id).subscribe(
       (member: User) => {
         this.editUserModal(member);
       },
@@ -128,7 +131,7 @@ export class MemberListComponent implements OnInit {
 
   loadData() {
     this.pagination.itemsPerPage = this.selectedItemPerPage;
-    this.userService
+    this.memberService
       .getPaginatedMembers(this.pagination.currentPage, this.pagination.itemsPerPage)
       .subscribe(
         (res: PaginatedResult<User[]>) => {

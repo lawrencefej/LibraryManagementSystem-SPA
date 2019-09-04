@@ -52,6 +52,7 @@ import { MemberHistoryComponent } from './members/member-history/member-history.
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberListResolver } from './_resolver/member-list.resolver';
 import { MemberSearchComponent } from './members/member-search/member-search.component';
+import { MemberService } from './_services/member.service';
 import { NavComponent } from './nav/nav.component';
 import { NgModule } from '@angular/core';
 import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
@@ -148,6 +149,7 @@ export function tokenGetter() {
       AuthorListResolver,
       AuthorAssetResolver,
       PhotoService,
+      MemberService,
       LoaderService,
       { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
    ],
