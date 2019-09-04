@@ -1,3 +1,4 @@
+import { MemberService } from './../../_services/member.service';
 import { Component, OnInit } from '@angular/core';
 
 import { AlertifyService } from 'src/app/_services/alertify.service';
@@ -21,7 +22,7 @@ export class MemberSearchComponent implements OnInit {
     email: null
   };
 
-  constructor(private userService: UserService, private alertify: AlertifyService,
+  constructor(private memberService: MemberService, private alertify: AlertifyService,
     private router: Router) { }
 
   ngOnInit() {
@@ -31,7 +32,7 @@ export class MemberSearchComponent implements OnInit {
   }
 
   searchMember() {
-    this.userService.getMemberByCardNumber(this.formModel.cardNumber).subscribe((member: User) => {
+    this.memberService.getMemberByCardNumber(this.formModel.cardNumber).subscribe((member: User) => {
       if (member != null) {
         this.model = member;
         this.formModel.cardNumber = '';

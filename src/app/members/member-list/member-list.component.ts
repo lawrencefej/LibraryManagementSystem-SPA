@@ -91,7 +91,6 @@ export class MemberListComponent implements OnInit {
   }
 
   updateUser(member: User) {
-    // this.userService.updateUser(this.authService.decodedToken.nameid, member).subscribe(
     this.memberService.updateMember(member).subscribe(
       next => {
         this.alertify.success('Member Updated Successfully');
