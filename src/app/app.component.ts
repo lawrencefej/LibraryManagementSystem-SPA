@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { AuthService } from './_services/auth.service';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import { User } from './_models/user';
@@ -33,9 +32,9 @@ export class AppComponent implements OnInit {
 
   showNav() {
     if (this.authService.loggedIn()) {
-      if (this.router.url === '/dashboard') {
-        return false;
-      }
+      // if (this.router.url === '/dashboard') {
+      //   return false;
+      // }
       return true;
     } else {
       return false;

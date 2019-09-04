@@ -29,7 +29,6 @@ import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ChartsModule } from 'ng2-charts';
 import { CheckoutAssetComponent } from './checkout/checkout-asset/checkout-asset.component';
-import { CheckoutDetailComponent } from './checkout/checkout-detail/checkout-detail.component';
 import { CheckoutDetailResolver } from './_resolver/checkout-detail.resolver';
 import { CheckoutListComponent } from './checkout/checkout-list/checkout-list.component';
 import { CheckoutListResolver } from './_resolver/checkout-list.resolver';
@@ -90,7 +89,6 @@ export function tokenGetter() {
       MemberListComponent,
       MemberDetailComponent,
       CheckoutListComponent,
-      CheckoutDetailComponent,
       CheckoutAssetComponent,
       AssetCheckoutsComponent,
       AuthorListComponent,

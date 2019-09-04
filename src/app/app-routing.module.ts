@@ -11,7 +11,6 @@ import { AuthorAssetComponent } from './author/author-asset/author-asset.compone
 import { AuthorAssetResolver } from './_resolver/author-asset.resolver';
 import { AuthorListComponent } from './author/author-list/author-list.component';
 import { AuthorListResolver } from './_resolver/author-list-resolver';
-import { CheckoutDetailComponent } from './checkout/checkout-detail/checkout-detail.component';
 import { CheckoutDetailResolver } from './_resolver/checkout-detail.resolver';
 import { CheckoutListComponent } from './checkout/checkout-list/checkout-list.component';
 import { CheckoutListResolver } from './_resolver/checkout-list.resolver';
@@ -54,8 +53,6 @@ const routes: Routes = [
         resolve: { member: MemberDetailResolver } },
       { path: 'checkouts', component: CheckoutListComponent, data: { allowedRoles: ['Admin', 'Librarian'] },
         resolve: { checkouts: CheckoutListResolver } },
-      { path: 'checkouts/:id', component: CheckoutDetailComponent, data: { roles: ['Admin', 'Librarian'] },
-        resolve: { checkout: CheckoutDetailResolver } },
       { path: 'authors', component: AuthorListComponent, data: { allowedRoles: ['Admin', 'Librarian'] },
         resolve: { authors: AuthorListResolver } },
       { path: 'authors/:id', component: AuthorAssetComponent, data: { allowedRoles: ['Admin', 'Librarian'] },
