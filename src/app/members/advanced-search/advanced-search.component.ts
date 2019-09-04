@@ -28,7 +28,6 @@ export class AdvancedSearchComponent implements OnInit {
 
   searchMember() {
     const query = this.configureODataFilter();
-    // this.userService.advancedMemberSearch(query).subscribe(
     this.memberService.advancedMemberSearch(query).subscribe(
       (members: User[]) => {
         if (members.length > 0) {

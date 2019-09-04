@@ -25,13 +25,11 @@ import { MemberListComponent } from './members/member-list/member-list.component
 import { MemberListResolver } from './_resolver/member-list.resolver';
 import { MemberSearchComponent } from './members/member-search/member-search.component';
 import { NgModule } from '@angular/core';
-import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './password/reset-password/reset-password.component';
 
 const routes: Routes = [
   // { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
   { path: 'forgotpassword', component: ForgotPasswordComponent },
   { path: 'resetpassword/:id/:code', component: ResetPasswordComponent },
   {

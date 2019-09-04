@@ -7,6 +7,7 @@ import { CategoryService } from 'src/app/_services/category.service';
 import { AssetType } from 'src/app/_models/assetType';
 import { Category } from 'src/app/_models/category';
 import { LibraryAsset } from 'src/app/_models/libraryAsset';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-add-asset',
@@ -34,7 +35,7 @@ export class AddAssetComponent implements OnInit {
   button = 'Save';
 
 
-  constructor(public bsModalRef: BsModalRef, private authorService: AuthorService,
+  constructor(public bsModalRef: BsModalRef, private authorService: AuthorService, private alertify: AlertifyService,
     private assetTypeService: AssetTypeService, private categoryService: CategoryService) { }
 
   ngOnInit() {
@@ -62,20 +63,13 @@ export class AddAssetComponent implements OnInit {
     this.model.authorId = this.selectedOption.id;
   }
 
-  // search($event) {
-  //   let value = $event.target.value;
-  //   this.authorService.searchAuthors(value).subscribe((authors: Author[]) => {
-  //     this.authors = authors;
-  //   }, error => {
-  //     this.alertify.error(error);
-  //   });
-  // }
-
   getAuthors() {
     this.authorService.getAuthors().subscribe((authors: Author[]) => {
       this.authors = authors;
+    },
+    error => {
+      this.alertify.error(error);
     });
-    // TODO add error
   }
 
   isUpdate() {
@@ -95,8 +89,10 @@ export class AddAssetComponent implements OnInit {
         this.selectedAssetType = assetTypes.find(a => a.name === this.asset.assetType);
         this.model.assetTypeId = this.selectedAssetType.id;
       }
+    },
+    error => {
+      this.alertify.error(error);
     });
-    // TODO add error
   }
 
   getCategories() {
@@ -106,8 +102,10 @@ export class AddAssetComponent implements OnInit {
         this.selectedCategory = categories.find(a => a.name === this.asset.category);
         this.model.categoryId = this.selectedCategory.id;
       }
+    },
+    error => {
+      this.alertify.error(error);
     });
-    // TODO add error
   }
 
   onItemChange(value: AssetType) {
