@@ -30,6 +30,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   passwordMatchValidator() {
+    // TODO fix password match validation
     return this.form.password === this.form.confirmPassword
       ? null
       : { mismatch: true };
@@ -39,6 +40,8 @@ export class ResetPasswordComponent implements OnInit {
     this.authService.resetPassword(this.form).subscribe(
       () => {
         this.alertify.success('Password has been reset successfully');
+        this.form.password = null;
+        this.form.confirmPassword = null;
         this.router.navigate(['/login']);
       },
       error => {

@@ -34,7 +34,6 @@ export class MemberListComponent implements OnInit {
     private memberService: MemberService,
     private alertify: AlertifyService,
     private modalService: BsModalService,
-    private authService: AuthService,
     private router: Router
   ) {}
 

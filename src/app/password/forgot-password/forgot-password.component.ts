@@ -14,13 +14,11 @@ export class ForgotPasswordComponent implements OnInit {
     url: null
   };
   model: any = {};
-  // hostname: string;
 
 
   constructor(public authService: AuthService, private alertify: AlertifyService) { }
 
   ngOnInit() {
-    // this.hostname = 'http://localhost:4200/resetpassword';
   }
 
   loggedIn() {
@@ -28,7 +26,6 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   sendResetLink() {
-    // this.form.url = this.hostname;
     this.authService.sendForgotPasswordLink(this.form).subscribe(() => {
       this.alertify.success('Email has been sent');
       this.form.email = null;
