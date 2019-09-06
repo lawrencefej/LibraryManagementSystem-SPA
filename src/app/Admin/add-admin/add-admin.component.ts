@@ -41,7 +41,6 @@ export class AddAdminComponent implements OnInit {
     } else {
       this.addedUser.emit(this.model);
       this.bsModalRef.hide();
-      console.log(this.model);
     }
   }
 
@@ -54,8 +53,6 @@ export class AddAdminComponent implements OnInit {
     if (this.user !== undefined) {
       this.selectedRole = this.roles.find(r => r.name === this.user.role);
     }
-    console.log(this.user);
-    console.log(this.selectedRole);
   }
 
   onRoleChange(value: any) {
